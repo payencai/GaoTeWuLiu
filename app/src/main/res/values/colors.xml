@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorAccent">#E74342</color>
+
+    <color name="app_main_color">#FFFFFF</color>
+    <color name="tab_text_unselected">#828990</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="text_black_color">#333333</color>
+    <color name="text_gray_color">#979797</color>
+    <color name="divider_gray">#F2F2F2</color>
+    <color name="btn_color_blue">#03a0c9</color>
+
+    <color name="mine_header">#373D41</color>
+    <color name="text_blue_color">#00c0df</color>
+
+    <color name="color_bg_light_white">#F6F6F6</color>
+
+    <color name="step_completed_color">#00C1DE</color>
+    <color name="step_uncompleted_color">#DDDDDD</color>
+    <color name="black">#000000</color>
+    <color name="alpha">#00000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="color_333">#333333</color>
+    <color name="color_999">#999999</color>
+</resources>

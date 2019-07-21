@@ -12,31 +12,25 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class AccountSafeActivity extends AppCompatActivity {
+public class UpdatePhoneActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_safe);
+        setContentView(R.layout.activity_update_phone);
         ButterKnife.bind(this);
     }
-    @OnClick({R.id.rl_reset, R.id.rl_account, R.id.rl_phone,R.id.tv_bind})
+    @OnClick({R.id.tv_submit, R.id.iv_back})
     void OnClcik(View view) {
         if (CheckDoubleClick.isFastDoubleClick()) {
             return;
         }
         switch (view.getId()) {
-            case R.id.rl_reset:
-                startActivity(new Intent(AccountSafeActivity.this,UpdatePwdActivity.class));
+            case R.id.tv_submit:
+                startActivity(new Intent(UpdatePhoneActivity.this,BindPhoneActivity.class));
                 break;
-            case R.id.rl_account:
-                startActivity(new Intent(AccountSafeActivity.this,UpdateMileActivity.class));
-                break;
-            case R.id.rl_phone:
-                startActivity(new Intent(AccountSafeActivity.this,UpdatePhoneActivity.class));
-                break;
-            case R.id.tv_bind:
-
+            case R.id.iv_back:
+                finish();
                 break;
         }
     }

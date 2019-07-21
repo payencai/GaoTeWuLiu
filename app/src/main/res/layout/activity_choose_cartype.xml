@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:padding="15dp"
+            android:src="@drawable/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:textSize="16sp"
+            android:textColor="@color/text_black_color"
+            android:text="选择车辆类型"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/divider_gray"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*"
+                android:layout_gravity="center_vertical"
+                android:textColor="#ff7430"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车辆类型："
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:textColor="#666666"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <com.sevenheaven.segmentcontrol.SegmentControl
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/segmentcontrol_car_type"
+            android:textSize="11sp"
+            app:selectedColor="@color/step_completed_color"
+            app:normalColor="@color/white"
+            app:textColors="@drawable/selector_rg_car_type"
+            app:cornerRadius="5dp"
+            app:separatorWidth="1dp"
+            app:texts="摩托车|小轿车|三轮车|小面包车|中面包车|小货车|中货车"
+            app:verticalGap="10dp"
+            app:horizonGap="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="面包车"
+            android:textSize="12sp"
+            android:textColor="#666666"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注意：此数据显示的载重和体积只是个标准，最终数据以实际车辆长度为准，请知悉"
+            android:layout_marginTop="7dp"
+            android:textSize="10sp"
+            android:textColor="#999999"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:background="#F3F4F6"
+            android:gravity="center_horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_weight"
+                android:layout_marginTop="10dp"
+                android:text="500公斤"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="载重"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#999999"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="#F3F4F6"
+            android:gravity="center_horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_size"
+                android:layout_marginTop="10dp"
+                android:text="1.8*1.3*1.1米"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="长*宽*高"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#999999"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="#F3F4F6"
+            android:gravity="center_horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_volume"
+                android:layout_marginTop="10dp"
+                android:text="2.6方"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="载重体积"
+                android:textSize="14sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#999999"
+                />
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_sure"
+            android:background="@drawable/shape_rectangle_circle_blue"
+            android:textColor="@color/white"
+            android:text="确定"
+            android:layout_marginTop="30dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

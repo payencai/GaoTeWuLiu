@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
+            android:id="@+id/iv_back"
             android:padding="15dp"
             android:src="@drawable/back"
             android:layout_width="50dp"
@@ -54,6 +55,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -93,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"></View>
     <RelativeLayout
-        android:id="@+id/rl_friend"
+        android:id="@+id/rl_reback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

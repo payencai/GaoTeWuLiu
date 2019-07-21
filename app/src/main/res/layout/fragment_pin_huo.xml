@@ -102,7 +102,7 @@
 
 
             <LinearLayout
-                android:id="@+id/lcl_detail_ll_mail_infrom"
+                android:id="@+id/ll_send"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
                 android:layout_marginTop="11dp"
@@ -160,7 +160,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lcl_detail_ll_pick_inform"
+                android:id="@+id/ll_get"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
                 android:layout_marginTop="11dp"
@@ -623,7 +623,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/lcl_detail_btn_apply"
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

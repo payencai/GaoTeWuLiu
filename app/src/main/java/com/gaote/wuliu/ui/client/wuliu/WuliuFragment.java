@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gaote.wuliu.R;
+import com.gyf.immersionbar.ImmersionBar;
+import com.gyf.immersionbar.components.ImmersionFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WuliuFragment extends Fragment {
+public class WuliuFragment extends ImmersionFragment {
 
 
     public WuliuFragment() {
@@ -27,4 +29,8 @@ public class WuliuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_wuliu, container, false);
     }
 
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this).statusBarColor(R.color.white).fitsSystemWindows(true).statusBarDarkFont(true).navigationBarDarkIcon(true).init();
+    }
 }

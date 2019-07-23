@@ -39,6 +39,24 @@ public class Api {
         public static final String URL_UPDATE_DEFAULT_ADDRESS = "/address/updateDefaultAddress";
     }
 
+    public static class Client {
+        public static final String getUserInfo = "/demander/info/get";
+    }
+
+    public static class Order {
+        public static final String URL_DEMAND_GET_LCL_ORDER = "/pdriverOrder/getPdriverOrderByUser";
+
+        public static final String URL_DEMAND_GET_LOG_ORDER = "/demander/worder/getMyOrders";
+        public static final String URL_GET_AVAILABLE_ORDER = "/pdriverOrder/getPdriverOrderByDriver";
+
+        public static final String URL_GET_ALL_ORDER = "/pdriverOrder/getPdriverOrderAllByDriver";
+
+        public static final String URL_DRIVER_UPDATE_ORDER_STATUS = "/pdriverOrder/updatePdriverOrderByDriver";
+
+        public static final String URL_USER_UPDATE_ORDER_STATUS = "/pdriverOrder/updatePdriverOrderCancelByUser";
+
+        public static final String URL_FINISH_ORDER_BY_USER = "/pdriverOrder/updatePdriverOrderByUser";
+    }
 
     public static final String URL_UPLOAD_IMAGE = "/image/uploadImage";
 

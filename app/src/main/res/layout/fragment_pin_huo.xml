@@ -12,13 +12,22 @@
         android:text="弥勒城乡物流信息服务平台"
         android:textColor="#333333"
         android:textSize="16sp" />
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
     <RelativeLayout
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
 
-
+        <ImageView
+            android:padding="15dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_msg"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
         <TextView
             android:layout_centerInParent="true"
             android:textColor="@color/color_333"
@@ -40,7 +49,7 @@
             android:gravity="center_vertical"
             android:id="@+id/titlebar_ll_loc"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
@@ -51,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/titlebar_tv_right"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center_vertical"
                 android:layout_marginRight="8dp"
                 android:ellipsize="end"
                 android:text="昆明"
@@ -67,6 +76,10 @@
 
         </LinearLayout>
     </RelativeLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -78,10 +91,12 @@
             android:orientation="vertical">
 
             <com.flyco.tablayout.SlidingTabLayout
-                android:id="@+id/lcl_detail_tablayout"
+                android:id="@+id/tab_car"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/white"
+                app:tl_indicator_width="50dp"
+                app:tl_tab_space_equal="false"
                 app:tl_indicator_color="@color/text_black_color"
                 app:tl_textBold="SELECT"
                 app:tl_textSelectColor="@color/text_black_color"
@@ -89,10 +104,10 @@
                 app:tl_textsize="15dp" />
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/lcl_detail_vp"
+                android:id="@+id/vp_car"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:layout_below="@id/lcl_detail_tablayout" />
+                 />
 
 
             <View

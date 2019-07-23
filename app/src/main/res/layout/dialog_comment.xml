@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@drawable/shape_white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+
+        android:layout_gravity="right"
+        android:src="@mipmap/ic_dialog_del"
+        android:layout_width="15dp"
+        android:layout_height="15dp" />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dp"
+            android:text="匿名评分"
+            android:textColor="@color/text_black_color"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <com.willy.ratingbar.ScaleRatingBar
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/sb_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srb_clearRatingEnabled="true"
+        app:srb_isIndicator="false"
+        app:srb_minimumStars="0"
+        app:srb_numStars="5"
+        app:srb_rating="0"
+        app:srb_scrollable="true"
+        app:srb_starHeight="20dp"
+        app:srb_starPadding="2dp"
+        app:srb_starWidth="20dp"
+        app:srb_stepSize="1">
+
+    </com.willy.ratingbar.ScaleRatingBar>
+
+     <TextView
+         android:layout_marginBottom="10dp"
+         android:layout_marginTop="20dp"
+         android:layout_gravity="center_horizontal"
+         android:textColor="@color/white"
+         android:textSize="14sp"
+         android:background="@drawable/shape_btn_green"
+         android:gravity="center"
+         android:text="确认"
+         android:layout_width="100dp"
+         android:layout_height="30dp" />
+</LinearLayout>

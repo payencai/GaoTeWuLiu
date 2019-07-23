@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -68,6 +69,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         ButterKnife.bind(this);
         initView();
     }
+
     @OnClick({R.id.tv_type,R.id.ivask,R.id.cancelBtn,R.id.tv_proxy,R.id.ivdel,R.id.tv_login})
     void OnClick(View view ){
         switch (view.getId()){
@@ -107,9 +109,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             ll_pwd.setVisibility(View.GONE);
         }
     }
-
+    private void setDebugData(){
+        et_account.setText("13202908144");
+        et_pwd.setText("123456");
+    }
     private void initView() {
         loginRequest=new LoginModel.LoginRequest();
+        setDebugData();
         ArrayList<CustomTabEntity> customTabEntities=new ArrayList<>();
         customTabEntities.add(new TabTitle("用户端"));
         customTabEntities.add(new TabTitle("服务端"));
@@ -172,6 +178,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void saveClientUser(ClientUser clientUser) {
+        SPUtils.getInstance().put("role","2");
         ToastUtils.showShort("用户端登录成功");
         EventBus.getDefault().post("mine");
         finish();
@@ -180,7 +187,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void saveServiceUser(ServiceUser serviceUser) {
-
+        SPUtils.getInstance().put("role","1");
     }
 
     class TabTitle implements CustomTabEntity {

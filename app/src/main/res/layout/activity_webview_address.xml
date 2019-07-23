@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.client.mine.address.WebviewAddressActivity">
+    <include layout="@layout/header_commom"/>
+    <com.gaote.wuliu.x5.MyX5WebView
+        android:id="@+id/myweb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.gaote.wuliu.x5.MyX5WebView>
+</LinearLayout>

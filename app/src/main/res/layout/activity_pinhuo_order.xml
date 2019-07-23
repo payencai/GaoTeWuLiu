@@ -40,10 +40,9 @@
             app:tl_indicator_corner_radius="30dp"
             app:tl_indicator_height="3dp"
             app:tl_indicator_width="0dp"
-            app:tl_indicator_width_equal_title="false"
-            app:tl_tab_space_equal="true"
+            app:tl_tab_space_equal="false"
             app:tl_textSelectColor="@color/white"
-            app:tl_textUnselectColor="#666666"
+            app:tl_textUnselectColor="#7fF2F2F2"
             app:tl_textsize="14sp" />
 
         <android.support.v4.view.ViewPager

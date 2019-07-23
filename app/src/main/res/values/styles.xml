@@ -67,4 +67,11 @@
         <item name="svTextSize">12sp</item>
         <item name="svDrawablePadding">10dp</item>
     </style>
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/color_333</item>
+
+        <item name="colorControlActivated">@color/text_blue_color</item>
+    </style>
+
+
 </resources>

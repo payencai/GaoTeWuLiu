@@ -272,8 +272,10 @@ public class NetUtils {
     public void post(String url,HttpParams httpParams, final OnMessageReceived messageReceived){
 
         OkGo.<String>post(url)//
+
 //                .params(params)
                 .params(httpParams)
+
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -311,6 +313,40 @@ public class NetUtils {
                     public void onSuccess(Response<String> response) {
                         String result = response.body().toString();
                         messageReceived.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        messageReceived.onError("");
+                    }
+                });
+    }
+    public void post(String url,HttpParams httpParams, final OnMessageReceived messageReceived,String headers){
+
+        OkGo.<String>post(url)//
+
+//                .params(params)
+                .headers("password",headers)
+                .params(httpParams)
+
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        String result = response.body().toString();
+                        messageReceived.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onStart(Request<String, ? extends Request> request) {
+                        super.onStart(request);
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+
                     }
 
                     @Override

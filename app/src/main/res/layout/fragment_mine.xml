@@ -190,7 +190,7 @@
                 android:background="@color/divider_gray"></View>
 
             <RelativeLayout
-                android:id="@+id/mine_rl_address_manage"
+                android:id="@+id/rl_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

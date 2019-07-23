@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,14 +15,26 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.flyco.tablayout.SlidingTabLayout;
 import com.gaote.wuliu.R;
 import com.gaote.wuliu.tools.CheckDoubleClick;
 import com.gaote.wuliu.ui.client.mine.BindPhoneActivity;
 import com.gaote.wuliu.ui.client.mine.UpdatePhoneActivity;
+import com.gaote.wuliu.ui.client.pinhuo.lcl.constant.LCLConstants;
+import com.gaote.wuliu.ui.client.pinhuo.lcl.fragment.LCLMiddleBusFragment;
+import com.gaote.wuliu.ui.client.pinhuo.lcl.fragment.LCLMiddleTrackFragment;
+import com.gaote.wuliu.ui.client.pinhuo.lcl.fragment.LCLMiniBusFragment;
+import com.gaote.wuliu.ui.client.pinhuo.lcl.fragment.LCLMotorbikeFragment;
+import com.gaote.wuliu.ui.client.pinhuo.lcl.fragment.LCLSedanFragment;
+import com.gaote.wuliu.ui.client.pinhuo.lcl.fragment.LCLSmallTrackFragment;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.components.ImmersionFragment;
 import com.gyf.immersionbar.components.SimpleImmersionFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,8 +42,11 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class PinHuoFragment extends ImmersionFragment {
-
-
+    private ArrayList<Fragment> mFragments;
+    @BindView(R.id.tab_car)
+    SlidingTabLayout tab_car;
+    @BindView(R.id.vp_car)
+    ViewPager vp_car;
     public PinHuoFragment() {
         // Required empty public constructor
     }
@@ -42,7 +58,22 @@ public class PinHuoFragment extends ImmersionFragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_pin_huo, container, false);
         ButterKnife.bind(this,view);
+        initView();
         return view;
+    }
+
+    private void initView() {
+        initTab();
+    }
+    private void initTab(){
+        mFragments=new ArrayList<>();
+        mFragments.add(new LCLMotorbikeFragment());
+        mFragments.add(new LCLSedanFragment());
+        mFragments.add(new LCLMiniBusFragment());
+        mFragments.add(new LCLMiddleBusFragment());
+        mFragments.add(new LCLSmallTrackFragment());
+        mFragments.add(new LCLMiddleTrackFragment());
+        tab_car.setViewPager(vp_car, LCLConstants.LCL_TAB_NAMES,getActivity(),mFragments);
     }
     @OnClick({R.id.btn_submit, R.id.ll_get})
     void OnClcik(View view) {

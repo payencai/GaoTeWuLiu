@@ -53,6 +53,7 @@ public class LoginModel {
                             ClientUser clientUser = new Gson().fromJson(data.toString(), ClientUser.class);
                             MyApp.setClientUser(clientUser);
                             MyApp.isLogin = true;
+                            MyApp.token=clientUser.getToken();
                             loginResult.onReturnClient(clientUser);
                         } else {
                             ServiceUser serviceUser = new Gson().fromJson(data.toString(), ServiceUser.class);

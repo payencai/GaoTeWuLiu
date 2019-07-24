@@ -53,9 +53,11 @@ public class Api {
 
         public static final String URL_DRIVER_UPDATE_ORDER_STATUS = "/pdriverOrder/updatePdriverOrderByDriver";
 
-        public static final String URL_USER_UPDATE_ORDER_STATUS = "/pdriverOrder/updatePdriverOrderCancelByUser";
+        public static final String URL_USER_ORDER_CANCEL = "/pdriverOrder/updatePdriverOrderCancelByUser";
 
         public static final String URL_FINISH_ORDER_BY_USER = "/pdriverOrder/updatePdriverOrderByUser";
+
+
     }
 
     public static final String URL_UPLOAD_IMAGE = "/image/uploadImage";

@@ -17,6 +17,9 @@ import java.util.List;
 public class PinhuoOrderModel {
     public interface RequestResult {
         void getData(List<PinhuoOrder> pinhuoOrders);
+        void onUserCancel();
+        void onUserConfirm();
+        void onDriverHandle();
     }
 
     public void getPinhuoOrder(RequestResult requestResult, int page, String url, int type) {
@@ -37,6 +40,75 @@ public class PinhuoOrderModel {
                     ToastUtils.showShort(result.getMessage());
                 }
 
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+    public void userCancelOrder(String id,RequestResult requestResult){
+        HttpParams httpParams = new HttpParams();
+        httpParams.put("pdriverOrderId", id);
+        NetUtils.getInstance().post(Api.BASE_URL+Api.Order.URL_USER_ORDER_CANCEL, MyApp.token, httpParams, new OnMessageReceived() {
+            @Override
+            public void onSuccess(String response) {
+                LogUtils.e(response);
+                Result result = GsonUtil.fromJsonObject(response, Result.class);
+                int code = result.getResultCode();
+                if (code == 0) {
+                    requestResult.onUserCancel();
+                } else {
+                    ToastUtils.showShort(result.getMessage());
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+    public void userConfirmOrder(String id,RequestResult requestResult){
+        HttpParams httpParams = new HttpParams();
+        httpParams.put("pdriverOrderId", id);
+        NetUtils.getInstance().post(Api.BASE_URL+Api.Order.URL_FINISH_ORDER_BY_USER, MyApp.token, httpParams, new OnMessageReceived() {
+            @Override
+            public void onSuccess(String response) {
+                LogUtils.e(response);
+                Result result = GsonUtil.fromJsonObject(response, Result.class);
+                int code = result.getResultCode();
+                if (code == 0) {
+                    requestResult.onUserConfirm();
+                } else {
+                    ToastUtils.showShort(result.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+    public void driverHandleOrder(String id,int status,RequestResult requestResult){
+        HttpParams httpParams = new HttpParams();
+        httpParams.put("pdriverOrderId", id);
+        httpParams.put("status",status+"");
+        NetUtils.getInstance().post(Api.BASE_URL+Api.Order.URL_DRIVER_UPDATE_ORDER_STATUS, MyApp.token, httpParams, new OnMessageReceived() {
+            @Override
+            public void onSuccess(String response) {
+                LogUtils.e(response);
+                Result result = GsonUtil.fromJsonObject(response, Result.class);
+                int code = result.getResultCode();
+                if (code == 0) {
+                    requestResult.onDriverHandle();
+                } else {
+                    ToastUtils.showShort(result.getMessage());
+                }
             }
 
             @Override

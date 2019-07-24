@@ -63,4 +63,5 @@ dependencies {
     //implementation 'com.github.ikidou:TypeBuilder:1.0'
     implementation 'com.github.ome450901:SimpleRatingBar:1.4.3'
     implementation files('libs/tbs_sdk_thirdapp_v3.6.0.1310_43612_sharewithdownload_withoutGame_obfs_20180706_163319.jar')
+    implementation 'com.xyz.step:step:1.0.4'
 }

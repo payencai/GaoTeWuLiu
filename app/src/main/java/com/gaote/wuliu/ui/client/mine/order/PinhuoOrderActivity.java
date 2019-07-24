@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.gaote.wuliu.R;
@@ -36,5 +37,11 @@ public class PinhuoOrderActivity extends AppCompatActivity {
             mFragments.add(orderListFragment);
         }
         tab_order.setViewPager(vp_order,mTitles,this,mFragments);
+        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

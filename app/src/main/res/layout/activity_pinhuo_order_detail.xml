@@ -37,7 +37,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_mail_district"
+                        android:id="@+id/tv_area1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="福田区"
@@ -45,7 +45,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/tv_mail_province_city"
+                        android:id="@+id/tv_city1"
                         android:layout_width="108dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -106,7 +106,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_pick_district"
+                        android:id="@+id/tv_area2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="福田区"
@@ -114,7 +114,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/tv_pick_province_city"
+                        android:id="@+id/tv_city2"
                         android:layout_width="108dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

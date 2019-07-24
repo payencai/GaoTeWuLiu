@@ -19,9 +19,33 @@ public class PinhuoOrderPresenter implements PinhuoOrderModel.RequestResult{
         pinhuoOrderView.showLoading();
         pinhuoOrderModel.getPinhuoOrder(this, page, url, type);
     }
+    public void userOrderCancel(String id){
+        pinhuoOrderModel.userCancelOrder(id,this);
+    }
+    public void userOrderConfirm(String id){
+        pinhuoOrderModel.userConfirmOrder(id,this);
+    }
+    public void driverHandleOrder(String id,int status){
+        pinhuoOrderModel.driverHandleOrder(id,status,this);
+    }
     @Override
     public void getData(List<PinhuoOrder> pinhuoOrders) {
         pinhuoOrderView.dissLoading();
         pinhuoOrderView.setData(pinhuoOrders);
+    }
+
+    @Override
+    public void onUserCancel() {
+        pinhuoOrderView.onUserCancel();
+    }
+
+    @Override
+    public void onUserConfirm() {
+        pinhuoOrderView.onUserConfirm();
+    }
+
+    @Override
+    public void onDriverHandle() {
+        pinhuoOrderView.onDriverHandle();
     }
 }

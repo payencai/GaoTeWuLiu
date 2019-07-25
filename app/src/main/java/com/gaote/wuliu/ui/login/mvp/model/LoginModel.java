@@ -14,17 +14,17 @@ import com.lzy.okgo.model.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LoginModel {
+public class LoginModel implements BaseModel{
     LoginRequest loginRequest;
 
-    public interface LoginResult {
+    public interface LoginResultImpl {
         public void onReturnClient(ClientUser clientUser);
 
         public void onReturnService(ServiceUser serviceUser);
     }
 
-
-    public void login(LoginRequest loginRequest, LoginResult loginResult) {
+    @Override
+    public void login(LoginRequest loginRequest, LoginResultImpl loginResult) {
         this.loginRequest = loginRequest;
         switch (loginRequest.getLoginType()) {
             case 1:
@@ -35,8 +35,8 @@ public class LoginModel {
                 break;
         }
     }
-
-    private void loginByPwd(LoginResult loginResult) {
+    @Override
+    public void loginByPwd(LoginResultImpl loginResult) {
         HttpParams httpParams = new HttpParams();
         httpParams.put("type", loginRequest.getType());
         httpParams.put("telephone", loginRequest.getUsername());
@@ -75,8 +75,8 @@ public class LoginModel {
             }
         }, loginRequest.getPassword());
     }
-
-    private void loginByPhone(LoginResult loginResult) {
+    @Override
+    public void loginByPhone(LoginResultImpl loginResult) {
 
     }
 

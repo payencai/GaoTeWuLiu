@@ -17,14 +17,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gaote.wuliu.R;
-import com.gaote.wuliu.net.Api;
-import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
-import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrderModel;
-import com.gaote.wuliu.ui.client.mine.mvp.presenter.PinhuoOrderPresenter;
-import com.gaote.wuliu.ui.client.mine.mvp.view.PinhuoOrderView;
+import com.gaote.wuliu.ui.client.mine.mvp.model.WuliuOrder;
+import com.gaote.wuliu.ui.client.mine.mvp.model.WuliuOrderModel;
+import com.gaote.wuliu.ui.client.mine.mvp.presenter.WuliuOrderPresenter;
+import com.gaote.wuliu.ui.client.mine.mvp.view.WuliuOrderView;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -40,30 +38,30 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
-    PinhuoOrderAdapter pinhuoOrderAdapter;
+public class WuliuOrderFragment extends Fragment implements WuliuOrderView {
+    WuliuOrderAdapter WuliuOrderAdapter;
     int type = 0;
-    PinhuoOrderPresenter pinhuoOrderPresenter;
-    List<PinhuoOrder> pinhuoOrderList;
+    WuliuOrderPresenter WuliuOrderPresenter;
+    List<WuliuOrder> WuliuOrderList;
     @BindView(R.id.rv_order)
     RecyclerView rv_order;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     int page = 1;
-    String url;
     KProgressHUD kProgressHUD;
     boolean isLoadMore = false;
     View header;
-    public PinhuoOrderFragment() {
+
+    public WuliuOrderFragment() {
         // Required empty public constructor
     }
 
-    public static PinhuoOrderFragment newInstance(int type) {
-        PinhuoOrderFragment pinhuoOrderFragment = new PinhuoOrderFragment();
+    public static WuliuOrderFragment newInstance(int type) {
+        WuliuOrderFragment WuliuOrderFragment = new WuliuOrderFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type", type);
-        pinhuoOrderFragment.setArguments(bundle);
-        return pinhuoOrderFragment;
+        WuliuOrderFragment.setArguments(bundle);
+        return WuliuOrderFragment;
     }
 
 
@@ -71,7 +69,7 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_pinhuo_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_wuliu_order, container, false);
         type = getArguments().getInt("type", 0);
         ButterKnife.bind(this, view);
         initView();
@@ -86,13 +84,13 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
     }
 
     private void initView() {
-        header=LayoutInflater.from(getContext()).inflate(R.layout.empty_no_order,null);
+        header = LayoutInflater.from(getContext()).inflate(R.layout.empty_no_order, null);
         initAdapter();
-        pinhuoOrderPresenter = new PinhuoOrderPresenter(new PinhuoOrderModel(), this);
-        pinhuoOrderPresenter.getOrder(page, url, type);
+        WuliuOrderPresenter = new WuliuOrderPresenter(new WuliuOrderModel(), this);
+        WuliuOrderPresenter.getOrder(page, type);
     }
 
-    private void showOrderDialog(int type, PinhuoOrder pinhuoOrder) {
+    private void showOrderDialog(WuliuOrder WuliuOrder) {
         final Dialog dialog = new Dialog(getContext(), R.style.CustomDialog);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_order, null);
         TextView tvTitle = view.findViewById(R.id.tv_title);
@@ -108,39 +106,11 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                if (type == 1) {
-                    if ("2".equals(SPUtils.getInstance().getString("role"))) {
-                        pinhuoOrderPresenter.userOrderCancel(pinhuoOrder.getId());
-                    } else {
-                        pinhuoOrderPresenter.driverHandleOrder(pinhuoOrder.getId(), 4);
-                    }
-                } else {
-                    if ("2".equals(SPUtils.getInstance().getString("role"))) {
-                        pinhuoOrderPresenter.userOrderConfirm(pinhuoOrder.getId());
-                    } else {
-                        if (pinhuoOrder.getType().equals("2"))
-                            pinhuoOrderPresenter.driverHandleOrder(pinhuoOrder.getId(), 2);
-                        else if (pinhuoOrder.getType().equals("3")) {
-                            pinhuoOrderPresenter.driverHandleOrder(pinhuoOrder.getId(), 3);
-                        }
-                    }
-                }
+                WuliuOrderPresenter.userOrderConfirm(WuliuOrder.getId());
 
             }
         });
-        if (type == 1) {
-            tvTitle.setText("确认取消吗？");
-        } else if (type == 2) {
-            if ("2".equals(SPUtils.getInstance().getString("role"))) {
-                tvTitle.setText("确认签收吗？");
-            } else {
-                if (pinhuoOrder.getType().equals("2")) {
-                    tvTitle.setText("确认接货吗？");
-                } else if (pinhuoOrder.getType().equals("3")) {
-                    tvTitle.setText("确认送达吗？");
-                }
-            }
-        }
+        tvTitle.setText("确认签收吗？");
         dialog.setContentView(view);
         dialog.show();
         Window window = dialog.getWindow();
@@ -150,52 +120,47 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
         layoutParams.width = (int) (display.getWidth() * 0.7);
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         window.setAttributes(layoutParams);
+
     }
 
+
+
     private void initAdapter() {
-        pinhuoOrderList = new ArrayList<>();
-        pinhuoOrderAdapter = new PinhuoOrderAdapter(pinhuoOrderList);
-        pinhuoOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        WuliuOrderList = new ArrayList<>();
+        WuliuOrderAdapter = new WuliuOrderAdapter(WuliuOrderList);
+        WuliuOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PinhuoOrder pinhuoOrder = (PinhuoOrder) adapter.getItem(position);
-                Intent intent = new Intent(getContext(), PinhuoOrderDetailActivity.class);
-                intent.putExtra("data", pinhuoOrder);
-                startActivityForResult(intent,1);
+                WuliuOrder WuliuOrder = (WuliuOrder) adapter.getItem(position);
+                Intent intent = new Intent(getContext(), WuliuOrderDetailActivity.class);
+                intent.putExtra("data", WuliuOrder);
+                startActivityForResult(intent, 1);
             }
         });
-        pinhuoOrderAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+        WuliuOrderAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                PinhuoOrder pinhuoOrder = (PinhuoOrder) adapter.getItem(position);
+                WuliuOrder wuliuOrder = (WuliuOrder) adapter.getItem(position);
+                Intent intent;
                 switch (view.getId()) {
-                    case R.id.item_btn_left://取消
-                        showOrderDialog(1, pinhuoOrder);
+                    case R.id.item_btn_left://物流
+                        intent = new Intent(getContext(), WuliuDetailActivity.class);
+                        intent.putExtra("data",wuliuOrder );
+                        intent.putExtra("type", 1);
+                        startActivity(intent);
                         break;
-                    case R.id.item_btn_mid://物流
-                        startActivity(new Intent(getContext(), WuliuDetailActivity.class));
-                        break;
-                    case R.id.item_btn_right://联系司机，确认签收，
-                        if("2".equals(SPUtils.getInstance().getString("role"))){
-                            if(pinhuoOrder.getType().equals("4")){
-                                showOrderDialog(2,pinhuoOrder);
-                            }else{
-                                callPhone(pinhuoOrder.getDriverTelephone());
-                            }
-                        }else{
-                            showOrderDialog(2,pinhuoOrder);
+                    case R.id.item_btn_right://确认签收，
+                        if(Integer.valueOf(wuliuOrder.getStatus()) == 5) {
+                            showOrderDialog( wuliuOrder);
                         }
+
                         break;
                 }
             }
         });
         rv_order.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv_order.setAdapter(pinhuoOrderAdapter);
-        if ("2".equals(SPUtils.getInstance().getString("role"))) {
-            url = Api.BASE_URL + Api.Order.URL_DEMAND_GET_LCL_ORDER;
-        } else {
-            url = Api.BASE_URL + Api.Order.URL_GET_ALL_ORDER;
-        }
+        rv_order.setAdapter(WuliuOrderAdapter);
+
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -207,28 +172,30 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 page++;
                 isLoadMore = true;
-                pinhuoOrderPresenter.getOrder(page, url, type);
+                WuliuOrderPresenter.getOrder(page, type);
             }
         });
     }
 
     private void refresh() {
         page = 1;
-        pinhuoOrderList.clear();
-        pinhuoOrderPresenter.getOrder(page, url, type);
+        WuliuOrderList.clear();
+        WuliuOrderPresenter.getOrder(page, type);
     }
 
     @Override
-    public void setData(List<PinhuoOrder> pinhuoOrders) {
+    public void setData(List<WuliuOrder> wuliuOrders) {
         refreshLayout.finishRefresh();
-        pinhuoOrderList.addAll(pinhuoOrders);
-        pinhuoOrderAdapter.setNewData(pinhuoOrderList);
+        if(wuliuOrders!=null){
+            WuliuOrderList.addAll(wuliuOrders);
+            WuliuOrderAdapter.setNewData(WuliuOrderList);
+        }
         if (isLoadMore) {
             refreshLayout.finishLoadMore();
             isLoadMore = false;
         }
-        if(page==1&&(pinhuoOrders==null||pinhuoOrders.size()==0)){
-            pinhuoOrderAdapter.setEmptyView(header);
+        if (page == 1 && (wuliuOrders == null || wuliuOrders.size() == 0)) {
+            WuliuOrderAdapter.setEmptyView(header);
         }
     }
 
@@ -252,20 +219,12 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
         }
     }
 
-    @Override
-    public void onUserCancel() {
-        refresh();
-    }
 
     @Override
     public void onUserConfirm() {
         refresh();
     }
 
-    @Override
-    public void onDriverHandle() {
-        refresh();
-    }
 
 
 }

@@ -17,11 +17,14 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.gaote.wuliu.MyApp;
+
 import com.gaote.wuliu.R;
+
+import com.gaote.wuliu.ui.login.mvp.component.DaggerLoginComponent;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.gaote.wuliu.ui.login.mvp.model.LoginModel;
 import com.gaote.wuliu.ui.login.mvp.model.ServiceUser;
+import com.gaote.wuliu.ui.login.mvp.module.LoginModule;
 import com.gaote.wuliu.ui.login.mvp.presenter.LoginPresenter;
 import com.gaote.wuliu.ui.login.mvp.view.LoginView;
 
@@ -29,6 +32,8 @@ import com.gaote.wuliu.ui.login.mvp.view.LoginView;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     int type=2;//2.用户端1服务端
     String phone="";
     int LoginType=1;//1 手机 2 密码 3 qq 4 wechat 5 blog
-    LoginPresenter loginPresenter;
+    @Inject LoginPresenter loginPresenter;
     LoginModel.LoginRequest loginRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +115,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         }
     }
     private void setDebugData(){
-        et_account.setText("13202908144");
+        et_account.setText("17688947788");
         et_pwd.setText("123456");
     }
     private void initView() {
@@ -163,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
             }
         });
-        loginPresenter=new LoginPresenter(new LoginModel(),this);
+        DaggerLoginComponent.builder().loginModule(new LoginModule(this)).build().inject(this);
     }
 
     @Override

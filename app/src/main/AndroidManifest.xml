@@ -70,7 +70,9 @@
         android:roundIcon="@drawable/app_icon_gaote"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.client.mine.order.PinhuoWuliuActivity"></activity>
+        <activity android:name=".ui.client.mine.order.WuliuOrderDetailActivity"></activity>
+        <activity android:name=".ui.client.mine.order.WuliuOrderActivity" />
+        <activity android:name=".ui.client.mine.order.WuliuDetailActivity" />
         <activity android:name=".ui.client.mine.order.PinhuoOrderDetailActivity" />
         <activity android:name=".ui.client.mine.address.WebviewAddressActivity" />
         <activity android:name=".ui.client.mine.address.SaveAddressActivity" />

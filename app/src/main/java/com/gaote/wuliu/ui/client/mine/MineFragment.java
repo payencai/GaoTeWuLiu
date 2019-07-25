@@ -23,6 +23,7 @@ import com.gaote.wuliu.tools.CheckDoubleClick;
 import com.gaote.wuliu.ui.client.mine.address.MyAddressActivity;
 import com.gaote.wuliu.ui.client.mine.mvp.model.UserInfo;
 import com.gaote.wuliu.ui.client.mine.order.PinhuoOrderActivity;
+import com.gaote.wuliu.ui.client.mine.order.WuliuOrderActivity;
 import com.gaote.wuliu.ui.login.LoginActivity;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.gaote.wuliu.ui.login.mvp.model.ServiceUser;
@@ -118,12 +119,15 @@ public class MineFragment extends ImmersionFragment {
         tv_login.setVisibility(View.GONE);
         Glide.with(getContext()).load(userInfo.getPortraint()).apply(RequestOptions.circleCropTransform()).into(iv_head);
     }
-    @OnClick({R.id.rl_address,R.id.tv_login, R.id.ll_settings, R.id.iv_head, R.id.rl_reback, R.id.rl_driver, R.id.rl_pinhuo})
+    @OnClick({R.id.rl_wuliu,R.id.rl_address,R.id.tv_login, R.id.ll_settings, R.id.iv_head, R.id.rl_reback, R.id.rl_driver, R.id.rl_pinhuo})
     void OnClcik(View view) {
         if (CheckDoubleClick.isFastDoubleClick()) {
             return;
         }
         switch (view.getId()) {
+            case R.id.rl_wuliu:
+                startActivity(new Intent(getContext(), WuliuOrderActivity.class));
+                break;
             case R.id.rl_address:
                 startActivity(new Intent(getContext(), MyAddressActivity.class));
                 break;

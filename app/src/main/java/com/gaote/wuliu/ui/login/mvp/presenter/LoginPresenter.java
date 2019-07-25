@@ -5,10 +5,12 @@ import com.gaote.wuliu.ui.login.mvp.model.LoginModel;
 import com.gaote.wuliu.ui.login.mvp.model.ServiceUser;
 import com.gaote.wuliu.ui.login.mvp.view.LoginView;
 
-public class LoginPresenter implements LoginModel.LoginResult{
+import javax.inject.Inject;
+
+public class LoginPresenter  implements LoginModel.LoginResultImpl,IPresenter{
     LoginModel loginModel;
     LoginView loginView;
-
+    @Inject
     public LoginPresenter(LoginModel loginModel, LoginView loginView) {
         this.loginModel = loginModel;
         this.loginView = loginView;

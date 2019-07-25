@@ -1,7 +1,5 @@
 package com.gaote.wuliu.ui.client.mine.mvp.model;
 
-import android.text.TextUtils;
-
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.gaote.wuliu.MyApp;
@@ -31,10 +29,10 @@ public class PinhuoOrderModel {
             @Override
             public void onSuccess(String response) {
                 LogUtils.e(response);
-                Result<Data> result = GsonUtil.fromJsonObject(response, Data.class);
+                Result<PinhuoData> result = GsonUtil.fromJsonObject(response, PinhuoData.class);
                 int code = result.getResultCode();
                 if (code == 0) {
-                    Data data = result.getData();
+                    PinhuoData data = result.getData();
                     requestResult.getData(data.getBeanList());
                 } else {
                     ToastUtils.showShort(result.getMessage());

@@ -136,7 +136,7 @@
                 android:layout_height="@dimen/divider_common_height"></View>
 
             <LinearLayout
-               android:background="@color/white"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -193,6 +193,7 @@
 
                             </com.willy.ratingbar.ScaleRatingBar>
                             <TextView
+                                android:visibility="gone"
                                 android:layout_marginLeft="10dp"
                                 android:textSize="12sp"
                                 android:textColor="@color/red_1a"
@@ -200,6 +201,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <ImageView
+                                android:visibility="gone"
                                 android:layout_marginLeft="8dp"
                                 android:src="@mipmap/ic_edit"
                                 android:layout_width="13dp"
@@ -208,7 +210,7 @@
 
 
                     </LinearLayout>
-                   
+
                 </LinearLayout>
                 <View
                     android:layout_marginTop="10dp"
@@ -271,7 +273,7 @@
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
-          
+
 
             <View
                 android:layout_width="match_parent"

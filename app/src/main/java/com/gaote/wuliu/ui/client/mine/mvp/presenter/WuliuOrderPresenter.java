@@ -26,6 +26,18 @@ public class WuliuOrderPresenter implements BasePresenter, WuliuOrderModel.Reque
     }
 
     @Override
+    public void handleDriver(String id, int status) {
+        wuliuOrderView.showLoading();
+        wuliuOrderModel.driverHandleOrder(id,status,this);
+    }
+
+    @Override
+    public void onUserCancel(String id) {
+        wuliuOrderView.showLoading();
+        wuliuOrderModel.userCancelOrder(id,this);
+    }
+
+    @Override
     public void onSuccess(List<WuliuOrder> wuliuOrders) {
         wuliuOrderView.dissLoading();
         wuliuOrderView.setData(wuliuOrders);
@@ -35,5 +47,17 @@ public class WuliuOrderPresenter implements BasePresenter, WuliuOrderModel.Reque
     public void onConfirm() {
         wuliuOrderView.dissLoading();
         wuliuOrderView.onUserConfirm();
+    }
+
+    @Override
+    public void onCancel() {
+        wuliuOrderView.dissLoading();
+        wuliuOrderView.onUserCancel();
+    }
+
+    @Override
+    public void onDriver(int type) {
+        wuliuOrderView.dissLoading();
+        wuliuOrderView.onDriver(type);
     }
 }

@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface WuliuOrderView extends BaseView{
     public void onUserConfirm();
+    public void onUserCancel();
+    public void onDriver(int type);
     public void setData(List<WuliuOrder> wuliuOrders);
 }

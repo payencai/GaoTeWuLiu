@@ -225,6 +225,15 @@ public class WuliuOrderFragment extends Fragment implements WuliuOrderView {
         refresh();
     }
 
+    @Override
+    public void onUserCancel() {
+
+    }
+
+    @Override
+    public void onDriver(int type) {
+
+    }
 
 
 }

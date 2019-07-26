@@ -1,23 +1,34 @@
 package com.gaote.wuliu.ui.client.mine.order;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.WuliuOrder;
+import com.gaote.wuliu.ui.client.mine.mvp.presenter.WuliuOrderPresenter;
+import com.gaote.wuliu.ui.client.mine.mvp.view.WuliuOrderView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WuliuOrderDetailActivity extends AppCompatActivity {
+public class WuliuOrderDetailActivity extends AppCompatActivity implements WuliuOrderView {
     @BindView(R.id.tv_title)
     TextView tv_title;
     @BindView(R.id.tv_area1)
@@ -70,7 +81,7 @@ public class WuliuOrderDetailActivity extends AppCompatActivity {
     @BindView(R.id.item_rl_bottom)
     RelativeLayout rlBottom;
     WuliuOrder wuliuOrder;
-
+    WuliuOrderPresenter WuliuOrderPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -234,33 +245,112 @@ public class WuliuOrderDetailActivity extends AppCompatActivity {
             case R.id.ll_wuliu:
                 intent = new Intent(WuliuOrderDetailActivity.this, WuliuDetailActivity.class);
                 intent.putExtra("data", wuliuOrder);
-                intent.putExtra("type", 3);
+                intent.putExtra("type", 1);
                 startActivity(intent);
                 break;
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.item_btn_left:
-                //showOrderDialog(1, pinhuoOrder);
+                showOrderDialog(1, wuliuOrder);
                 break;
             case R.id.item_btn_mid:
                 intent = new Intent(WuliuOrderDetailActivity.this, WuliuDetailActivity.class);
                 intent.putExtra("data", wuliuOrder);
-                intent.putExtra("type", 3);
+                intent.putExtra("type", 1);
                 startActivity(intent);
                 break;
             case R.id.item_btn_right:
-//                if ("2".equals(SPUtils.getInstance().getString("role"))) {
-//                    if (pinhuoOrder.getType().equals("4")) {
-//                        showOrderDialog(2, pinhuoOrder);
-//                    } else {
-//                        callPhone(pinhuoOrder.getDriverTelephone());
-//                    }
-//                } else {
-//                    showOrderDialog(2, pinhuoOrder);
-//                }
+                if ("2".equals(SPUtils.getInstance().getString("role"))) {
+                    if (wuliuOrder.getStatus().equals("4")) {
+                        showOrderDialog(2, wuliuOrder);
+                    } else {
+                        diallPhone(wuliuOrder.getReceiverTelnum());
+                    }
+                } else {
+                    showOrderDialog(2, wuliuOrder);
+                }
                 break;
         }
     }
+    private void showOrderDialog(int type, WuliuOrder pinhuoOrder) {
+        final Dialog dialog = new Dialog(this, R.style.CustomDialog);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_order, null);
+        TextView tvTitle = view.findViewById(R.id.tv_title);
+        TextView tv_cancel = view.findViewById(R.id.tv_cancel);
+        TextView tv_confirm = view.findViewById(R.id.tv_confirm);
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        tv_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                if (type == 1) {
+                    //取消
+                    if ("2".equals(SPUtils.getInstance().getString("role"))) {
+                        WuliuOrderPresenter.onUserCancel(pinhuoOrder.getId());
+                    } else {
+                        WuliuOrderPresenter.handleDriver(pinhuoOrder.getId(),4);
+                    }
+                } else {
+                    if ("2".equals(SPUtils.getInstance().getString("role"))) {
+                        WuliuOrderPresenter.userOrderConfirm(pinhuoOrder.getId());
+                    } else {
+                        if (pinhuoOrder.getStatus().equals("2"))
+                            WuliuOrderPresenter.handleDriver(pinhuoOrder.getId(), 2);
+                        else if (pinhuoOrder.getStatus().equals("3")) {
+                            WuliuOrderPresenter.handleDriver(pinhuoOrder.getId(), 3);
+                        }
+                    }
+                }
 
+            }
+        });
+        if (type == 1) {
+            tvTitle.setText("确认取消吗？");
+        } else if (type == 2) {
+            if ("2".equals(SPUtils.getInstance().getString("role"))) {
+                tvTitle.setText("确认签收吗？");
+            } else {
+                if (pinhuoOrder.getStatus().equals("2")) {
+                    tvTitle.setText("确认接货吗？");
+                } else if (pinhuoOrder.getStatus().equals("3")) {
+                    tvTitle.setText("确认送达吗？");
+                }
+            }
+        }
+        dialog.setContentView(view);
+        dialog.show();
+        Window window = dialog.getWindow();
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.width = (int) (display.getWidth() * 0.7);
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        window.setAttributes(layoutParams);
+    }
+    @Override
+    public void onUserConfirm() {
+        
+    }
+    @Override
+    public void onUserCancel() {}
+    @Override
+    public void onDriver(int type) {}
+    @Override
+    public void setData(List<WuliuOrder> wuliuOrders) {
+
+    }
+    @Override
+    public void showLoading() {
+
+    }
+    @Override
+    public void dissLoading() {
+
+    }
 }

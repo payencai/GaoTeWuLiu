@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/divider_gray">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:src="@drawable/back"
+            android:padding="15dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/titlebar_tv_title"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:textSize="17sp"
+            android:textColor="@color/color_333"
+            android:text="设置昵称" />
+
+        <TextView
+            android:id="@+id/tv_finish"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:textSize="15sp"
+            android:textColor="@color/btn_color_blue"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="完成" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/length_view_50dp"
+
+        android:paddingLeft="@dimen/margin_10dp"
+        android:background="@color/white">
+        <EditText
+            android:singleLine="true"
+            android:id="@+id/et_nick"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:textSize="@dimen/text_size_15sp"
+            android:textColor="#1a1a1a"
+            android:hint="昵称" />
+        <FrameLayout
+            android:id="@+id/fr_del"
+            android:layout_gravity="right|center_vertical"
+            android:layout_width="@dimen/length_view_25dp"
+            android:layout_height="@dimen/title_bar">
+            <ImageView
+                android:layout_width="@dimen/margin_10dp"
+                android:layout_height="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp"
+                android:layout_gravity="right|center_vertical"
+                android:scaleType="fitXY"
+                android:src="@drawable/dig_xx" />
+        </FrameLayout>
+    </FrameLayout>
+
+</LinearLayout>

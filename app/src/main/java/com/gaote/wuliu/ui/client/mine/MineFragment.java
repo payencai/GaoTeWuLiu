@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
@@ -17,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
 import com.gaote.wuliu.net.Api;
+import com.gaote.wuliu.net.MyPath;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.net.OnMessageReceived;
 import com.gaote.wuliu.tools.CheckDoubleClick;
@@ -119,12 +121,15 @@ public class MineFragment extends ImmersionFragment {
         tv_login.setVisibility(View.GONE);
         Glide.with(getContext()).load(userInfo.getPortraint()).apply(RequestOptions.circleCropTransform()).into(iv_head);
     }
-    @OnClick({R.id.rl_wuliu,R.id.rl_address,R.id.tv_login, R.id.ll_settings, R.id.iv_head, R.id.rl_reback, R.id.rl_driver, R.id.rl_pinhuo})
+    @OnClick({R.id.rl_wuliu,R.id.rl_address,R.id.tv_login, R.id.ll_settings, R.id.iv_head, R.id.rl_reback, R.id.rl_driver, R.id.rl_pinhuo,R.id.rl_coupon})
     void OnClcik(View view) {
         if (CheckDoubleClick.isFastDoubleClick()) {
             return;
         }
         switch (view.getId()) {
+            case R.id.rl_coupon:
+                ARouter.getInstance().build(MyPath.Mine.MyCoupon).navigation();
+                break;
             case R.id.rl_wuliu:
                 startActivity(new Intent(getContext(), WuliuOrderActivity.class));
                 break;

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
+            android:id="@+id/iv_back"
             android:padding="15dp"
             android:src="@drawable/back"
             android:layout_width="50dp"
@@ -60,7 +61,7 @@
         </FrameLayout>
 
         <ImageView
-            android:id="@+id/imgPerson"
+            android:id="@+id/iv_head"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="@dimen/margin_20dp"
@@ -69,6 +70,7 @@
     </RelativeLayout>
 
     <FrameLayout
+        android:id="@+id/rl_nick"
         android:layout_width="match_parent"
         android:layout_height="@dimen/length_view_50dp"
         android:layout_marginTop="@dimen/margin_2dp"
@@ -84,7 +86,7 @@
             android:textSize="@dimen/text_size_15sp" />
 
         <TextView
-            android:id="@+id/tvNickName"
+            android:id="@+id/tv_name"
             android:textColor="@color/color_999"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,7 +127,7 @@
             android:textSize="@dimen/text_size_15sp" />
 
         <TextView
-            android:id="@+id/tvPhone"
+            android:id="@+id/tv_phone"
             android:textColor="@color/color_999"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,7 +138,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/sexLayoutFramen"
+        android:id="@+id/fl_sex"
         android:layout_width="match_parent"
         android:layout_height="@dimen/length_view_50dp"
         android:layout_marginTop="@dimen/margin_2dp"
@@ -152,13 +154,13 @@
             android:textSize="@dimen/text_size_15sp" />
 
         <TextView
-            android:id="@+id/tvGender"
+            android:id="@+id/tv_sex"
             android:textColor="@color/color_999"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
             android:layout_marginRight="@dimen/margin_25dp"
-            android:text="男"
+            android:text="未设置"
             android:textSize="@dimen/text_size_15sp" />
 
         <FrameLayout

@@ -1,8 +1,10 @@
 package com.gaote.wuliu;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.tencent.smtt.sdk.QbSdk;
@@ -11,14 +13,22 @@ public class MyApp extends Application {
     public static boolean isLogin=false;
     public static String token="";
     private static ClientUser clientUser;
+
     @Override
     public void onCreate() {
         super.onCreate();
         init();
+        initRouter(this);
     }
     private void init(){
         NetUtils.getInstance().initNetWorkUtils(this);//okgo初始化
         initX5();//腾讯h5
+    }
+    private void initRouter(Application context){
+
+        ARouter.openLog();     // Print log
+        ARouter.openDebug();   // Turn on debugging mode (If you are running in InstantRun mode, you must turn on debug mode! Online version needs to be closed, otherwise there is a security risk)
+        ARouter.init(context); // As early as possible, it is recommended to initialize in the Application
     }
     private void initX5(){
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
@@ -44,5 +54,11 @@ public class MyApp extends Application {
 
     public static void setClientUser(ClientUser clientUser) {
         MyApp.clientUser = clientUser;
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        ARouter.getInstance().destroy();
     }
 }

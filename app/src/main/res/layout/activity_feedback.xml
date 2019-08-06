@@ -33,6 +33,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -51,14 +52,15 @@
                 android:textColorHint="#999999"
                 android:textSize="14sp" />
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white">
-
-
-
-            </LinearLayout>
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:overScrollMode="never"/>
 
             <View
                 android:layout_width="match_parent"

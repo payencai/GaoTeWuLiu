@@ -15,7 +15,7 @@ public class UserInfo {
     private String name;
     private String account;
     private String portraint;
-    private Object sex;
+    private String sex;
     private String type;
 
     public String getId() {
@@ -50,11 +50,11 @@ public class UserInfo {
         this.portraint = portraint;
     }
 
-    public Object getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Object sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

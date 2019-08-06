@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.gaote.wuliu.R;
 import com.gaote.wuliu.ui.client.mine.MineFragment;
+import com.gaote.wuliu.ui.client.pinhuo.NewPinHuoFragment;
 import com.gaote.wuliu.ui.client.pinhuo.PinHuoFragment;
 import com.gaote.wuliu.ui.client.wuliu.WuliuFragment;
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout ll_tab_mine;
     FragmentManager fm;
     List<Fragment> fragments;
-    PinHuoFragment pinHuoFragment;
+    NewPinHuoFragment pinHuoFragment;
     WuliuFragment wuliuFragment;
     MineFragment mineFragment;
     @Override
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         setHome();
     }
     private void setHome(){
-        pinHuoFragment = new PinHuoFragment();
+        pinHuoFragment = new NewPinHuoFragment();
         fragments.add(pinHuoFragment);
         fm = getSupportFragmentManager();
         fm.beginTransaction().add(R.id.fr_container, pinHuoFragment).commit();

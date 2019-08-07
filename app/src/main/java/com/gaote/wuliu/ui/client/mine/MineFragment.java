@@ -126,6 +126,10 @@ public class MineFragment extends ImmersionFragment {
         if (CheckDoubleClick.isFastDoubleClick()) {
             return;
         }
+        if(!MyApp.isLogin){
+            ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+            return;
+        }
         switch (view.getId()) {
             case R.id.rl_coupon:
                 ARouter.getInstance().build(MyPath.Mine.MyCoupon).navigation();

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.flyco.tablayout.CommonTabLayout;
@@ -20,6 +21,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import com.gaote.wuliu.R;
 
+import com.gaote.wuliu.net.MyPath;
 import com.gaote.wuliu.ui.login.mvp.component.DaggerLoginComponent;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.gaote.wuliu.ui.login.mvp.model.LoginModel;
@@ -38,7 +40,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+@Route(path = MyPath.Mine.Login)
 public class LoginActivity extends AppCompatActivity implements LoginView {
     @BindView(R.id.et_phone)
     EditText et_phone;

@@ -7,6 +7,6 @@ public class MyPath {
     }
     public static class Mine {
         public static final String MyCoupon = "/coupon/mycoupon";
-
+        public static final String Login = "/mine/login";
     }
 }

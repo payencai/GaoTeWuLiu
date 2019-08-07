@@ -2,6 +2,7 @@ package com.gaote.wuliu;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -9,7 +10,7 @@ import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.tencent.smtt.sdk.QbSdk;
 
-public class MyApp extends Application {
+public class MyApp extends MultiDexApplication {
     public static boolean isLogin=false;
     public static String token="";
     private static ClientUser clientUser;
@@ -61,4 +62,5 @@ public class MyApp extends Application {
         super.onTerminate();
         ARouter.getInstance().destroy();
     }
+
 }

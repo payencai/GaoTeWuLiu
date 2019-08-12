@@ -126,6 +126,25 @@ public class NetUtils {
                     }
                 });
     }
+    public void get(final String url,final OnMessageReceived messageReceived){
+        OkGo.<String>get(url)//
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        String result = response.body().toString();
+                        Log.e(url, result);
+                        messageReceived.onSuccess(result);
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                        Log.e(url, "");
+
+                        messageReceived.onError("");
+                    }
+                });
+    }
     public void get(final String token,final String url, HttpParams params, final OnMessageReceived messageReceived){
         if(isIsAsk()){
             return;

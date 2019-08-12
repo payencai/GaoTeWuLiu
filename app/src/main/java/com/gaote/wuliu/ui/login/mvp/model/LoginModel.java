@@ -5,12 +5,14 @@ import android.appwidget.AppWidgetProviderInfo;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.gaote.wuliu.MyApp;
+import com.gaote.wuliu.base.even.WuliuEvent;
 import com.gaote.wuliu.net.Api;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.net.OnMessageReceived;
 import com.google.gson.Gson;
 import com.lzy.okgo.model.HttpParams;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,6 +56,7 @@ public class LoginModel implements BaseModel{
                             MyApp.setClientUser(clientUser);
                             MyApp.isLogin = true;
                             MyApp.token=clientUser.getToken();
+                            EventBus.getDefault().post(new WuliuEvent(200));
                             loginResult.onReturnClient(clientUser);
                         } else {
                             ServiceUser serviceUser = new Gson().fromJson(data.toString(), ServiceUser.class);

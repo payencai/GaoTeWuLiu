@@ -42,7 +42,10 @@ public class Api {
     public static class Client {
         public static final String getUserInfo = "/demander/info/get";
     }
-
+    public static class Wuliu{
+        public static final String getAllWuliu = "/logisticsCompany/getAll";
+        public static final String getWuliuNetworks = "/wdriver/order/getNetworks";
+    }
     public static class Order {
         public static final String URL_DEMAND_GET_LCL_ORDER = "/pdriverOrder/getPdriverOrderByUser";
 

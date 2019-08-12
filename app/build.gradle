@@ -81,4 +81,7 @@ dependencies {
     implementation 'com.amap.api:search:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'cn.ittiger:indexstickyview:1.1.0'
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.5.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }

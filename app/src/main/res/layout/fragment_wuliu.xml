@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -27,6 +28,7 @@
             android:background="@color/white">
 
             <ImageView
+                android:id="@+id/iv_know"
                 android:layout_marginLeft="15dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/help"
@@ -94,6 +96,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/rl_wuliu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -125,6 +128,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_send"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -156,6 +160,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_near"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">

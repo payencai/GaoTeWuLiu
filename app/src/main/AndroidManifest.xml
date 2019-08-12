@@ -46,9 +46,11 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_LOGS" />
@@ -69,7 +71,10 @@
         android:roundIcon="@drawable/app_icon_gaote"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.client.mine.MyMsgActivity"></activity>
+        <activity android:name=".ui.client.wuliu.WuliuKnowledgeActivity"></activity>
+        <activity android:name=".ui.client.wuliu.ChooseCompanyActivity" />
+        <activity android:name=".ui.client.wuliu.QueryWuliuActivity" />
+        <activity android:name=".ui.client.mine.MyMsgActivity" />
         <activity android:name=".ui.client.mine.MyCouponActivity" />
         <activity android:name=".ui.client.pinhuo.PinhuoDetailActivity" />
         <activity android:name=".ui.client.mine.SetupNickActivity" />
@@ -100,8 +105,8 @@
         <activity android:name=".ui.client.mine.SettingsActivity" />
         <activity android:name=".ui.login.MainActivity" />
         <activity
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            android:name=".ui.login.LoginActivity" />
+            android:name=".ui.login.LoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".ui.login.ForgetPwdActivity" />
         <activity android:name=".ui.client.mine.AccountSafeActivity" />
         <activity android:name=".ui.client.mine.UpdatePwdActivity" />
@@ -126,11 +131,12 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
-        <service android:name="com.amap.api.location.APSService"></service>
+
+        <service android:name="com.amap.api.location.APSService" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="098910c28316c3a545b631cc80898cde">
-        </meta-data>
+            android:value="098910c28316c3a545b631cc80898cde" />
     </application>
 
 </manifest>

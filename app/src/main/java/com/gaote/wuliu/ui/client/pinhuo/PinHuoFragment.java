@@ -16,7 +16,9 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.base.even.PinhuoEvent;
 import com.gaote.wuliu.tools.CheckDoubleClick;
 import com.gaote.wuliu.ui.client.mine.BindPhoneActivity;
 import com.gaote.wuliu.ui.client.mine.UpdatePhoneActivity;
@@ -30,6 +32,10 @@ import com.gaote.wuliu.ui.client.pinhuo.lcl.fragment.LCLSmallTrackFragment;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.components.ImmersionFragment;
 import com.gyf.immersionbar.components.SimpleImmersionFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +53,8 @@ public class PinHuoFragment extends ImmersionFragment {
     SlidingTabLayout tab_car;
     @BindView(R.id.vp_car)
     ViewPager vp_car;
+    @BindView(R.id.tv_city)
+    TextView tv_city;
     public PinHuoFragment() {
         // Required empty public constructor
     }
@@ -58,10 +66,24 @@ public class PinHuoFragment extends ImmersionFragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_pin_huo, container, false);
         ButterKnife.bind(this,view);
+        EventBus.getDefault().register(this);
         initView();
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onNotify(PinhuoEvent pinhuoEvent){
+        switch (pinhuoEvent.getMsg()){
+            case 200:
+                tv_city.setText(MyApp.getInstance().getaMapLocation().getCity());
+                break;
+        }
+    }
     private void initView() {
         initTab();
     }

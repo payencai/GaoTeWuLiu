@@ -6,6 +6,8 @@ import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.amap.api.location.AMapLocation;
+import com.amap.api.maps.AMap;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.tencent.smtt.sdk.QbSdk;
@@ -13,15 +15,30 @@ import com.tencent.smtt.sdk.QbSdk;
 public class MyApp extends MultiDexApplication {
     public static boolean isLogin=false;
     public static String token="";
+    public static MyApp context;
     private static ClientUser clientUser;
+    private  AMapLocation aMapLocation;
 
+    public AMapLocation getaMapLocation() {
+        return aMapLocation;
+    }
+
+    public void setaMapLocation(AMapLocation aMapLocation) {
+        this.aMapLocation = aMapLocation;
+    }
+
+    public static MyApp getInstance(){
+        return context;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
         init();
+
         initRouter(this);
     }
     private void init(){
+        context=this;
         NetUtils.getInstance().initNetWorkUtils(this);//okgo初始化
         initX5();//腾讯h5
     }

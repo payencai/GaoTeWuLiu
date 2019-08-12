@@ -6,17 +6,27 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.base.even.PinhuoEvent;
+import com.gaote.wuliu.base.even.WuliuEvent;
 import com.gaote.wuliu.ui.client.mine.MineFragment;
 import com.gaote.wuliu.ui.client.pinhuo.NewPinHuoFragment;
 import com.gaote.wuliu.ui.client.pinhuo.PinHuoFragment;
 import com.gaote.wuliu.ui.client.wuliu.WuliuFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AMapLocationListener {
     @BindView(R.id.fr_container)
     FrameLayout fr_container;
     @BindView(R.id.iv_tab_pinhuo)
@@ -51,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
     NewPinHuoFragment pinHuoFragment;
     WuliuFragment wuliuFragment;
     MineFragment mineFragment;
+    //声明mlocationClient对象
+    public AMapLocationClient mlocationClient;
+    //声明mLocationOption对象
+    public AMapLocationClientOption mLocationOption = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         fragments=new ArrayList<>();
+        intiLocation();
         setHome();
     }
     private void setHome(){
@@ -71,7 +86,15 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.fr_container, pinHuoFragment).commit();
         showFragment(pinHuoFragment);
     }
-
+    private void intiLocation(){
+        mlocationClient = new AMapLocationClient(this);
+        mLocationOption = new AMapLocationClientOption();
+        mlocationClient.setLocationListener(this);
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        mLocationOption.setInterval(10000);
+        mlocationClient.setLocationOption(mLocationOption);
+        mlocationClient.startLocation();
+    }
     private void reset() {
         tv_tab_pinhuo.setTextColor(ContextCompat.getColor(this, R.color.color_999));
         iv_tab_pinhuo.setImageResource(R.drawable.pinhuo_unselected);
@@ -127,5 +150,15 @@ public class MainActivity extends AppCompatActivity {
     }
     private void showFragment(Fragment fragment) {
         fm.beginTransaction().show(fragment).commit();
+    }
+
+    @Override
+    public void onLocationChanged(AMapLocation aMapLocation) {
+        Log.e("AmapError","location Error, ErrCode:"
+                + aMapLocation.getAddress() + ", errInfo:"
+                + aMapLocation.getCity());
+        MyApp.getInstance().setaMapLocation(aMapLocation);
+        EventBus.getDefault().post(new PinhuoEvent(200));
+        EventBus.getDefault().post(new WuliuEvent(200));
     }
 }

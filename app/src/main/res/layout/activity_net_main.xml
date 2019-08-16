@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/divider_gray">
+
+     <RelativeLayout
+         android:background="@color/white"
+         android:layout_width="match_parent"
+         android:layout_height="60dp">
+         <LinearLayout
+             android:layout_centerVertical="true"
+             android:layout_marginRight="15dp"
+             android:padding="5dp"
+             android:gravity="center"
+             android:orientation="vertical"
+             android:layout_width="50dp"
+             android:layout_height="wrap_content">
+             <ImageView
+                 android:src="@mipmap/gt_exit"
+                 android:layout_width="25dp"
+                 android:layout_height="18dp" />
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="退出"
+                 android:textColor="#00C1DE"
+                 android:textSize="10sp"
+                 android:layout_marginTop="5dp"
+                 />
+
+         </LinearLayout>
+
+         <TextView
+             android:textStyle="bold"
+             android:textSize="17sp"
+             android:textColor="@color/text_black_color"
+             android:text="服务网点"
+             android:layout_centerInParent="true"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <LinearLayout
+             android:gravity="center"
+             android:layout_centerVertical="true"
+             android:layout_alignParentRight="true"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent">
+             <ImageView
+                 android:layout_marginRight="10dp"
+                 android:layout_marginLeft="10dp"
+                 android:layout_centerVertical="true"
+                 android:padding="12dp"
+                 android:src="@mipmap/ic_msg"
+                 android:layout_width="50dp"
+                 android:layout_height="50dp" />
+             <LinearLayout
+                 android:layout_marginRight="10dp"
+                 android:padding="5dp"
+                 android:gravity="center"
+                 android:orientation="vertical"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+                 <ImageView
+                     android:src="@mipmap/gt_blue_shop"
+                     android:layout_width="25dp"
+                     android:layout_height="18dp" />
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="门店"
+                     android:textColor="#00C1DE"
+                     android:textSize="10sp"
+                     android:layout_marginTop="5dp"
+                     />
+
+             </LinearLayout>
+         </LinearLayout>
+
+     </RelativeLayout>
+    <View
+        android:background="@color/line_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/net_main_iv_new_address"
+            android:src="@drawable/server_kuaijian"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/net_main_iv_express_to_confirm"
+            android:src="@drawable/server_daiquerenjian"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/iv_item3"
+                android:src="@mipmap/ic_door"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
+            <View
+                android:layout_margin="15dp"
+                android:layout_gravity="right"
+                android:background="@color/red_1a"
+                android:layout_width="5dp"
+                android:layout_height="5dp"></View>
+        </FrameLayout>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/net_main_iv_express_record"
+            android:layout_weight="1"
+            android:src="@drawable/server_kuaijianshoulu"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/server_banner1"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:paddingLeft="10dp"
+        android:background="@color/white"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已确认接件"
+        android:textColor="@color/text_black_color"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

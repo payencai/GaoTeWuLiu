@@ -71,7 +71,24 @@
         android:roundIcon="@drawable/app_icon_gaote"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.client.wuliu.WuliuKnowledgeActivity"></activity>
+        <activity android:name=".ui.net.FillWuliuinfoActivity"></activity>
+        <activity android:name=".ui.net.DoorGetgoodsActivity" />
+        <activity android:name=".ui.net.MyWalletActivity" />
+        <activity android:name=".ui.net.DelMoneyDetailActivity" />
+        <activity android:name=".ui.net.AddMoneyDetailActivity" />
+        <activity android:name=".ui.net.NetDelMoneyActivity" />
+        <activity android:name=".ui.net.NetShopActivity" />
+        <activity android:name=".ui.net.AddNetOrderActivity" />
+        <activity android:name=".ui.net.NetMainActivity" />
+        <activity android:name=".ui.net.NetAddMoneyActivity" />
+        <activity android:name=".ui.client.wuliu.NetDetailActivity" />
+        <activity android:name=".ui.client.wuliu.NetworkSearchActivity" />
+        <activity android:name=".ui.client.wuliu.NearListShopActivity" />
+        <activity android:name=".ui.client.wuliu.NearMapShopActivity" />
+        <activity
+            android:name=".ui.client.wuliu.WuliuSendActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ui.client.wuliu.WuliuKnowledgeActivity" />
         <activity android:name=".ui.client.wuliu.ChooseCompanyActivity" />
         <activity android:name=".ui.client.wuliu.QueryWuliuActivity" />
         <activity android:name=".ui.client.mine.MyMsgActivity" />

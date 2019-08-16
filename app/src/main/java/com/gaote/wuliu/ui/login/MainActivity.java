@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
         mLocationOption = new AMapLocationClientOption();
         mlocationClient.setLocationListener(this);
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-        mLocationOption.setInterval(10000);
+        mLocationOption.setOnceLocation(true);
         mlocationClient.setLocationOption(mLocationOption);
         mlocationClient.startLocation();
     }

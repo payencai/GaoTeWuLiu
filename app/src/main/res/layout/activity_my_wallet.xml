@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f8f8f8"
+    tools:context=".ui.net.AddMoneyDetailActivity">
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/rl_top"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:padding="15dp"
+            android:src="@drawable/back"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="@color/text_black_color"
+            android:text="我的钱包"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <View
+
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <LinearLayout
+        android:layout_margin="7dp"
+        android:padding="15dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/ic_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="14sp"
+            android:textColor="#80ffffff"
+            android:text="可提现余额（元）"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:text="180000"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/shape_white"
+        android:layout_width="match_parent"
+        android:layout_height="75dp">
+        <ImageView
+            android:src="@mipmap/ic_del_money"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/color_333"
+            android:text="结算明细"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/shape_white"
+        android:layout_width="match_parent"
+        android:layout_height="75dp">
+        <ImageView
+            android:src="@mipmap/ic_add_money"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/color_333"
+            android:text="收款明细"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

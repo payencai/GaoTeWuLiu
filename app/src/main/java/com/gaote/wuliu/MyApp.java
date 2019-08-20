@@ -10,6 +10,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.maps.AMap;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
+import com.gaote.wuliu.ui.login.mvp.model.ServiceUser;
 import com.tencent.smtt.sdk.QbSdk;
 
 public class MyApp extends MultiDexApplication {
@@ -17,6 +18,16 @@ public class MyApp extends MultiDexApplication {
     public static String token="";
     public static MyApp context;
     private static ClientUser clientUser;
+    private static ServiceUser serviceUser;
+
+    public static ServiceUser getServiceUser() {
+        return serviceUser;
+    }
+
+    public static void setServiceUser(ServiceUser serviceUser) {
+        MyApp.serviceUser = serviceUser;
+    }
+
     private  AMapLocation aMapLocation;
 
     public AMapLocation getaMapLocation() {

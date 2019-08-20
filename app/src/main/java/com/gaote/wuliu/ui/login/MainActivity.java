@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -21,12 +22,16 @@ import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
 import com.gaote.wuliu.base.even.PinhuoEvent;
 import com.gaote.wuliu.base.even.WuliuEvent;
+import com.gaote.wuliu.bean.NormalEvent;
+import com.gaote.wuliu.net.MyPath;
 import com.gaote.wuliu.ui.client.mine.MineFragment;
 import com.gaote.wuliu.ui.client.pinhuo.NewPinHuoFragment;
 import com.gaote.wuliu.ui.client.pinhuo.PinHuoFragment;
 import com.gaote.wuliu.ui.client.wuliu.WuliuFragment;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +39,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+@Route(path = MyPath.Pinhuo.Main)
 public class MainActivity extends AppCompatActivity implements AMapLocationListener {
     @BindView(R.id.fr_container)
     FrameLayout fr_container;
@@ -70,8 +75,21 @@ public class MainActivity extends AppCompatActivity implements AMapLocationListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
+        EventBus.getDefault().register(this);
         initView();
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onNotify(NormalEvent normalEvent){
+        switch (normalEvent.getMsg()){
+            case "main":
+                finish();
+                break;
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initView() {

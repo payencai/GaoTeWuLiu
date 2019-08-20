@@ -52,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
@@ -62,50 +63,76 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="15dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/shape_white"
-        android:layout_width="match_parent"
-        android:layout_height="75dp">
-        <ImageView
-            android:src="@mipmap/ic_del_money"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/color_333"
-            android:text="结算明细"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
+    <com.gaote.wuliu.widget.ShadowView
+        app:containerDeltaLength="5dp"
+        app:containerShadowRadius="10dp"
+        app:containerCornerRadius="10dp"
+        app:containerShadowColor="#F5F1F1"
+        app:enable="true"
+        app:deltaY="3dp"
+        app:deltaX="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_del"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/shape_white"
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
+            <ImageView
+                android:src="@mipmap/ic_del_money"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/color_333"
+                android:text="结算明细"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </com.gaote.wuliu.widget.ShadowView>
+    <com.gaote.wuliu.widget.ShadowView
         android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/shape_white"
-        android:layout_width="match_parent"
-        android:layout_height="75dp">
-        <ImageView
-            android:src="@mipmap/ic_add_money"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/color_333"
-            android:text="收款明细"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        app:containerDeltaLength="5dp"
+        app:containerShadowRadius="10dp"
+        app:containerCornerRadius="10dp"
+        app:containerShadowColor="#F5F1F1"
+        app:enable="true"
+        app:deltaY="3dp"
+        app:deltaX="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ll_add"
+
+            android:layout_marginRight="15dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/shape_white"
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
+            <ImageView
+                android:src="@mipmap/ic_add_money"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"
+                android:textColor="@color/color_333"
+                android:text="收款明细"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </com.gaote.wuliu.widget.ShadowView>
+
 </LinearLayout>

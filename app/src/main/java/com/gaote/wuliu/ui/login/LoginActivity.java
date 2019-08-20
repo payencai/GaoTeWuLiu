@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.flyco.tablayout.CommonTabLayout;
@@ -117,16 +118,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         }
     }
     private void setDebugData(){
-        et_account.setText("17688947788");
-        et_pwd.setText("123456");
+        et_account.setText("13678976814");
+        et_pwd.setText("000000");
     }
     private void initView() {
         loginRequest=new LoginModel.LoginRequest();
-        setDebugData();
-        ArrayList<CustomTabEntity> customTabEntities=new ArrayList<>();
-        customTabEntities.add(new TabTitle("用户端"));
-        customTabEntities.add(new TabTitle("服务端"));
-        tab_type.setTabData(customTabEntities);
+        setDebugData();//设置调试数据
+        initTab(); //初始化tab
         tv_send.setEnabled(false);
         et_phone.addTextChangedListener(new TextWatcher() {
             @Override
@@ -155,14 +153,21 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
                 }
             }
         });
+        DaggerLoginComponent.builder().loginModule(new LoginModule(this)).build().inject(this);
+    }
+    private void initTab(){
+        ArrayList<CustomTabEntity> customTabEntities=new ArrayList<>();
+        customTabEntities.add(new TabTitle("用户端"));
+        customTabEntities.add(new TabTitle("服务端"));
+        tab_type.setTabData(customTabEntities);
         tab_type.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                 if(position==0){
-                     type=2;
-                 }else{
-                     type=1;
-                 }
+                if(position==0){
+                    type=2;
+                }else{
+                    type=1;
+                }
             }
 
             @Override
@@ -170,9 +175,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
             }
         });
-        DaggerLoginComponent.builder().loginModule(new LoginModule(this)).build().inject(this);
     }
-
     @Override
     public void showLoading() {
 
@@ -195,6 +198,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void saveServiceUser(ServiceUser serviceUser) {
         SPUtils.getInstance().put("role","1");
+        if(serviceUser.getType()==4){  //物流司机
+            ARouter.getInstance().build(MyPath.WuliuDriver.Main).navigation();
+        }else if(serviceUser.getType()==5){  //网点
+            ARouter.getInstance().build(MyPath.Net.Main).navigation();
+        }else{   //拼货司机
+            ARouter.getInstance().build(MyPath.PinhuoDriver.Main).navigation();
+        }
+        finish();
     }
 
     class TabTitle implements CustomTabEntity {

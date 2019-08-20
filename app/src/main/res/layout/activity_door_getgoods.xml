@@ -1,43 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.net.DoorGetgoodsActivity">
-    <RelativeLayout
-        android:background="@color/white"
+    tools:context=".ui.client.mine.address.MyAddressActivity">
+    <include
         android:id="@+id/rl_top"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <ImageView
-            android:id="@+id/iv_back"
-            android:padding="15dp"
-            android:src="@drawable/back"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-        <TextView
-            android:textStyle="bold"
-            android:textSize="17sp"
-            android:textColor="@color/text_black_color"
-            android:text="上门取件"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        layout="@layout/header_commom"/>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_marginTop="1dp"
+        android:layout_below="@id/rl_top"
 
-    </RelativeLayout>
-    <View
-
-        android:background="#f3f3f3"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"></View>
-    <android.support.v7.widget.RecyclerView
-        tools:listitem="@layout/item_door_service"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAccentColor="@android:color/white"
+            app:srlClassicsSpinnerStyle="FixedBehind"
+            app:srlPrimaryColor="#444" />
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/rv_confirm"
+            tools:listitem="@layout/item_door_service"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</RelativeLayout>

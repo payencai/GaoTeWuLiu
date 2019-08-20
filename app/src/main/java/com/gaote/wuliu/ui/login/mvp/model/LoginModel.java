@@ -51,15 +51,20 @@ public class LoginModel implements BaseModel{
                     int code = jsonObject.getInt("resultCode");
                     if (code == 0) {
                         JSONObject data = jsonObject.getJSONObject("data");
-                        if (loginRequest.getType() == 2) {
+                        if (loginRequest.getType() == 2) { //客户端登录
                             ClientUser clientUser = new Gson().fromJson(data.toString(), ClientUser.class);
                             MyApp.setClientUser(clientUser);
                             MyApp.isLogin = true;
                             MyApp.token=clientUser.getToken();
                             EventBus.getDefault().post(new WuliuEvent(200));
                             loginResult.onReturnClient(clientUser);
-                        } else {
+                        } else {     //服务器端登录，分为3种情况：网点，物流司机，拼货司机
                             ServiceUser serviceUser = new Gson().fromJson(data.toString(), ServiceUser.class);
+                            MyApp.isLogin = true;
+                            MyApp.token=serviceUser.getToken();
+                            MyApp.setServiceUser(serviceUser);
+                            //发出通知让MainActivity关闭
+                            EventBus.getDefault().post(new WuliuEvent(200));
                             loginResult.onReturnService(serviceUser);
                         }
                     } else {

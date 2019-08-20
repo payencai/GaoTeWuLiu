@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tv_wallet"
             android:layout_marginRight="15dp"
             android:textSize="15sp"
             android:textColor="@color/text_black_color"
@@ -45,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
+            android:id="@+id/rl_pic"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -120,6 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"></View>
         <RelativeLayout
+            android:id="@+id/rl_name"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="50dp">
@@ -158,6 +161,7 @@
         </RelativeLayout>
     </LinearLayout>
     <RelativeLayout
+        android:id="@+id/rl_address"
         android:background="@color/white"
         android:layout_marginTop="5dp"
         android:padding="10dp"

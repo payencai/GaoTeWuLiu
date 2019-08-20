@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@color/divider_gray"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/iv_add"
+            android:src="@drawable/server_kuaijian"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/iv_confirm"
+            android:src="@drawable/server_daiquerenjian"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/iv_door"
+                android:src="@mipmap/ic_door"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
+            <View
+                android:layout_margin="15dp"
+                android:layout_gravity="right"
+                android:background="@color/red_1a"
+                android:layout_width="5dp"
+                android:layout_height="5dp"></View>
+        </FrameLayout>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_get"
+            android:layout_weight="1"
+            android:src="@drawable/server_kuaijianshoulu"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/server_banner1"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:paddingLeft="10dp"
+        android:background="@color/white"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已确认接件"
+        android:textColor="@color/text_black_color"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+</LinearLayout>

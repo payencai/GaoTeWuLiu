@@ -8,5 +8,5 @@ import java.util.List;
 public interface NetOrderView {
     public void showLoading();
     public void dissLoading();
-    public void onSuccess(List<NetOrder.ExpressConfirmedItem> expressConfirmedItems);
+    public void onSuccess(List<NetOrder.ListBean> listBeans);
 }

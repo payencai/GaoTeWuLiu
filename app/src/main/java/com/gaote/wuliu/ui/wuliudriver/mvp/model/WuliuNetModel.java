@@ -1,4 +1,4 @@
-package com.gaote.wuliu.ui.net.mvp.model;
+package com.gaote.wuliu.ui.wuliudriver.mvp.model;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -8,29 +8,30 @@ import com.gaote.wuliu.net.Api;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.net.OnMessageReceived;
 import com.gaote.wuliu.tools.GsonUtil;
+import com.gaote.wuliu.ui.pinhuodriver.mvp.mdoel.PinhuoOrder;
+import com.gaote.wuliu.ui.wuliudriver.mvp.model.WuliuNet;
 import com.lzy.okgo.model.HttpParams;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class NetOrderModel {
+public class WuliuNetModel {
+    public static final boolean isTest=false;
     public interface RequestResult {
-        void onSuccess(List<NetOrder.ListBean> listBeans);
-    }
-    //获取已确认订单
-    public void getNetOrder(RequestResult requestResult,  int page) {
+        void onSuccess(List<WuliuNet> wuliuOrders);
 
-        String url = Api.BASE_URL + Api.Net.URL_GET_CONFIRMED_ORDER;
+    }
+    //获取待确认订单
+    public void getNetWorks(RequestResult requestResult,  String  lat,String lng) {
+        String url = Api.BASE_URL + Api.WuliuDriver.URL_GET_NET_ORDER_LIST;
         HttpParams httpParams = new HttpParams();
-        httpParams.put("pageNum", page + "");
-        LogUtils.e(MyApp.token);
-        NetUtils.getInstance().get(MyApp.token, url, httpParams, new OnMessageReceived() {
+        httpParams.put("latitude", lat + "");
+        httpParams.put("longitude", lng + "");
+        NetUtils.getInstance().get(MyApp.token,url, httpParams, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
-                LogUtils.e(response);
-                Result<NetOrder> result= GsonUtil.fromJsonObject(response,NetOrder.class);
+                Result<List<WuliuNet>> result=GsonUtil.fromJsonArray(response,WuliuNet.class);
                 if (result.getResultCode() == 0) {
-                    requestResult.onSuccess(result.getData().getList());
+                    requestResult.onSuccess(result.getData());
                 } else {
                     String msg=result.getMessage();
                     ToastUtils.showShort(msg);
@@ -39,9 +40,10 @@ public class NetOrderModel {
 
             @Override
             public void onError(String error) {
-                LogUtils.e(error);
+
             }
         });
     }
+
 
 }

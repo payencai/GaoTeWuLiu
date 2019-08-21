@@ -64,7 +64,6 @@ public class LoginModel implements BaseModel{
                             MyApp.token=serviceUser.getToken();
                             MyApp.setServiceUser(serviceUser);
                             //发出通知让MainActivity关闭
-                            EventBus.getDefault().post(new WuliuEvent(200));
                             loginResult.onReturnService(serviceUser);
                         }
                     } else {

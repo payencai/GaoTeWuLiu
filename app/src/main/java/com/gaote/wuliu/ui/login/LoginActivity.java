@@ -118,8 +118,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         }
     }
     private void setDebugData(){
-        et_account.setText("13678976814");
-        et_pwd.setText("000000");
+        et_account.setText("uc11176977");
+        et_pwd.setText("123456");
     }
     private void initView() {
         loginRequest=new LoginModel.LoginRequest();
@@ -202,7 +202,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
             ARouter.getInstance().build(MyPath.WuliuDriver.Main).navigation();
         }else if(serviceUser.getType()==5){  //网点
             ARouter.getInstance().build(MyPath.Net.Main).navigation();
-        }else{   //拼货司机
+        }else{   //6拼货司机
             ARouter.getInstance().build(MyPath.PinhuoDriver.Main).navigation();
         }
         finish();

@@ -20,6 +20,7 @@ public class MyPath {
         public static final String NetDetail = "/wuliu/network/detail";
     }
     public static class Net{
+        public static final String SetName = "/net/set/name";
         public static final String FillInfo = "/net/fill/info";
         public static final String NetDoorDetail = "/net/door/detail";
         public static final String Main = "/net/main";
@@ -33,7 +34,11 @@ public class MyPath {
         public static final String RecordOrder = "/net/record/order";
     }
     public static class PinhuoDriver{
-        public static final String Main = "/pinhuo/main";
+        public static final String MyOrder = "/pinhuo/driver/myorder";
+        public static final String EditCar = "/pinhuo/driver/editcar";
+        public static final String Main = "/pinhuo/driver/main";
+        public static final String FindOrder = "/pinhuo/driver/find";
+        public static final String PinhuoDriver = "/pinhuo/driver/info";
     }
     public static class WuliuDriver{
         public static final String Main = "/wuliu/main";

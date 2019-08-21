@@ -23,7 +23,7 @@ public class NetOrderPresenter implements NetOrderModel.RequestResult {
     }
 
     @Override
-    public void onSuccess(List<NetOrder.ExpressConfirmedItem> listBeans) {
+    public void onSuccess(List<NetOrder.ListBean> listBeans) {
         netOrderView.dissLoading();
         netOrderView.onSuccess(listBeans);
     }

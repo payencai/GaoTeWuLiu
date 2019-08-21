@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical"
+    tools:context=".ui.net.NetSetNameActivity">
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/part_title_bar_simple_rv"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/titlebar_tv_left"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="16dp"
+            android:text="取消" />
+
+
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/color_333"
+            android:layout_centerVertical="true"
+            android:id="@+id/titlebar_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:scrollHorizontally="true"
+            android:text="设置店铺名称"
+            android:textSize="17sp" />
+
+
+
+        <TextView
+            android:id="@+id/titlebar_tv_right"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:textSize="16sp"
+            android:textColor="#999"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="完成" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/length_view_50dp"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:paddingLeft="@dimen/margin_10dp"
+        android:background="@color/white">
+        <EditText
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/imgNickNameDel"
+            android:id="@+id/edtNickName"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@null"
+            android:textColorHint="#ccc"
+            android:textSize="@dimen/text_size_15sp"
+            android:textColor="#1a1a1a"
+            android:hint="请输入店铺名称" />
+        <FrameLayout
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/imgNickNameDel"
+            android:layout_gravity="right|center_vertical"
+            android:layout_width="30dp"
+            android:layout_height="@dimen/title_bar">
+            <ImageView
+                android:layout_width="@dimen/margin_10dp"
+                android:layout_height="@dimen/margin_10dp"
+                android:layout_marginRight="@dimen/margin_10dp"
+                android:layout_gravity="right|center_vertical"
+                android:scaleType="fitXY"
+                android:src="@drawable/dig_xx" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</LinearLayout>

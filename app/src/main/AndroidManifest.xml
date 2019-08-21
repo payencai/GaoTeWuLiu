@@ -54,7 +54,13 @@
         android:roundIcon="@drawable/app_icon_gaote"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.net.NetDoorDetailActivity"></activity>
+        <activity android:name=".ui.pinhuodriver.PinhuoDriverOrderActivity"></activity>
+        <activity android:name=".ui.pinhuodriver.PinhuoEditcarActivity" />
+        <activity android:name=".ui.pinhuodriver.PinhuoCarManageActivity" />
+        <activity android:name=".ui.pinhuodriver.PinhuoDriverDetailActivity" />
+        <activity android:name=".ui.pinhuodriver.FindPinhuoOrderActivity" />
+        <activity android:name=".ui.net.NetSetNameActivity" />
+        <activity android:name=".ui.net.NetDoorDetailActivity" />
         <activity android:name=".ui.wuliudriver.WuliuMainActivity" />
         <activity android:name=".ui.pinhuodriver.PinhuoMainActivity" />
         <activity android:name=".ui.net.RecordOrderActivity" />

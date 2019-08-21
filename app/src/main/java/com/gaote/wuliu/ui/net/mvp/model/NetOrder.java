@@ -7,24 +7,24 @@ public class NetOrder {
     /**
      * pageNum : 1
      * pageSize : 15
-     * size : 0
-     * startRow : 0
-     * endRow : 0
-     * total : 0
-     * pages : 0
-     * list : []
+     * size : 1
+     * startRow : 1
+     * endRow : 1
+     * total : 1
+     * pages : 1
+     * list : [{"driverId":"b03a6f71-f641-4927-bfaa-b5247496e095","driverName":"yiersan","portraitKey":null,"portraitUrl":null,"confirmTime":"2019-08-20 14:39:26","count":1}]
      * prePage : 0
      * nextPage : 0
      * isFirstPage : true
-     * isLastPage : false
+     * isLastPage : true
      * hasPreviousPage : false
      * hasNextPage : false
      * navigatePages : 2
-     * navigatepageNums : []
-     * navigateFirstPage : 0
-     * navigateLastPage : 0
-     * firstPage : 0
-     * lastPage : 0
+     * navigatepageNums : [1]
+     * navigateFirstPage : 1
+     * navigateLastPage : 1
+     * lastPage : 1
+     * firstPage : 1
      */
 
     private int pageNum;
@@ -43,10 +43,10 @@ public class NetOrder {
     private int navigatePages;
     private int navigateFirstPage;
     private int navigateLastPage;
-    private int firstPage;
     private int lastPage;
-    private List<ExpressConfirmedItem> list;
-    private List<?> navigatepageNums;
+    private int firstPage;
+    private List<ListBean> list;
+    private List<Integer> navigatepageNums;
 
     public int getPageNum() {
         return pageNum;
@@ -176,14 +176,6 @@ public class NetOrder {
         this.navigateLastPage = navigateLastPage;
     }
 
-    public int getFirstPage() {
-        return firstPage;
-    }
-
-    public void setFirstPage(int firstPage) {
-        this.firstPage = firstPage;
-    }
-
     public int getLastPage() {
         return lastPage;
     }
@@ -192,36 +184,43 @@ public class NetOrder {
         this.lastPage = lastPage;
     }
 
-    public List<ExpressConfirmedItem> getList() {
+    public int getFirstPage() {
+        return firstPage;
+    }
+
+    public void setFirstPage(int firstPage) {
+        this.firstPage = firstPage;
+    }
+
+    public List<ListBean> getList() {
         return list;
     }
 
-    public void setList(List<ExpressConfirmedItem> list) {
+    public void setList(List<ListBean> list) {
         this.list = list;
     }
 
-    public List<?> getNavigatepageNums() {
+    public List<Integer> getNavigatepageNums() {
         return navigatepageNums;
     }
 
-    public void setNavigatepageNums(List<?> navigatepageNums) {
+    public void setNavigatepageNums(List<Integer> navigatepageNums) {
         this.navigatepageNums = navigatepageNums;
     }
-    public static class ExpressConfirmedItem {
 
-
+    public static class ListBean {
         /**
-         * driverId : 82cd3a2b-d5a4-4280-b2f8-d5423d019d60
-         * driverName : 1111
+         * driverId : b03a6f71-f641-4927-bfaa-b5247496e095
+         * driverName : yiersan
          * portraitKey : null
          * portraitUrl : null
-         * confirmTime : 2018-03-08 13:06:01
+         * confirmTime : 2019-08-20 14:39:26
          * count : 1
          */
 
         private String driverId;
         private String driverName;
-        private String portraitKey;
+        private Object portraitKey;
         private String portraitUrl;
         private String confirmTime;
         private int count;
@@ -242,11 +241,11 @@ public class NetOrder {
             this.driverName = driverName;
         }
 
-        public String getPortraitKey() {
+        public Object getPortraitKey() {
             return portraitKey;
         }
 
-        public void setPortraitKey(String portraitKey) {
+        public void setPortraitKey(Object portraitKey) {
             this.portraitKey = portraitKey;
         }
 
@@ -274,5 +273,4 @@ public class NetOrder {
             this.count = count;
         }
     }
-
 }

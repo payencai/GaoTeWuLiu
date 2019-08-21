@@ -13,6 +13,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp" />
         <TextView
+            android:textStyle="bold"
             android:id="@+id/tv_title"
             android:textSize="16sp"
             android:textColor="@color/text_black_color"

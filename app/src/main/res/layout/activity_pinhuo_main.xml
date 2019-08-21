@@ -1,9 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.pinhuodriver.PinhuoMainActivity">
+    android:background="@color/divider_gray">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <LinearLayout
+            android:id="@+id/ll_exit"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/gt_exit"
+                android:layout_width="25dp"
+                android:layout_height="18dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退出"
+                android:textColor="#00C1DE"
+                android:textSize="10sp"
+                android:layout_marginTop="2dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="@color/text_black_color"
+            android:text="拼货司机"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_chat"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:padding="12dp"
+                android:src="@mipmap/ic_msg"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <LinearLayout
+                android:id="@+id/ll_shop"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:scaleType="center"
+                    android:padding="5dp"
+                    android:src="@drawable/changerole"
+                    android:layout_width="45dp"
+                    android:layout_height="55dp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:background="@color/line_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_net"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/item_nearby_pinhuo"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</LinearLayout>

@@ -43,8 +43,8 @@ public class PinhuoOrder implements Serializable {
     private String consigneeArea;
     private String consigneeAddress;
     private int num;
-    private int weight;
-    private int volume;
+    private double weight;
+    private double volume;
     private String articleName;
     private String pickupAddress;
     private String anticipantCar;
@@ -121,19 +121,19 @@ public class PinhuoOrder implements Serializable {
         this.num = num;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public int getVolume() {
+    public double getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(double volume) {
         this.volume = volume;
     }
 

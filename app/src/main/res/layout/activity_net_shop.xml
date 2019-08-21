@@ -66,9 +66,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_head"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/product_shop"
+                    android:src="@drawable/defaut_netstation"
                     android:layout_width="64dp"
                     android:layout_height="64dp" />
                 <ImageView
@@ -107,6 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/tv_account"
                     android:textColor="@color/color_333"
                     android:textSize="14sp"
                     android:layout_marginRight="10dp"
@@ -143,6 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/tv_name"
                     android:textColor="@color/color_333"
                     android:textSize="14sp"
                     android:layout_marginRight="10dp"
@@ -166,8 +169,9 @@
         android:layout_marginTop="5dp"
         android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/tv_item4"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="15dp"
             android:textSize="15sp"
@@ -177,22 +181,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
+
+            android:layout_marginRight="8dp"
+            android:layout_toRightOf="@id/tv_item4"
             android:gravity="center"
             android:layout_centerVertical="true"
-
+            android:orientation="horizontal"
             android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:gravity="right"
+                android:id="@+id/tv_address"
                 android:textColor="@color/color_333"
                 android:textSize="14sp"
                 android:layout_marginRight="10dp"
-                android:text="广东省广州大学城信息枢纽楼"
-                android:layout_width="wrap_content"
+                android:text="广东省广广东省广州大学城信息枢纽楼州大学城信息枢纽楼"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <ImageView
 
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="8dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:src="@mipmap/gt_black_back"
@@ -219,6 +228,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tv_notice"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
             android:textSize="15sp"

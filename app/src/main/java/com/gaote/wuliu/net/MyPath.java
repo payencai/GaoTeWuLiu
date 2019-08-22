@@ -39,8 +39,14 @@ public class MyPath {
         public static final String Main = "/pinhuo/driver/main";
         public static final String FindOrder = "/pinhuo/driver/find";
         public static final String PinhuoDriver = "/pinhuo/driver/info";
+        public static final String PinhuoDriverOrderDetail = "/pinhuo/driver/orderdetail";
     }
     public static class WuliuDriver{
-        public static final String Main = "/wuliu/main";
+        public static final String Main = "/wuliu/main";//首页
+        public static final String WuliuDriverOrder = "/wuliu/driver/order";//我的订单
+        public static final String WuliuNetWorks = "/wuliu/driver/net";//网点信息
+        public static final String WuliuDriverInfo = "/wuliu/driver/info";//司机信息
+        public static final String WuliuDriverNetOrder = "/wuliu/driver/netorder";//网点订单
+        public static final String WuliuDriverOrderDetail = "/wuliu/driverorder/detail";//首页
     }
 }

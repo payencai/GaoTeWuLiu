@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#1975FA"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:padding="15dp"
+            android:src="@drawable/arrowleft_white"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="16sp"
+            android:text="我的订单"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tab_order"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#1975FA"
+            app:tl_indicator_color="#1975FA"
+            app:tl_indicator_corner_radius="30dp"
+            app:tl_indicator_height="3dp"
+            app:tl_indicator_width="0dp"
+            app:tl_tab_space_equal="false"
+            app:tl_textSelectColor="@color/white"
+            app:tl_textUnselectColor="#7fF2F2F2"
+            app:tl_textsize="14sp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_order"
+            android:layout_width="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>

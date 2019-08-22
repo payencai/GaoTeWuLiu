@@ -1,6 +1,8 @@
 package com.gaote.wuliu.ui.wuliudriver.mvp.model;
 
-public class WuliuNet {
+import java.io.Serializable;
+
+public class WuliuNet implements Serializable {
 
     /**
      * adress : string

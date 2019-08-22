@@ -1,4 +1,4 @@
-package com.gaote.wuliu.ui.pinhuodriver;
+package com.gaote.wuliu.ui.wuliudriver;
 
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -18,26 +18,42 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-@Route(path = MyPath.PinhuoDriver.MyOrder)
-public class PinhuoDriverOrderActivity extends AppCompatActivity {
+@Route(path = MyPath.WuliuDriver.WuliuDriverOrder)
+public class WuliuDriverOrderActivity extends AppCompatActivity {
+
 
     @BindView(R.id.tab_order)
     SlidingTabLayout tab_order;
     @BindView(R.id.vp_order)
     ViewPager vp_order;
     ArrayList<Fragment> mFragments;
-    String []mTitles={"全部","待接货","待送达","待签收","已完成","退款"};
-    KProgressHUD kProgressHUD;
+    String []mTitles={"全部","待确认","待送达","待签收"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pinhuo_driver_order);
+        setContentView(R.layout.activity_wuliu_driver_order);
         ButterKnife.bind(this);
+        initView();
+    }
+    KProgressHUD kProgressHUD;
+    private void initView() {
         kProgressHUD = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setCancellable(true)
                 .show();
-        initView();
+
+        mFragments=new ArrayList<>();
+        for (int i =1; i <5 ; i++) {
+            WuliuDriverOrderFragment fragment=WuliuDriverOrderFragment.newInstance(i);
+            mFragments.add(fragment);
+        }
+        tab_order.setViewPager(vp_order,mTitles,this,mFragments);
+        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -52,22 +68,5 @@ public class PinhuoDriverOrderActivity extends AppCompatActivity {
 
             }
         },500);
-    }
-
-    private void initView() {
-        mFragments=new ArrayList<>();
-        PinhuoDriverOrderFragment orderListFragment=PinhuoDriverOrderFragment.newInstance(0);
-        mFragments.add(orderListFragment);
-        for (int i =2; i <7 ; i++) {
-            PinhuoDriverOrderFragment fragment=PinhuoDriverOrderFragment.newInstance(i);
-            mFragments.add(fragment);
-        }
-        tab_order.setViewPager(vp_order,mTitles,this,mFragments);
-        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 }

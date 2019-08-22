@@ -122,7 +122,7 @@ public class Api {
         public static final String URL_GET_NET_DETAIL_LIST = "/wdriver/order/getNetworkOrder";
 
         public static final String URL_TAKE_ORDER = "/wdriver/order/takeorder";
-
+        public static final String URL_LOGISTICS_DRIVER_INFORM = "/wdriver/info/get";
 
         public static final int TYPE_ALL = 1;
         public static final int TYPE_TO_CONFIRM = 2;//待确认

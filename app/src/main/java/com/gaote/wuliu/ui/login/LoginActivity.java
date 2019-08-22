@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         }
     }
     private void setDebugData(){
-        et_account.setText("uc11176977");
+        et_account.setText("13202908144");
         et_pwd.setText("123456");
     }
     private void initView() {

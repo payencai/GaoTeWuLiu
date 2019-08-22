@@ -9,10 +9,11 @@
     >
 
     <ImageView
+        android:scaleType="fitXY"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/item_nearby_net_iv_icon"
-        android:src="@drawable/logistic_driver_image"
+        android:src="@color/color_999"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
         android:layout_centerVertical="true"/>

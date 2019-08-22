@@ -26,6 +26,7 @@ import com.gaote.wuliu.ui.pinhuodriver.mvp.mdoel.PinhuoOrderModel;
 import com.gaote.wuliu.ui.pinhuodriver.mvp.presenter.PinhuoOrderPresenter;
 import com.gaote.wuliu.ui.pinhuodriver.mvp.view.PinhuoOrderView;
 import com.gaote.wuliu.ui.wuliudriver.adapter.WuliuNetAdapter;
+import com.gaote.wuliu.ui.wuliudriver.mvp.model.WuliuDriverOrder;
 import com.gaote.wuliu.ui.wuliudriver.mvp.model.WuliuNet;
 import com.gaote.wuliu.ui.wuliudriver.mvp.model.WuliuNetModel;
 import com.gaote.wuliu.ui.wuliudriver.mvp.presenter.WuliuNetPresenter;
@@ -54,67 +55,84 @@ public class WuliuMainActivity extends AppCompatActivity implements WuliuOrderVi
         ButterKnife.bind(this);
         initView();
     }
-    private void initHeader(){
-        headerView= LayoutInflater.from(this).inflate(R.layout.header_wuliu_main,null);
+
+    private void initHeader() {
+        headerView = LayoutInflater.from(this).inflate(R.layout.header_wuliu_main, null);
         ButterKnife.findById(headerView, R.id.iv_net).setOnClickListener(this);
         ButterKnife.findById(headerView, R.id.iv_order).setOnClickListener(this);
         ButterKnife.findById(headerView, R.id.iv_driver).setOnClickListener(this);
 
     }
+
     private void initView() {
         initHeader();
-        beanListBeans=new ArrayList<>();
-        netOrderAdapter=new WuliuNetAdapter(beanListBeans);
+        beanListBeans = new ArrayList<>();
+        netOrderAdapter = new WuliuNetAdapter(beanListBeans);
+        netOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (CheckDoubleClick.isFastDoubleClick()) {
+                    return;
+                }
+                WuliuNet wuliuNet = (WuliuNet) adapter.getData().get(position);
+                ARouter.getInstance().build(MyPath.WuliuDriver.WuliuDriverNetOrder).withSerializable("data", wuliuNet).navigation();
+            }
+        });
         netOrderAdapter.addHeaderView(headerView);
         rv_net.setLayoutManager(new LinearLayoutManager(this));
         rv_net.setAdapter(netOrderAdapter);
-        netOrderPresenter=new WuliuNetPresenter(this,new WuliuNetModel());
-        netOrderPresenter.getNetWorks(MyApp.getInstance().getaMapLocation().getLatitude()+"",MyApp.getInstance().getaMapLocation().getLongitude()+"");
+        netOrderPresenter = new WuliuNetPresenter(this, new WuliuNetModel());
+        netOrderPresenter.getNetWorks(MyApp.getInstance().getaMapLocation().getLatitude() + "", MyApp.getInstance().getaMapLocation().getLongitude() + "");
     }
 
     @OnClick({R.id.ll_exit})
-    void OnViewClick(View view){
-        if(CheckDoubleClick.isFastDoubleClick()){
+    void OnViewClick(View view) {
+        if (CheckDoubleClick.isFastDoubleClick()) {
             return;
         }
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.ll_exit:
                 showExitDialog();
                 break;
             case R.id.iv_net:
-                ARouter.getInstance().build(MyPath.PinhuoDriver.FindOrder).navigation();
+                ARouter.getInstance().build(MyPath.WuliuDriver.WuliuNetWorks).navigation();
                 break;
             case R.id.iv_order:
-                ARouter.getInstance().build(MyPath.PinhuoDriver.MyOrder).navigation();
+                ARouter.getInstance().build(MyPath.WuliuDriver.WuliuDriverOrder).navigation();
                 break;
             case R.id.iv_driver:
-                ARouter.getInstance().build(MyPath.PinhuoDriver.PinhuoDriver).navigation();
+                ARouter.getInstance().build(MyPath.WuliuDriver.WuliuDriverInfo).navigation();
                 break;
 
         }
     }
+
     @Override
     public void showLoading() {
 
     }
+
     @Override
     public void dissLoading() {
 
     }
+
     @Override
     public void onSuccess(List<WuliuNet> wuliuNets) {
         netOrderAdapter.addData(wuliuNets);
-        if(wuliuNets==null||wuliuNets.size()==0){
+        if (wuliuNets == null || wuliuNets.size() == 0) {
             netOrderAdapter.loadMoreEnd(true);
-        }else{
+        } else {
             netOrderAdapter.loadMoreComplete();
         }
     }
+
 
     @Override
     public void onClick(View v) {
         OnViewClick(v);
     }
+
     private void showExitDialog() {
         final Dialog dialog = new Dialog(this, R.style.CustomDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_order, null);
@@ -138,7 +156,7 @@ public class WuliuMainActivity extends AppCompatActivity implements WuliuOrderVi
         dialog.setContentView(view);
         dialog.show();
         Window window = dialog.getWindow();
-        WindowManager windowManager =getWindowManager();
+        WindowManager windowManager = getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         WindowManager.LayoutParams layoutParams = window.getAttributes();
         layoutParams.width = (int) (display.getWidth() * 0.7);

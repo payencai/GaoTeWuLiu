@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = MyPath.PinhuoDriver.PinhuoDriver)
-public class PinhuoDriverDetailActivity extends AppCompatActivity {
+public class PinhuoDriverInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

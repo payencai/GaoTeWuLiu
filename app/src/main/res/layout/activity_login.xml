@@ -219,6 +219,7 @@
                 android:layout_margin="10dp"
                 android:background="@color/text_black_color"></View>
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/tv_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -226,7 +227,7 @@
                 android:padding="10dp"
                 android:text="登录"
                 android:textColor="@color/btn_color_blue"
-                android:textSize="15sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
 

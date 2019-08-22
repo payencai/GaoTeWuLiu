@@ -1,6 +1,7 @@
 package com.gaote.wuliu.ui.wuliudriver.adapter;
 
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class WuliuNetAdapter extends BaseQuickAdapter<WuliuNet, BaseViewHolder> 
         tvName.setText(item.getName());
         tvAddress.setText(item.getAdress());
         tvDistance.setText(String.valueOf(item.getDistance()) + "km");
+        if(!TextUtils.isEmpty(item.getNetworkPic()))
         Glide.with(mContext).load(item.getNetworkPic()).into(ivIcon);
     }
   

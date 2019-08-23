@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.depository.DocumentInlistActivity">
+    <include layout="@layout/header_commom"/>
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_999"
+            android:text="快递公司"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="15dp"
+            android:text="申通快递"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+    <LinearLayout
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_999"
+            android:text="快递单号"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="15dp"
+            android:text="12345678909876"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+    <LinearLayout
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_999"
+            android:text="收件人姓名"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="15dp"
+            android:text="庄某某"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+    <LinearLayout
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_999"
+            android:text="收件人电话"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="15dp"
+            android:text="17699999999"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+    <LinearLayout
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_999"
+            android:text="地址"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="15dp"
+            android:text="傻傻傻深思熟虑就是你来说可能是快乐"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+    <LinearLayout
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_999"
+            android:text="所属仓库"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="15dp"
+            android:text="哇哈哈哈哈哈"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+    <LinearLayout
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_999"
+            android:text="入库时间"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="15dp"
+            android:text="2019-12-12 20:00:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+
+</LinearLayout>

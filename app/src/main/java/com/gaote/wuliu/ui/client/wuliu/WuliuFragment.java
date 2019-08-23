@@ -62,9 +62,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class WuliuFragment extends ImmersionFragment {
     AMap aMap;
+    MyLocationStyle myLocationStyle;
     @BindView(R.id.map)
     MapView mMapView;
-    MyLocationStyle myLocationStyle;
     List<MapPoint> mapPointList;
     boolean isInit=false;
     public WuliuFragment() {
@@ -88,7 +88,6 @@ public class WuliuFragment extends ImmersionFragment {
     private void initView() {
        mapPointList = new ArrayList<>();
        initMapView();
-       //getWuliuNetWorks();
     }
     private void getWuliuNetWorks(){
         HttpParams httpParams=new HttpParams();

@@ -467,6 +467,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:layout_marginTop="5dp"
                     android:id="@+id/tv_good_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -592,6 +593,7 @@
 
 
             <com.gaote.wuliu.widget.MapContainer
+                android:visibility="gone"
                 android:id="@+id/map_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -666,56 +668,131 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/item_rl_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white"
                 android:gravity="right"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp">
-
-
-                <Button
-                    android:id="@+id/item_btn_right"
-                    android:layout_width="67dp"
-                    android:layout_height="28dp"
+                <LinearLayout
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"
-                    android:background="@drawable/order_redstroke"
-                    android:gravity="center"
-                    android:text="联系司机"
-                    android:textColor="#ea363a"
-                    android:textSize="12sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
 
-                <Button
-                    android:id="@+id/item_btn_mid"
-                    android:layout_width="67dp"
-                    android:layout_height="28dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_toLeftOf="@id/item_btn_right"
-                    android:background="@drawable/order_greystroke"
-                    android:gravity="center"
-                    android:text="查看物流"
-                    android:textColor="#333333"
-                    android:textSize="12sp" />
+                        android:id="@+id/item_btn_left"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/order_greystroke"
+                        android:gravity="center"
+                        android:text="导航"
+                        android:textColor="#333333"
+                        android:textSize="12sp" />
+                    <Button
+                        android:visibility="gone"
+                        android:id="@+id/item_btn_mid"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/order_greystroke"
+                        android:gravity="center"
+                        android:text="取消订单"
+                        android:textColor="#333333"
+                        android:textSize="12sp" />
 
-                <Button
-                    android:id="@+id/item_btn_left"
-                    android:layout_width="67dp"
-                    android:layout_height="28dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_toLeftOf="@id/item_btn_mid"
-                    android:background="@drawable/order_greystroke"
-                    android:gravity="center"
-                    android:text="取消订单"
-                    android:textColor="#333333"
-                    android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/item_btn_right"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/order_redstroke"
+                        android:gravity="center"
+                        android:text="确认接货"
+                        android:textColor="#ea363a"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+
+
 
 
             </RelativeLayout>
+            <RelativeLayout
+                android:visibility="gone"
+                android:id="@+id/rl_reback"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/white"
 
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"
+                    android:orientation="vertical"
+                    android:layout_toLeftOf="@id/ll_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv_refuseTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="处理倒计时：48小时"
+                        android:textColor="@color/color_333"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="倒计时结束自动退款"
+                        android:textColor="@color/color_999"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:id="@+id/ll_back"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+
+                        android:id="@+id/btn_refuse"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/order_redstroke"
+                        android:gravity="center"
+                        android:text="拒绝退款"
+                        android:textColor="#D0021B"
+                        android:textSize="12sp" />
+
+
+                    <Button
+                        android:id="@+id/btn_agree"
+                        android:layout_width="67dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:background="@drawable/order_greystroke"
+                        android:gravity="center"
+                        android:text="确认退款"
+                        android:textColor="#333"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

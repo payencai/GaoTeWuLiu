@@ -5,7 +5,8 @@ package com.gaote.wuliu.net;
  * 邮箱：771548229@qq..com
  */
 public class Api {
-    public static final String BASE_URL = "http://120.79.176.228:8080/hightde";
+    public static final String BASE_URL="http://192.168.10.39:8888";
+    //public static final String BASE_URL = "http://120.79.176.228:8080/hightde";
     public static final String SERVER_TYPE_CODE = "1";//服务方类型
     public static final String DEMAND_TYPE_CODE = "2";//需求方类型
     public static final String LOGIN_CODE = "1";

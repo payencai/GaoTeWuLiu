@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.ui.depository.DepositoryMainActivity;
 import com.gaote.wuliu.ui.net.NetMainActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 

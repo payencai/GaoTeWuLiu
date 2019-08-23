@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
+    android:background="@drawable/shape_white"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp">
+        <ImageView
+            android:src="@drawable/defaut_netstation"
+            android:layout_width="58dp"
+            android:layout_height="58dp" />
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+
+                android:textColor="@color/color_333"
+                android:textSize="17sp"
+                android:text="已出库"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textColor="@color/color_999"
+                android:textSize="12sp"
+                android:text="啥啥快递：仓库已出库"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textColor="@color/color_333"
+            android:textSize="14sp"
+            android:text="庄帅比"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color_333"
+            android:textSize="14sp"
+            android:text="17688888888"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:textColor="@color/color_999"
+        android:textSize="12sp"
+        android:text="广东省广州市广州大学城梵蒂冈风帆股份公告梵蒂冈梵蒂冈法国"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -49,4 +49,12 @@ public class MyPath {
         public static final String WuliuDriverNetOrder = "/wuliu/driver/netorder";//网点订单
         public static final String WuliuDriverOrderDetail = "/wuliu/driverorder/detail";//首页
     }
+    public static class Depository{
+        public static final String Main = "/depository/main";//首页
+        public static final String DepositoryShop = "/depository/shop/info";//司机信息
+        public static final String StatisticsData = "/depository/statistics/data";//统计仓库
+        public static final String GoodsInKu = "/depository/goods/in";//首页
+        public static final String GoodsOutKu =  "/depository/goods/out";//首页
+        public static final String PackStatus = "/depository/pack/status";//网点信息
+    }
 }

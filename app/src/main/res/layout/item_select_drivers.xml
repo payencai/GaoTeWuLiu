@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+     <LinearLayout
+         android:padding="10dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <TextView
+                 android:layout_marginLeft="10dp"
+                 android:textColor="@color/color_333"
+                 android:textSize="14sp"
+                 android:text="司机名称"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content" />
+             <LinearLayout
+                 android:layout_marginTop="3dp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                 <TextView
+                     android:layout_marginLeft="10dp"
+                     android:textColor="@color/color_999"
+                     android:textSize="12sp"
+                     android:text="司机电话号码"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+                 <TextView
+                     android:layout_marginLeft="10dp"
+                     android:textColor="@color/color_999"
+                     android:textSize="12sp"
+                     android:text="广东省"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+             </LinearLayout>
+         </LinearLayout>
+     </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+</LinearLayout>

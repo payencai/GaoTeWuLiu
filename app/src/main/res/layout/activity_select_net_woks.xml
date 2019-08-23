@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.depository.select.SelectNetWoksActivity">
+    <include layout="@layout/header_commom"/>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="75dp">
+        <EditText
+            android:textSize="15sp"
+            android:textColor="@color/color_333"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/color_999"
+            android:hint="地址/网点名称/电话"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="#DEDEDE"
+            android:layout_width="match_parent"
+            android:layout_height="45dp" />
+    </LinearLayout>
+    <View
+        android:background="#f3f3f3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <android.support.v7.widget.RecyclerView
+        tools:listitem="@layout/item_select_networks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

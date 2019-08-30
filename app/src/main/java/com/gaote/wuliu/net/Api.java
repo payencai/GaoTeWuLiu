@@ -5,8 +5,8 @@ package com.gaote.wuliu.net;
  * 邮箱：771548229@qq..com
  */
 public class Api {
-    public static final String BASE_URL="http://192.168.10.39:8888";
-    //public static final String BASE_URL = "http://120.79.176.228:8080/hightde";
+    //public static final String BASE_URL="http://192.168.10.39:5555";
+    public static final String BASE_URL = "http://120.79.176.228:5555";
     public static final String SERVER_TYPE_CODE = "1";//服务方类型
     public static final String DEMAND_TYPE_CODE = "2";//需求方类型
     public static final String LOGIN_CODE = "1";
@@ -33,10 +33,27 @@ public class Api {
     }
     public static class Manage {
         public static final String URL_GET_VERIFY_CODE = "/manage/getVerificationCode.do";
-
         public static final String URL_REGISTER = "/manage/register.do";
-
         public static final String URL_LOGIN = "/manage/login.do";
+        public static final String getCode = "/userAdd/getCode";
+        public static final String getCodeByTelephone = "/manage/getCodeByTelephone";
+        public static final String LoginByQqId = "/userAdd/loginByQqId";
+        public static final String LoginByWbId = "/userAdd/loginByWbId";
+        public static final String LoginByWxId = "/userAdd/loginByWxId";
+        public static final String loginByTelephoneCode ="/manage/loginByTelephoneCode";
+
+        public static final String bindByWx = "/userAdd/bindByWx";
+        public static final String bindByWb = "/userAdd/bindByWb";
+        public static final String bindByQq = "/userAdd/bindByQq";
+
+        public static final String addUserByTelephone = "/manage/addUserByTelephone";
+        public static final String addUserByWxId = "/userAdd/addUserByWxId";
+        public static final String addUserByWbId = "/userAdd/addUserByWbId";
+        public static final String addUserByQqId = "/userAdd/addUserByQqId";
+
+        public static final String untyingToQq = "/userAdd/untyingToQq";
+        public static final String untyingToWb = "/userAdd/untyingToWb";
+        public static final String untyingToWx = "/userAdd/untyingToWx";
     }
 
     public static class Address {

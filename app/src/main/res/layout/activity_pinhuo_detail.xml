@@ -107,7 +107,7 @@
                                      android:layout_weight="1">
 
                                      <EditText
-                                         android:id="@+id/lcl_detail_et_cargo_weight"
+                                         android:id="@+id/et_weight"
                                          android:layout_width="64dp"
                                          android:layout_height="25dp"
                                          android:layout_gravity="center_vertical"
@@ -138,7 +138,8 @@
                                      android:layout_weight="1">
 
                                      <EditText
-                                         android:id="@+id/lcl_detail_et_cargo_volume"
+
+                                         android:id="@+id/et_volume"
                                          android:layout_width="64dp"
                                          android:layout_height="25dp"
                                          android:layout_gravity="center_vertical"
@@ -168,7 +169,7 @@
                                      android:layout_weight="1">
 
                                      <EditText
-                                         android:id="@+id/lcl_detail_et_cargo_count"
+                                         android:id="@+id/et_num"
                                          android:layout_width="64dp"
                                          android:layout_height="25dp"
                                          android:layout_gravity="center_vertical"
@@ -212,7 +213,7 @@
                                  android:src="@drawable/productname" />
 
                              <EditText
-                                 android:id="@+id/lcl_detail_et_cargo_name"
+                                 android:id="@+id/et_name"
                                  android:layout_width="match_parent"
                                  android:layout_height="30dp"
                                  android:layout_marginLeft="16dp"
@@ -239,11 +240,9 @@
                          android:layout_width="match_parent"
                          android:layout_height="wrap_content">
                          <RelativeLayout
-
-
-
+                             android:id="@+id/rl_add"
                              android:layout_width="match_parent"
-                             android:layout_height="45dp"
+                             android:layout_height="50dp"
                              android:gravity="center_vertical"
                              android:paddingLeft="16dp">
 
@@ -263,80 +262,87 @@
                                  android:layout_centerVertical="true"
                                  android:layout_marginLeft="16dp"
                                  android:layout_toRightOf="@id/icon_man"
-                                 android:text="取货地点"
+                                 android:text="增值服务"
                                  android:textColor="@color/text_black_color"
                                  android:textSize="14sp" />
-
-                             <EditText
-                                 android:id="@+id/lcl_detail_et_get_cargo_address"
-                                 android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"
-                                 android:layout_centerVertical="true"
-                                 android:layout_marginLeft="16dp"
-                                 android:layout_marginRight="46dp"
-                                 android:layout_toRightOf="@id/get_product_tv_tag"
-                                 android:background="@null"
-                                 android:hint="请输入取货地点"
-                                 android:textColor="@color/text_black_color"
-                                 android:textColorHint="#999999"
-                                 android:textSize="14sp" />
-                         </RelativeLayout>
-
-
-
-                         <LinearLayout
-                             android:id="@+id/get_product_time_ll"
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:layout_marginTop="5dp"
-                             android:layout_marginBottom="10dp"
-                             android:gravity="center_vertical">
-
-                             <ImageView
-                                 android:layout_width="18dp"
-                                 android:layout_height="18dp"
-                                 android:layout_centerVertical="true"
-                                 android:layout_marginLeft="16dp"
-                                 android:src="@drawable/time" />
-
-                             <TextView
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content"
-                                 android:layout_centerVertical="true"
-                                 android:layout_marginLeft="16dp"
-                                 android:layout_toRightOf="@id/icon_man"
-                                 android:text="取货时间"
-                                 android:textColor="@color/text_black_color"
-                                 android:textSize="14sp" />
-
-                             <TextView
-                                 android:id="@+id/lcl_detail_tv_get_cargo_time"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content"
-                                 android:layout_gravity="center_vertical"
-                                 android:layout_marginLeft="16dp"
-                                 android:layout_marginRight="11dp"
-                                 android:singleLine="true"
-                                 android:text="请选择时间"
-                                 android:textColor="#999999"
-                                 android:textSize="14sp" />
-
-                             <LinearLayout
-                                 android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"
-                                 android:layout_gravity="right|center_vertical"
-                                 android:gravity="right|center_vertical">
 
 
                                  <ImageView
+                                     android:layout_alignParentRight="true"
+                                     android:layout_centerVertical="true"
                                      android:layout_width="5dp"
                                      android:layout_height="9dp"
                                      android:layout_gravity="right|center_vertical"
                                      android:layout_marginRight="9dp"
                                      android:scaleType="fitXY"
                                      android:src="@drawable/arrowright" />
+
+
+                         </RelativeLayout>
+
+                         <View
+                             android:layout_marginRight="15dp"
+                             android:layout_marginLeft="15dp"
+                             android:background="#eee"
+                             android:layout_width="match_parent"
+                             android:layout_height="0.5dp"></View>
+
+                         <RelativeLayout
+                             android:id="@+id/rl_small"
+                             android:layout_width="match_parent"
+                             android:layout_height="50dp"
+                             android:paddingLeft="16dp">
+                             <LinearLayout
+                                 android:layout_centerVertical="true"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content">
+                                 <ImageView
+
+                                     android:layout_width="18dp"
+                                     android:layout_height="18dp"
+                                     android:layout_centerVertical="true"
+                                     android:adjustViewBounds="true"
+                                     android:scaleType="fitXY"
+                                     android:src="@mipmap/gt_small_money" />
+
+                                 <TextView
+
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:layout_centerVertical="true"
+                                     android:layout_marginLeft="16dp"
+                                     android:text="加小费"
+                                     android:textColor="@color/text_black_color"
+                                     android:textSize="14sp" />
                              </LinearLayout>
-                         </LinearLayout>
+                             <LinearLayout
+                                 android:gravity="center_vertical"
+                                 android:layout_marginRight="9dp"
+                                 android:layout_alignParentRight="true"
+                                 android:layout_centerVertical="true"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content">
+                                 <TextView
+                                     android:id="@+id/tv_money"
+                                     android:layout_marginRight="10dp"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:layout_centerVertical="true"
+                                     android:text=""
+                                     android:textColor="@color/text_black_color"
+                                     android:textSize="14sp" />
+
+                                 <ImageView
+
+                                     android:layout_width="5dp"
+                                     android:layout_height="9dp"
+                                     android:scaleType="fitXY"
+                                     android:src="@drawable/arrowright" />
+                             </LinearLayout>
+
+
+
+                         </RelativeLayout>
 
 
                      </LinearLayout>
@@ -361,7 +367,7 @@
 
 
                      <LinearLayout
-                         android:layout_marginTop="10dp"
+                         android:layout_marginTop="20dp"
                          android:layout_marginRight="12dp"
                          android:background="@drawable/shape_white"
                          android:layout_marginLeft="12dp"
@@ -371,7 +377,7 @@
 
                          <RelativeLayout
                              android:layout_width="match_parent"
-                             android:layout_height="50dp">
+                             android:layout_height="45dp">
 
                              <TextView
 
@@ -403,9 +409,11 @@
                              </LinearLayout>
                          </RelativeLayout>
                          <View
-                             android:background="#fefefe"
+
+                             android:background="#eee"
                              android:layout_width="match_parent"
                              android:layout_height="1dp"></View>
+
                          <RelativeLayout
                              android:layout_width="match_parent"
                              android:layout_height="60dp">

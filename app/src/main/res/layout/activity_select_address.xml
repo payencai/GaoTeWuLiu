@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/home_blue">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/arrowleft_white" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="选择地址"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:singleLine="true"
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_search_bg"
+            android:hint="查找小区、大夏等"
+            android:paddingLeft="@dimen/margin_15dp"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:elevation="5dp"
+            android:src="@mipmap/gt_location_wuliu" />
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/select_mapview"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true"
+            android:clickable="false">
+
+        </com.amap.api.maps.MapView>
+
+        <ImageView
+            android:id="@+id/iv_location"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="5dp"
+            android:src="@mipmap/gt_new_position" />
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/select_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_select_address">
+
+    </ListView>
+
+</LinearLayout>

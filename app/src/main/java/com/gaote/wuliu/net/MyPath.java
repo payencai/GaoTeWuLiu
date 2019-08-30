@@ -4,10 +4,12 @@ public class MyPath {
     public static class Pinhuo {
         public static final String DETAIL = "/pinhuo/detail";
         public static final String Main = "/pinhuo/main";
+        public static final String SelectAddress = "/select/address";
     }
     public static class Mine {
         public static final String MyCoupon = "/coupon/mycoupon";
         public static final String Login = "/mine/login";
+        public static final String Address = "/mine/select/address";
     }
     public static class Wuliu{
         public static final String SendGoods = "/wuliu/sendgoods";
@@ -51,6 +53,14 @@ public class MyPath {
     }
     public static class Depository{
         public static final String Main = "/depository/main";//首页
+        public static final String DepositoryShop = "/depository/shop/info";//司机信息
+        public static final String StatisticsData = "/depository/statistics/data";//统计仓库
+        public static final String GoodsInKu = "/depository/goods/in";//首页
+        public static final String GoodsOutKu =  "/depository/goods/out";//首页
+        public static final String PackStatus = "/depository/pack/status";//网点信息
+    }
+    public static class Login{
+        public static final String BindAccount = "/login/bind/account";//首页
         public static final String DepositoryShop = "/depository/shop/info";//司机信息
         public static final String StatisticsData = "/depository/statistics/data";//统计仓库
         public static final String GoodsInKu = "/depository/goods/in";//首页

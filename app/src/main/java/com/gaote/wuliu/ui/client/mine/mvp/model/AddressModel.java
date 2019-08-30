@@ -41,7 +41,7 @@ public class AddressModel {
             @Override
             public void onSuccess(String response) {
                 LogUtils.e(response);
-                Result result = GsonUtil.fromJsonObject(response,Result.class);
+                Result<String> result = GsonUtil.fromJsonObject(response,String.class);
                 if (result.getResultCode() == 0)
                     addressResult.onAdd();
                 else {

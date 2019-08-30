@@ -8,10 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.net.MyPath;
 import com.gaote.wuliu.tools.CheckDoubleClick;
 import com.gaote.wuliu.ui.client.mine.mvp.model.Address;
 import com.gaote.wuliu.ui.client.mine.mvp.model.AddressModel;
@@ -32,7 +34,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+@Route(path= MyPath.Mine.Address)
 public class MyAddressActivity extends AppCompatActivity implements AddressView {
     AddressPresenter addressPresenter;
     AddressAdapter addressAdapter;

@@ -12,6 +12,9 @@ import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.gaote.wuliu.ui.login.mvp.model.ServiceUser;
 import com.tencent.smtt.sdk.QbSdk;
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 public class MyApp extends MultiDexApplication {
     public static boolean isLogin=false;
@@ -50,7 +53,11 @@ public class MyApp extends MultiDexApplication {
     }
     private void init(){
         context=this;
+
         NetUtils.getInstance().initNetWorkUtils(this);//okgo初始化
+        UMConfigure.init(this,"5d6347594ca3572fd2000703"
+                ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
+        UMShareAPI.get(this);//初始化sdk
         initX5();//腾讯h5
     }
     private void initRouter(Application context){
@@ -91,4 +98,13 @@ public class MyApp extends MultiDexApplication {
         ARouter.getInstance().destroy();
     }
 
+    //各个平台的配置
+    {
+        //微信68eda45477ace8ea88ad0a7b13160ab6  17e5ce624f31ce7aca02062a5f7f4c53
+        PlatformConfig.setWeixin("wx16d6577fe6f1893a", "d9542a55489b6f21bf9ebd04263186d1");
+        //新浪微博(第三个参数为回调地址)
+        PlatformConfig.setSinaWeibo("1276917432", "c0f499aef70c22b827b0f4878ba867f0","http://sns.whalecloud.com/sina2/callback");
+        //QQ
+        PlatformConfig.setQQZone("101729546", "1fb005e4abf633f9aba757f10480c034");
+    }
 }

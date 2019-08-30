@@ -19,7 +19,9 @@ public class LoginPresenter  implements LoginModel.LoginResultImpl,IPresenter{
         loginView.showLoading();
         loginModel.login(loginRequest,this);
     }
-
+    public void getCode(String phone){
+        loginModel.getCode(this,phone);
+    }
     @Override
     public void onReturnClient(ClientUser clientUser) {
         loginView.dissmissLoading();
@@ -31,6 +33,12 @@ public class LoginPresenter  implements LoginModel.LoginResultImpl,IPresenter{
     public void onReturnService(ServiceUser serviceUser) {
         loginView.dissmissLoading();
         loginView.saveServiceUser(serviceUser);
-
     }
+
+    @Override
+    public void onSendCode(String phone) {
+        loginView.onSendCode();
+    }
+
+
 }

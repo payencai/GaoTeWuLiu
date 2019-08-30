@@ -19,13 +19,37 @@ android {
             }
         }
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('D:\\work\\GaoTeWuLiu\\app\\debug.keystore')
+            storePassword 'android'
+            keyPassword 'android'
+            keyAlias = 'androiddebugkey'
+        }
+        release {
+            storeFile file('D:\\work\\GaoTeWuLiu\\app\\yichankey.jks')
+            storePassword 'yichan123'
+            keyPassword 'yichan123'
+            keyAlias = 'yichankey'
+        }
+    }
     buildTypes {
         release {
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
-
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
@@ -76,7 +100,8 @@ dependencies {
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
     implementation 'com.alibaba:arouter-api:1.5.0'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    implementation 'com.amap.api:3dmap:latest.integration'//高德地图
+    implementation 'com.amap.api:3dmap:latest.integration'
+    //高德地图
     implementation 'com.amap.api:search:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation 'com.android.support:multidex:1.0.3'
@@ -86,4 +111,11 @@ dependencies {
     implementation 'com.bigkoo:alertview:1.0.3'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'org.litepal.android:java:3.0.0'
+    //implementation 'com.umeng.umsdk:analytics:8.0.0'
+    implementation 'com.umeng.umsdk:common:2.0.0'
+    implementation files('libs/umeng-share-core-6.9.6.jar')
+    implementation files('libs/umeng-sharetool-6.9.6.jar')
+    implementation files('libs/umeng-share-QQ-simplify-6.9.6.jar')
+    implementation files('libs/umeng-share-sina-simplify-6.9.6.jar')
+    implementation files('libs/umeng-share-wechat-simplify-6.9.6.jar')
 }

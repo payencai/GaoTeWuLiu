@@ -4,6 +4,7 @@ package com.gaote.wuliu.ui.client.mine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +91,7 @@ public class MineFragment extends ImmersionFragment {
     }
 
     private void getUserInfo() {
-        NetUtils.getInstance().get(MyApp.getClientUser().getToken(), Api.BASE_URL + Api.Client.getUserInfo, new OnMessageReceived() {
+        NetUtils.getInstance().get(MyApp.token, Api.BASE_URL + Api.Client.getUserInfo, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
                 LogUtils.e(response);
@@ -119,6 +120,7 @@ public class MineFragment extends ImmersionFragment {
     private void setUI(){
         tv_name.setText(userInfo.getName());
         tv_login.setVisibility(View.GONE);
+        if(!TextUtils.isEmpty(userInfo.getPortraint()))
         Glide.with(getContext()).load(userInfo.getPortraint()).apply(RequestOptions.circleCropTransform()).into(iv_head);
     }
     @OnClick({R.id.rl_wuliu,R.id.rl_address,R.id.tv_login, R.id.ll_settings, R.id.iv_head, R.id.rl_reback, R.id.rl_driver, R.id.rl_pinhuo,R.id.rl_coupon})
@@ -138,7 +140,7 @@ public class MineFragment extends ImmersionFragment {
                 startActivity(new Intent(getContext(), WuliuOrderActivity.class));
                 break;
             case R.id.rl_address:
-                startActivity(new Intent(getContext(), MyAddressActivity.class));
+                ARouter.getInstance().build(MyPath.Mine.Address).navigation();
                 break;
             case R.id.rl_pinhuo:
                 startActivity(new Intent(getContext(), PinhuoOrderActivity.class));

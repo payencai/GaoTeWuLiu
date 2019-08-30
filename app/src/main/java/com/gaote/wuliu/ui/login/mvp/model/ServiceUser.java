@@ -23,6 +23,33 @@ public class ServiceUser {
      * roleId : null
      * authorization : null
      */
+    private String qqId;
+    private String wxId;
+    private String wbId;
+
+    public String getQqId() {
+        return qqId;
+    }
+
+    public void setQqId(String qqId) {
+        this.qqId = qqId;
+    }
+
+    public String getWxId() {
+        return wxId;
+    }
+
+    public void setWxId(String wxId) {
+        this.wxId = wxId;
+    }
+
+    public String getWbId() {
+        return wbId;
+    }
+
+    public void setWbId(String wbId) {
+        this.wbId = wbId;
+    }
 
     private String id;
     private String name;

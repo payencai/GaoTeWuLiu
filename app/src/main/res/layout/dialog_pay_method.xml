@@ -38,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <RelativeLayout
+        android:id="@+id/rl_alipay"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -59,6 +60,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <ImageView
+            android:id="@+id/iv_alipay"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@mipmap/ic_check"
@@ -70,6 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"></View>
     <RelativeLayout
+        android:id="@+id/rl_wechat"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -92,6 +95,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <ImageView
+            android:id="@+id/iv_wechat"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:src="@mipmap/ic_uncheck"

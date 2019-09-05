@@ -42,7 +42,7 @@
          android:background="#f3f3f3"
          android:layout_width="match_parent"
          android:layout_height="match_parent">
-         <ScrollView
+         <android.support.v4.widget.NestedScrollView
              android:layout_above="@id/btn_submit"
              android:layout_width="match_parent"
              android:layout_height="match_parent">
@@ -267,15 +267,30 @@
                                  android:textSize="14sp" />
 
 
-                                 <ImageView
-                                     android:layout_alignParentRight="true"
+                             <LinearLayout
+                                 android:gravity="center_vertical"
+                                 android:layout_marginRight="9dp"
+                                 android:layout_alignParentRight="true"
+                                 android:layout_centerVertical="true"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content">
+                                 <TextView
+                                     android:id="@+id/tv_need"
+                                     android:layout_marginRight="10dp"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
                                      android:layout_centerVertical="true"
+                                     android:text=""
+                                     android:textColor="@color/text_black_color"
+                                     android:textSize="14sp" />
+
+                                 <ImageView
+
                                      android:layout_width="5dp"
                                      android:layout_height="9dp"
-                                     android:layout_gravity="right|center_vertical"
-                                     android:layout_marginRight="9dp"
                                      android:scaleType="fitXY"
                                      android:src="@drawable/arrowright" />
+                             </LinearLayout>"
 
 
                          </RelativeLayout>
@@ -352,7 +367,7 @@
                          android:layout_marginTop="10dp"
                          android:layout_marginRight="12dp"
                          android:layout_marginLeft="12dp"
-                         android:id="@+id/lcl_detail_et_extra_msg"
+                         android:id="@+id/et_remarks"
                          android:layout_width="match_parent"
                          android:layout_height="50dp"
                          android:background="@drawable/shape_white"
@@ -498,7 +513,7 @@
 
                  </LinearLayout>
              </LinearLayout>
-         </ScrollView>
+         </android.support.v4.widget.NestedScrollView>
          <Button
              android:layout_alignParentBottom="true"
              android:layout_marginBottom="15dp"

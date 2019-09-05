@@ -54,9 +54,11 @@
         android:roundIcon="@drawable/app_icon_gaote"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity
-            android:windowSoftInputMode="stateHidden"
-            android:name=".base.SelectAddressActivity"></activity>
+            android:name=".base.SelectAddressActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ui.client.mine.UnBindAccountActivity" />
         <activity android:name=".ui.login.BindAccountActivity" />
         <activity android:name=".ui.depository.AddDriverActivity" />
@@ -116,7 +118,10 @@
         <activity android:name=".ui.client.wuliu.QueryWuliuActivity" />
         <activity android:name=".ui.client.mine.MyMsgActivity" />
         <activity android:name=".ui.client.mine.MyCouponActivity" />
-        <activity android:name=".ui.client.pinhuo.PinhuoDetailActivity" />
+        <activity
+            android:windowSoftInputMode="stateHidden"
+            android:name=".ui.client.pinhuo.PinhuoDetailActivity"
+            />
         <activity android:name=".ui.client.mine.SetupNickActivity" />
         <activity android:name=".ui.client.mine.order.WuliuOrderDetailActivity" />
         <activity android:name=".ui.client.mine.order.WuliuOrderActivity" />
@@ -171,7 +176,11 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
-
+        <receiver android:name=".alipay.WeChatPayReceiver">
+            <intent-filter>
+                <action android:name="com.scott.sayhi"></action>
+            </intent-filter>
+        </receiver>
         <service android:name="com.amap.api.location.APSService" />
 
         <meta-data
@@ -223,6 +232,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+
+
     </application>
 
 </manifest>

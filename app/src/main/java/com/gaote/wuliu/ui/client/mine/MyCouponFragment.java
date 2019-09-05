@@ -9,9 +9,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.bean.Result;
+import com.gaote.wuliu.net.Api;
+import com.gaote.wuliu.net.NetUtils;
+import com.gaote.wuliu.net.OnMessageReceived;
+import com.gaote.wuliu.tools.GsonUtil;
 import com.gaote.wuliu.ui.client.mine.bean.Coupon;
 import com.gaote.wuliu.ui.client.mine.order.PinhuoOrderFragment;
+import com.gaote.wuliu.ui.pinhuodriver.mvp.mdoel.PinhuoOrder;
+import com.google.gson.Gson;
+import com.lzy.okgo.model.HttpParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +42,8 @@ public class MyCouponFragment extends Fragment {
     CouponAdapter couponAdapter;
     List<Coupon> coupons;
     int type;
+    int page=1;
+    boolean isLoadMore=false;
     public MyCouponFragment() {
         // Required empty public constructor
     }
@@ -54,12 +70,51 @@ public class MyCouponFragment extends Fragment {
     }
     private void initAdapter(){
         coupons=new ArrayList<>();
-        for (int i = 0; i <10 ; i++) {
-            coupons.add(new Coupon());
-        }
         couponAdapter=new CouponAdapter(coupons);
+        couponAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                page++;
+                isLoadMore=true;
+                getData();
+            }
+        },rv_item);
         rv_item.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_item.setAdapter(couponAdapter);
+        getData();
+    }
+    private void getData(){
+        HttpParams httpParams=new HttpParams();
+        httpParams.put("page",page);
+        NetUtils.getInstance().get(MyApp.token, Api.BASE_URL + Api.Pinhuo.getCouponByUse,httpParams, new OnMessageReceived() {
+            @Override
+            public void onSuccess(String response) {
+
+                Result result=GsonUtil.fromJsonObject(response,Result.class);
+                String json=new Gson().toJson(result.getData());
+                List<Coupon> couponList= GsonUtil.jsonToList(json,Coupon.class);
+                if(result.getResultCode()==0){
+                    couponAdapter.addData(couponList);
+                    if(isLoadMore){
+                        isLoadMore=false;
+                        if(couponList==null||couponList.size()==0){
+                            couponAdapter.loadMoreEnd(true);
+                        }else{
+                            couponAdapter.loadMoreComplete();
+                        }
+                    }else{
+                        couponAdapter.loadMoreComplete();
+                    }
+                }else{
+                    ToastUtils.showShort(result.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
 }

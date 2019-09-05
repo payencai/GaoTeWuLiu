@@ -118,4 +118,7 @@ dependencies {
     implementation files('libs/umeng-share-QQ-simplify-6.9.6.jar')
     implementation files('libs/umeng-share-sina-simplify-6.9.6.jar')
     implementation files('libs/umeng-share-wechat-simplify-6.9.6.jar')
+    //implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    //implementation 'io.github.mayubao:pay_library:1.0.1'
+    implementation 'com.xgr.easypay:EasyPay:1.0.2'
 }

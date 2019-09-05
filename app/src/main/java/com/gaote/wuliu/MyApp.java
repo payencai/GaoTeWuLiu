@@ -11,6 +11,9 @@ import com.amap.api.maps.AMap;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.ui.login.mvp.model.ClientUser;
 import com.gaote.wuliu.ui.login.mvp.model.ServiceUser;
+
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
@@ -22,7 +25,7 @@ public class MyApp extends MultiDexApplication {
     public static MyApp context;
     private static ClientUser clientUser;
     private static ServiceUser serviceUser;
-
+    public static IWXAPI mWxApi;
     public static ServiceUser getServiceUser() {
         return serviceUser;
     }
@@ -59,6 +62,7 @@ public class MyApp extends MultiDexApplication {
                 ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");
         UMShareAPI.get(this);//初始化sdk
         initX5();//腾讯h5
+
     }
     private void initRouter(Application context){
 
@@ -66,6 +70,7 @@ public class MyApp extends MultiDexApplication {
         ARouter.openDebug();   // Turn on debugging mode (If you are running in InstantRun mode, you must turn on debug mode! Online version needs to be closed, otherwise there is a security risk)
         ARouter.init(context); // As early as possible, it is recommended to initialize in the Application
     }
+
     private void initX5(){
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
 

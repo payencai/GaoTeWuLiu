@@ -85,6 +85,7 @@ public class GsonUtil {
      */
     public static <T> List<T> jsonToList(String json, Class<T> cls) {
         Gson gson = new Gson();
+
         List<T> list = new ArrayList<T>();
         JsonArray array = new JsonParser().parse(json).getAsJsonArray();
         for (final JsonElement elem : array) {
@@ -137,4 +138,5 @@ public class GsonUtil {
         Type type = new ParameterizedTypeImpl(Result.class, new Type[]{listType});
         return new Gson().fromJson(reader, type);
     }
+
 }

@@ -78,5 +78,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
+    <!--微信支付 -->
+    <style name="wx_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">-->
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+    </style>
+
 
 </resources>

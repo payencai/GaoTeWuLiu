@@ -31,6 +31,15 @@ public class Api {
 
         public static final String URL_FINISH_ORDER_BY_USER = "/pdriverOrder/updatePdriverOrderByUser";
     }
+    public static class Pinhuo{
+        public static final String addPdriverOrder ="/pdriverOrder/addPdriverOrder";
+        public static final String getCouponByCanGet ="/coupon/getCouponByCanGet";
+        public static final String getCouponByUse =  "/coupon/getCouponByUse";
+        public static final String getCoupon =  "/coupon/getCoupon";
+    }
+    public static class Pay{
+        public static final String pdriverOrderPay ="/wechatPay/pdriverOrderPay";
+    }
     public static class Manage {
         public static final String URL_GET_VERIFY_CODE = "/manage/getVerificationCode.do";
         public static final String URL_REGISTER = "/manage/register.do";

@@ -39,7 +39,8 @@ public class PinhuoOrderModel {
             @Override
             public void onSuccess(String response) {
                 String data=GsonUtil.getCommomJson(response);
-                LogUtils.e(data);
+                List<ClientPinhuoOrder> result=GsonUtil.jsonToList(data,ClientPinhuoOrder.class);
+                LogUtils.e(result);
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     int code=jsonObject.getInt("resultCode");

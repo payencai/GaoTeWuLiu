@@ -72,14 +72,14 @@ public class GsonUtil {
      * @param cls
      * @return
      */
-//    public static <T> List<T> GsonToList(String gsonString, Class<T> cls) {
-//        List<T> list = null;
-//        if (gson != null) {
-//            list = gson.fromJson(gsonString, new TypeToken<List<T>>() {
-//            }.getType());
-//        }
-//        return list;
-//    }
+    public static <T> List<T> GsonToList(String gsonString, Class<T> cls) {
+        List<T> list = null;
+        if (gson != null) {
+            list = gson.fromJson(gsonString, new TypeToken<List<T>>() {
+            }.getType());
+        }
+        return list;
+    }
     /**
      * 转成list
      * 解决泛型在编译期类型被擦除导致报错
@@ -156,7 +156,7 @@ public class GsonUtil {
             params.put("code",code);
             params.put("data",data);
             params.put("message",message);
-            result=new Gson().toJson(params);
+            result=data.toString();
 
         } catch (JSONException e) {
             e.printStackTrace();

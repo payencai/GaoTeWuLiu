@@ -21,6 +21,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gaote.wuliu.R;
 import com.gaote.wuliu.net.Api;
+import com.gaote.wuliu.ui.client.mine.bean.ClientPinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrderModel;
 import com.gaote.wuliu.ui.client.mine.mvp.presenter.PinhuoOrderPresenter;
@@ -44,7 +45,7 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
     PinhuoOrderAdapter pinhuoOrderAdapter;
     int type = 0;
     PinhuoOrderPresenter pinhuoOrderPresenter;
-    List<PinhuoOrder> pinhuoOrderList;
+    List<ClientPinhuoOrder> pinhuoOrderList;
     @BindView(R.id.rv_order)
     RecyclerView rv_order;
     @BindView(R.id.refreshLayout)
@@ -92,7 +93,7 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
         pinhuoOrderPresenter.getOrder(page, url, type);
     }
 
-    private void showOrderDialog(int type, PinhuoOrder pinhuoOrder) {
+    private void showOrderDialog(int type, ClientPinhuoOrder pinhuoOrder) {
         final Dialog dialog = new Dialog(getContext(), R.style.CustomDialog);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_order, null);
         TextView tvTitle = view.findViewById(R.id.tv_title);
@@ -158,7 +159,7 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
         pinhuoOrderAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PinhuoOrder pinhuoOrder = (PinhuoOrder) adapter.getItem(position);
+                ClientPinhuoOrder pinhuoOrder = (ClientPinhuoOrder) adapter.getItem(position);
                 Intent intent = new Intent(getContext(), PinhuoOrderDetailActivity.class);
                 intent.putExtra("data", pinhuoOrder);
                 startActivityForResult(intent,1);
@@ -167,7 +168,7 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
         pinhuoOrderAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                PinhuoOrder pinhuoOrder = (PinhuoOrder) adapter.getItem(position);
+                ClientPinhuoOrder pinhuoOrder = (ClientPinhuoOrder) adapter.getItem(position);
                 switch (view.getId()) {
                     case R.id.item_btn_left://取消
                         showOrderDialog(1, pinhuoOrder);
@@ -192,7 +193,7 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
         rv_order.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_order.setAdapter(pinhuoOrderAdapter);
         if ("2".equals(SPUtils.getInstance().getString("role"))) {
-            url = Api.BASE_URL + Api.Order.URL_DEMAND_GET_LCL_ORDER;
+            url = Api.BASE_URL + Api.Pinhuo.getPdriverOrderByUser;
         } else {
             url = Api.BASE_URL + Api.Order.URL_GET_ALL_ORDER;
         }
@@ -219,7 +220,7 @@ public class PinhuoOrderFragment extends Fragment implements PinhuoOrderView {
     }
 
     @Override
-    public void setData(List<PinhuoOrder> pinhuoOrders) {
+    public void setData(List<ClientPinhuoOrder> pinhuoOrders) {
         refreshLayout.finishRefresh();
         pinhuoOrderList.addAll(pinhuoOrders);
         pinhuoOrderAdapter.setNewData(pinhuoOrderList);

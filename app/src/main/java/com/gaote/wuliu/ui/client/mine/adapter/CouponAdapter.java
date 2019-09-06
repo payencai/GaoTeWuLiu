@@ -1,6 +1,8 @@
-package com.gaote.wuliu.ui.client.mine;
+package com.gaote.wuliu.ui.client.mine.adapter;
 
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -17,10 +19,13 @@ public class CouponAdapter extends BaseQuickAdapter<Coupon, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, Coupon item) {
+        helper.addOnClickListener(R.id.tv_use);
         TextView tvTime=helper.getView(R.id.tv_time);
         TextView tv_use=helper.getView(R.id.tv_use);
         TextView tv_type=helper.getView(R.id.tv_type);
         TextView tv_price=helper.getView(R.id.tv_price);
+        RelativeLayout rlMy=helper.getView(R.id.rl_my);
+        rlMy.setVisibility(View.VISIBLE);
         tv_price.setText(item.getPrice()+"元优惠券");
         if(item.getType()==1){
             tv_type.setText("拼货订单可用");

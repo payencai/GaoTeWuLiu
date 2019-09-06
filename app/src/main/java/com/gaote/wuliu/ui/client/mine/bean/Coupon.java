@@ -1,6 +1,8 @@
 package com.gaote.wuliu.ui.client.mine.bean;
 
-public class Coupon {
+import java.io.Serializable;
+
+public class Coupon implements Serializable {
 
     /**
      * coupon : {"createTime":"2019-09-05T09:53:46.574Z","endTime":"2019-09-05T09:53:46.574Z","getNum":0,"getUseDay":0,"id":"string","isDel":0,"name":"string","num":0,"price":0,"startTime":"2019-09-05T09:53:46.574Z","type":0}
@@ -17,6 +19,15 @@ public class Coupon {
      * useTime : 2019-09-05T09:53:46.574Z
      * userId : string
      */
+    private int isCenter;
+
+    public int getIsCenter() {
+        return isCenter;
+    }
+
+    public void setIsCenter(int isCenter) {
+        this.isCenter = isCenter;
+    }
 
     private CouponBean coupon;
     private String couponId;

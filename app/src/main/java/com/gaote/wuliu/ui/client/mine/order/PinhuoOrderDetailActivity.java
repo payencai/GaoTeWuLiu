@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.ui.client.mine.bean.ClientPinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrderModel;
 import com.gaote.wuliu.ui.client.mine.mvp.presenter.PinhuoOrderPresenter;
@@ -80,7 +81,7 @@ public class PinhuoOrderDetailActivity extends AppCompatActivity implements Pinh
     Button btnRight;
     @BindView(R.id.item_rl_bottom)
     RelativeLayout rlBottom;
-    PinhuoOrder pinhuoOrder;
+    ClientPinhuoOrder pinhuoOrder;
     PinhuoOrderPresenter pinhuoOrderPresenter;
 
     @Override
@@ -88,7 +89,7 @@ public class PinhuoOrderDetailActivity extends AppCompatActivity implements Pinh
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pinhuo_order_detail);
         ButterKnife.bind(this);
-        pinhuoOrder = (PinhuoOrder) getIntent().getSerializableExtra("data");
+        pinhuoOrder = (ClientPinhuoOrder) getIntent().getSerializableExtra("data");
         initView();
     }
 
@@ -148,17 +149,17 @@ public class PinhuoOrderDetailActivity extends AppCompatActivity implements Pinh
     }
 
     private void initSecondLine() {
-        tv_send.setText("寄件人：" + pinhuoOrder.getAddress().getName());
-        tv_phone1.setText(pinhuoOrder.getAddress().getTelephone());
-        tv_addr1.setText("寄件地址：" + pinhuoOrder.getAddress().getAddress());
+        tv_send.setText("寄件人：" + pinhuoOrder.getConsignee());
+        tv_phone1.setText(pinhuoOrder.getDriverTelephone());
+        tv_addr1.setText("寄件地址：" + pinhuoOrder.getConsigneeAddress());
         tv_get.setText("收件人：" + pinhuoOrder.getConsignee());
         tv_phone2.setText(pinhuoOrder.getConsigneeTelephone());
         tv_addr2.setText("收件地址：" + pinhuoOrder.getConsigneeAddress());
     }
 
     private void initFirstLine() {
-        tv_area1.setText(pinhuoOrder.getAddress().getArea());
-        tv_city1.setText(pinhuoOrder.getAddress().getProvince() + " " + pinhuoOrder.getAddress().getCity());
+        tv_area1.setText(pinhuoOrder.getConsigneeArea());
+        tv_city1.setText(pinhuoOrder.getConsigneeProvince() + " " + pinhuoOrder.getConsigneeCity());
         tv_area2.setText(pinhuoOrder.getConsigneeArea());
         tv_city2.setText(pinhuoOrder.getConsigneeProvince() + " " + pinhuoOrder.getConsigneeCity());
         tv_order_time.setText(pinhuoOrder.getOrderTime());
@@ -246,7 +247,7 @@ public class PinhuoOrderDetailActivity extends AppCompatActivity implements Pinh
         }
     }
 
-    private void showOrderDialog(int type, PinhuoOrder pinhuoOrder) {
+    private void showOrderDialog(int type, ClientPinhuoOrder pinhuoOrder) {
         final Dialog dialog = new Dialog(this, R.style.CustomDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_order, null);
         TextView tvTitle = view.findViewById(R.id.tv_title);
@@ -375,7 +376,7 @@ public class PinhuoOrderDetailActivity extends AppCompatActivity implements Pinh
     }
 
     @Override
-    public void setData(List<PinhuoOrder> pinhuoOrders) {
+    public void setData(List<ClientPinhuoOrder> pinhuoOrders) {
 
     }
 }

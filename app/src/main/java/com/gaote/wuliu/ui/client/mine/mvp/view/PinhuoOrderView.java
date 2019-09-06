@@ -1,5 +1,6 @@
 package com.gaote.wuliu.ui.client.mine.mvp.view;
 
+import com.gaote.wuliu.ui.client.mine.bean.ClientPinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.Address;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
 
@@ -11,5 +12,5 @@ public interface PinhuoOrderView {
     public void onUserCancel();
     public void onUserConfirm();
     public void onDriverHandle();
-    public void setData(List<PinhuoOrder> pinhuoOrders);
+    public void setData(List<ClientPinhuoOrder> pinhuoOrders);
 }

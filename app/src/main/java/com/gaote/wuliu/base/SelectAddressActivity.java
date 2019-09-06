@@ -31,12 +31,15 @@ import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
+import com.blankj.utilcode.util.LogUtils;
 import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
 import com.gaote.wuliu.base.adapter.PoiAdapter;
 import com.gaote.wuliu.bean.AddrBean;
 import com.gaote.wuliu.net.MyPath;
+import com.gaote.wuliu.tools.GetAddressUtil;
 
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -100,9 +103,13 @@ public class SelectAddressActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 AddrBean addrBean = new AddrBean();
                 addrBean.setFiraddr(poiBean.getName());
+                addrBean.setProvince(poiBean.getProvince());
+                addrBean.setCity(poiBean.getCity());
                 addrBean.setSecaddr(poiBean.getAddress());
                 addrBean.setLat(poiBean.getLat());
                 addrBean.setLon(poiBean.getLon());
+                GetAddressUtil getAddressUtil=new GetAddressUtil(SelectAddressActivity.this);
+                addrBean.setArea(getAddressUtil.getArea(poiBean.getLon(),poiBean.getLat()));
                 bundle.putSerializable("addrbean", addrBean);
                 intent.putExtras(bundle);
                 setResult(1, intent);
@@ -166,11 +173,15 @@ public class SelectAddressActivity extends AppCompatActivity {
                     mPoiBeanList.clear();
                     for (PoiItem poiItem : poiResult.getPois()) {
                         PoiBean poiBean = new PoiBean();
+                        poiBean.setProvince(poiItem.getProvinceName());
+                        poiBean.setCity(poiItem.getCityName());
+                        poiBean.setArea(poiItem.getBusinessArea());
                         poiBean.setLon(poiItem.getLatLonPoint().getLongitude());
-                        poiBean.setLat(poiItem.getLatLonPoint().getLatitude());
                         poiBean.setAddress(poiItem.getSnippet());
+                        poiBean.setLat(poiItem.getLatLonPoint().getLatitude());
                         poiBean.setName(poiItem.getTitle());
                         poiBean.setIsupdateColor(true);
+                        LogUtils.e(poiBean.toString());
                         mPoiBeanList.add(poiBean);
                     }
                     mAdapter.notifyDataSetChanged();

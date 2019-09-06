@@ -3,7 +3,34 @@ package com.gaote.wuliu.base;
 public class PoiBean {
     private String address;
     private double lat;
+    private String province;
+    private String city;
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    private String area;
     public double getLat() {
         return lat;
     }
@@ -47,5 +74,19 @@ public class PoiBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "PoiBean{" +
+                "address='" + address + '\'' +
+                ", lat=" + lat +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", lon=" + lon +
+                ", name='" + name + '\'' +
+                ", isupdateColor=" + isupdateColor +
+                '}';
     }
 }

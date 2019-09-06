@@ -10,17 +10,18 @@ import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.gaote.wuliu.R;
-import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
+import com.gaote.wuliu.ui.client.mine.bean.ClientPinhuoOrder;
+
 
 import java.util.List;
 
-public class PinhuoOrderAdapter extends BaseQuickAdapter<PinhuoOrder, BaseViewHolder> {
-    public PinhuoOrderAdapter(@Nullable List<PinhuoOrder> data) {
+public class PinhuoOrderAdapter extends BaseQuickAdapter<ClientPinhuoOrder, BaseViewHolder> {
+    public PinhuoOrderAdapter(@Nullable List<ClientPinhuoOrder> data) {
         super(R.layout.item_pinhuo_order, data);
     }
 
     @Override
-    protected void convert( BaseViewHolder helper, PinhuoOrder item) {
+    protected void convert( BaseViewHolder helper, ClientPinhuoOrder item) {
         RelativeLayout rl_bottom=helper.getView(R.id.item_rl_bottom);
         TextView tv_status=helper.getView(R.id.tv_status);
         TextView tv_time=helper.getView(R.id.tv_time);
@@ -38,15 +39,15 @@ public class PinhuoOrderAdapter extends BaseQuickAdapter<PinhuoOrder, BaseViewHo
         Button btn_right=helper.getView(R.id.item_btn_right);
         helper.addOnClickListener(R.id.item_btn_right).addOnClickListener(R.id.item_btn_mid).addOnClickListener(R.id.item_btn_left);
         tv_time.setText(item.getOrderTime());
-        tv_area1.setText(item.getAddress().getArea());
-        tv_city1.setText(item.getAddress().getProvince() + " " + item.getAddress().getCity());
+        tv_area1.setText(item.getConsigneeArea());
+        tv_city1.setText(item.getConsigneeProvince() + " " + item.getConsigneeCity());
         tv_distance.setText(String.format("%.2f", Double.valueOf(item.getDistance())) + "km");
         tv_area2.setText(item.getConsigneeArea());
         tv_city2.setText(item.getConsigneeProvince() + " " + item.getConsigneeCity());
         tv_name.setText(item.getArticleName() + ":");
         tv_car.setText(item.getNum() + "件 " + item.getWeight() + "kg " + item.getVolume() + "m³");
-        tv_gettime.setText(item.getAnticipantTime());
-        tv_address.setText(item.getPickupAddress());
+        tv_gettime.setText(item.getOrderTime());
+        tv_address.setText(item.getConsigneeAddress());
         setStatus(tv_status,item);
 
         int type = Integer.valueOf(item.getType());
@@ -91,7 +92,7 @@ public class PinhuoOrderAdapter extends BaseQuickAdapter<PinhuoOrder, BaseViewHo
     }
 
 
-    private void setStatus(TextView textView, PinhuoOrder item){
+    private void setStatus(TextView textView, ClientPinhuoOrder item){
         int type = Integer.valueOf(item.getType());
         switch (type) {
             case 1:

@@ -78,7 +78,8 @@
         <activity android:name=".ui.depository.GoodsOutKuActivity" />
         <activity android:name=".ui.depository.StoreStatisticsActivity" />
         <activity android:name=".ui.depository.ShopInoActivity" />
-        <activity android:name=".ui.depository.DepositoryMainActivity" />
+        <activity
+            android:name=".ui.depository.DepositoryMainActivity" />
         <activity android:name=".ui.pinhuodriver.PinhuoDriverOrderDetailActivity" />
         <activity android:name=".ui.wuliudriver.WuliuDriverOrderDetailActivity" />
         <activity android:name=".ui.wuliudriver.WuliuDriverOrderActivity" />
@@ -148,7 +149,9 @@
         <activity android:name=".ui.client.mine.ResetPwdActivity" />
         <activity android:name=".ui.client.mine.UserInfoActivity" />
         <activity android:name=".ui.client.mine.SettingsActivity" />
-        <activity android:name=".ui.login.MainActivity" />
+        <activity
+            android:theme="@style/DefaultCityPickerTheme"
+            android:name=".ui.login.MainActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />

@@ -27,6 +27,7 @@
                 android:layout_width="60dp"
                 />
             <EditText
+                android:id="@+id/et_send_name"
                 android:layout_marginLeft="15dp"
                 android:textSize="14sp"
                 android:textColor="@color/color_333"
@@ -47,6 +48,7 @@
                 android:layout_width="60dp"
                 />
             <EditText
+                android:id="@+id/et_send_phone"
                 android:maxLength="11"
                 android:inputType="number"
                 android:layout_marginLeft="15dp"
@@ -68,15 +70,31 @@
                 style="@style/TextStyle333"
                 android:layout_width="60dp"
                 />
-            <EditText
-                android:layout_marginLeft="15dp"
-                android:textSize="14sp"
-                android:textColor="@color/color_333"
-                android:textColorHint="@color/color_999"
-                android:hint="请详细到门牌号"
-                android:background="@color/white"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_send_address"
+                    android:layout_marginRight="10dp"
+                    android:maxLines="2"
+                    android:layout_toLeftOf="@id/iv_right1"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_333"
+                    android:textColorHint="@color/color_999"
+                    android:text="请选择"
+                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/iv_right1"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/arrowright"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="15dp"
+                    android:layout_height="12dp" />
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
 

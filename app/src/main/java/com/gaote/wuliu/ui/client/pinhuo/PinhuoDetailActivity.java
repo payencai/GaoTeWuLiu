@@ -46,9 +46,12 @@ import com.gaote.wuliu.tools.CheckDoubleClick;
 import com.gaote.wuliu.tools.GsonUtil;
 import com.gaote.wuliu.tools.MapUtil;
 import com.gaote.wuliu.tools.MathUtils;
+import com.gaote.wuliu.ui.client.mine.bean.Coupon;
 import com.gaote.wuliu.ui.client.mine.mvp.model.Address;
 import com.lzy.okgo.model.HttpParams;
 import com.xgr.easypay.EasyPay;
+import com.xgr.easypay.alipay.AliPay;
+import com.xgr.easypay.alipay.AlipayInfoImpli;
 import com.xgr.easypay.callback.IPayCallback;
 import com.xgr.easypay.wxpay.WXPay;
 import com.xgr.easypay.wxpay.WXPayInfoImpli;
@@ -65,6 +68,8 @@ public class PinhuoDetailActivity extends AppCompatActivity {
     Address addrSendBean;
     @Autowired(name = "get")
     Address addrGetBean;
+    @Autowired (name = "coupon")
+    Coupon coupon;
     @BindView(R.id.tv_get)
     TextView tv_get;
     @BindView(R.id.tv_send)
@@ -85,6 +90,8 @@ public class PinhuoDetailActivity extends AppCompatActivity {
     EditText et_volume;
     @BindView(R.id.et_num)
     EditText et_num;
+    @BindView(R.id.tv_coupon)
+    TextView tv_coupon;
     @BindView(R.id.et_name)
     EditText et_name;
     String orderId;
@@ -101,7 +108,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         ARouter.getInstance().inject(this);
         initView();
     }
-
+    //初始化地址
     private void initAddress() {
         if (addrSendBean != null) {
             tv_send.setText(addrSendBean.getName() + " " + addrSendBean.getTelephone());
@@ -113,7 +120,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.rl_add, R.id.rl_send, R.id.rl_get, R.id.rl_small, R.id.btn_submit})
+    @OnClick({R.id.rl_add, R.id.rl_send, R.id.rl_get, R.id.rl_small, R.id.btn_submit,R.id.rl_coupon})
     void OnClcik(View view) {
         if (CheckDoubleClick.isFastDoubleClick()) {
             return;
@@ -122,6 +129,9 @@ public class PinhuoDetailActivity extends AppCompatActivity {
                 .build(MyPath.Mine.Address);
         Intent intent;
         switch (view.getId()) {
+            case R.id.rl_coupon:
+                ARouter.getInstance().build(MyPath.Mine.MyCoupon).withInt("orderType",1).navigation(this,3);
+                break;
             case R.id.btn_submit:
                 getOrderId();
                 break;
@@ -165,10 +175,15 @@ public class PinhuoDetailActivity extends AppCompatActivity {
                 addrGetBean = (Address) data.getSerializableExtra("data");
                 tv_get.setText(addrGetBean.getName() + " " + addrGetBean.getTelephone());
                 tv_get_address.setText(addrGetBean.getProvince() + addrGetBean.getCity() + addrGetBean.getArea() + addrGetBean.getAddress());
+            }else if(requestCode==3){
+                coupon= (Coupon) data.getSerializableExtra("data");
+                if(coupon!=null){
+                    tv_coupon.setText(coupon.getName());
+                }
             }
         }
     }
-
+    //增值服务弹窗
     private void showAddValueDialog() {
         final Dialog dialog = new Dialog(this, R.style.BottomDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_add_value, null);
@@ -196,7 +211,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         window.setAttributes(layoutParams);
     }
-
+    //小费弹窗
     private void showSmallDialog() {
         final Dialog dialog = new Dialog(this, R.style.BottomDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_small_money, null);
@@ -355,7 +370,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         window.setAttributes(layoutParams);
     }
-
+    //支付方式弹窗
     private void showPayMethodDialog() {
         payType = 1;
         final Dialog dialog = new Dialog(this, R.style.BottomDialog);
@@ -386,7 +401,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dialog.dismiss();
                 if (payType == 1) {
-
+                     getAliPayParams();
                 } else {
                     getWechatPayParams();
                 }
@@ -402,7 +417,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         window.setAttributes(layoutParams);
     }
-
+    //支付成功弹窗
     private void showPayFinishDialog() {
         final Dialog dialog = new Dialog(this, R.style.CustomDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_pay_finish, null);
@@ -416,7 +431,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         window.setAttributes(layoutParams);
     }
-
+    //生成订单
     private void getOrderId() {
         HttpParams httpParams = new HttpParams();
         httpParams.put("receiverAddressId", addrGetBean.getId());
@@ -463,7 +478,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
     private void getWechatPayParams() {
         HttpParams httpParams = new HttpParams();
         httpParams.put("orderId", orderId);
-        NetUtils.getInstance().post(Api.BASE_URL + Api.Pay.pdriverOrderPay, MyApp.token, httpParams, new OnMessageReceived() {
+        NetUtils.getInstance().post(Api.BASE_URL + Api.Pay.PinhuoWechat, MyApp.token, httpParams, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
                 LogUtils.e(response);
@@ -509,9 +524,55 @@ public class PinhuoDetailActivity extends AppCompatActivity {
             }
         });
     }
+    private void getAliPayParams() {
+        HttpParams httpParams = new HttpParams();
+        httpParams.put("orderId", orderId);
+        NetUtils.getInstance().post(Api.BASE_URL + Api.Pay.PinhuoAlipay, MyApp.token, httpParams, new OnMessageReceived() {
+            @Override
+            public void onSuccess(String response) {
+                LogUtils.e(response);
+                Result<String> result = GsonUtil.fromJsonObject(response, String.class);
+                if (result.getResultCode() == 0) {
 
+
+                            //实例化支付宝支付策略
+                            AliPay aliPay = new AliPay();
+                            //构造支付宝订单实体。一般都是由服务端直接返回。
+                            AlipayInfoImpli alipayInfoImpli = new AlipayInfoImpli();
+                            alipayInfoImpli.setOrderInfo(result.getData());
+                            //策略场景类调起支付方法开始支付，以及接收回调。
+                            EasyPay.pay(aliPay, PinhuoDetailActivity.this, alipayInfoImpli, new IPayCallback() {
+                                @Override
+                                public void success() {
+                                    showPayFinishDialog();
+                                }
+
+                                @Override
+                                public void failed() {
+                                    ToastUtils.showShort("支付失败");
+                                }
+
+                                @Override
+                                public void cancel() {
+                                    ToastUtils.showShort("支付取消");
+                                }
+                            });
+
+
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
     private void initView() {
         initAddress();
+        if(coupon!=null){
+            tv_coupon.setText(coupon.getName());
+        }
     }
 
 

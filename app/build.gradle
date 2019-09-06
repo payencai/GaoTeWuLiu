@@ -121,4 +121,5 @@ dependencies {
     //implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     //implementation 'io.github.mayubao:pay_library:1.0.1'
     implementation 'com.xgr.easypay:EasyPay:1.0.2'
+    implementation 'com.zaaach:citypicker:2.0.3'	//必选
 }

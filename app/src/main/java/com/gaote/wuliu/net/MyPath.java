@@ -7,9 +7,10 @@ public class MyPath {
         public static final String SelectAddress = "/select/address";
     }
     public static class Mine {
-        public static final String MyCoupon = "/coupon/mycoupon";
+        public static final String MyCoupon = "/mine/coupon/mycoupon";
         public static final String Login = "/mine/login";
         public static final String Address = "/mine/select/address";
+
     }
     public static class Wuliu{
         public static final String SendGoods = "/wuliu/sendgoods";

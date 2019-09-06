@@ -1,8 +1,6 @@
 package com.gaote.wuliu.ui.client.mine;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,16 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.bean.ResultPage;
 import com.gaote.wuliu.net.Api;
-import com.gaote.wuliu.net.MyPath;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.net.OnMessageReceived;
 import com.gaote.wuliu.ui.client.mine.adapter.CouponAdapter;
+import com.gaote.wuliu.ui.client.mine.adapter.GetCouponAdapter;
 import com.gaote.wuliu.ui.client.mine.bean.Coupon;
+import com.gaote.wuliu.ui.client.mine.bean.GetCoupon;
+import com.gaote.wuliu.ui.client.wuliu.model.WuliuCompany;
 import com.google.gson.Gson;
 import com.lzy.okgo.model.HttpParams;
 
@@ -37,24 +39,22 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyCouponFragment extends Fragment {
+public class GetCouponFragment extends Fragment {
     @BindView(R.id.rv_item)
     RecyclerView rv_item;
-    CouponAdapter couponAdapter;
-    List<Coupon> coupons;
-    int center;
+    GetCouponAdapter couponAdapter;
+    List<GetCoupon> coupons;
+    int type;
     int page=1;
-    int orderType=0;
     boolean isLoadMore=false;
-    public MyCouponFragment() {
+    public GetCouponFragment() {
         // Required empty public constructor
     }
 
-    public static MyCouponFragment newInstance(int center,int orderType) {
-        MyCouponFragment myCouponFragment = new MyCouponFragment();
+    public static GetCouponFragment newInstance(int type) {
+        GetCouponFragment myCouponFragment = new GetCouponFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("center", center);
-        bundle.putInt("orderType",orderType);
+        bundle.putInt("type", type);
         myCouponFragment.setArguments(bundle);
         return myCouponFragment;
     }
@@ -64,8 +64,6 @@ public class MyCouponFragment extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_my_coupon, container, false);
         ButterKnife.bind(this,view);
-        center=getArguments().getInt("center");
-        orderType=getArguments().getInt("orderType");
         initView();
         return view;
     }
@@ -75,7 +73,7 @@ public class MyCouponFragment extends Fragment {
     }
     private void initAdapter(){
         coupons=new ArrayList<>();
-        couponAdapter=new CouponAdapter(coupons);
+        couponAdapter=new GetCouponAdapter(coupons);
         couponAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
@@ -84,36 +82,6 @@ public class MyCouponFragment extends Fragment {
                 getData();
             }
         },rv_item);
-        couponAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                Coupon coupon= (Coupon) baseQuickAdapter.getItem(i);
-                if(view.getId()==R.id.tv_use){
-                    if(coupon.getIsCenter()==1){
-                         if(coupon.getType()==1){ //跳转拼货订单页面
-                             ARouter.getInstance().build(MyPath.Pinhuo.DETAIL).withSerializable("coupon",coupon).navigation();
-                         }else{  //跳转物流订单页面
-
-                         }
-                    }else{
-                        //返回选择结果
-                        if(coupon.getType()==1&&orderType==1){
-                            Intent intent=new Intent();
-                            intent.putExtra("data",coupon);
-                            getActivity().setResult(Activity.RESULT_OK,intent);
-                            getActivity().finish();
-                        }
-                        if(coupon.getType()==2&&orderType==2){
-                            Intent intent=new Intent();
-                            intent.putExtra("data",coupon);
-                            getActivity().setResult(Activity.RESULT_OK,intent);
-                            getActivity().finish();
-                        }
-
-                    }
-                }
-            }
-        });
         rv_item.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_item.setAdapter(couponAdapter);
         getData();
@@ -121,21 +89,21 @@ public class MyCouponFragment extends Fragment {
     private void getData(){
         HttpParams httpParams=new HttpParams();
         httpParams.put("page",page);
-        NetUtils.getInstance().get(MyApp.token, Api.BASE_URL + Api.Pinhuo.getCouponByUse,httpParams, new OnMessageReceived() {
+        NetUtils.getInstance().get(MyApp.token, Api.BASE_URL + Api.Pinhuo.getCouponByCanGet,httpParams, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
-
+                ResultPage<GetCoupon> result= GsonUtils.fromJson(response,ResultPage.class);
+                LogUtils.e(result.getData().getBeanList().size()+"1111");
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     int code=jsonObject.getInt("resultCode");
                     if(code==0){
                         jsonObject=jsonObject.getJSONObject("data");
-                        List<Coupon> couponList=new ArrayList<>();
+                        List<GetCoupon> couponList=new ArrayList<>();
                         JSONArray jsonArray=jsonObject.getJSONArray("beanList");
                         for (int i = 0; i <jsonArray.length() ; i++) {
                             JSONObject item=jsonArray.getJSONObject(i);
-                            Coupon coupon=new Gson().fromJson(item.toString(),Coupon.class);
-                            coupon.setIsCenter(center);
+                            GetCoupon coupon=new Gson().fromJson(item.toString(),GetCoupon.class);
                             couponList.add(coupon);
                         }
                         if(isLoadMore){

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.amap.api.maps.AMap;
@@ -65,6 +66,8 @@ public class WuliuFragment extends ImmersionFragment {
     MyLocationStyle myLocationStyle;
     @BindView(R.id.map)
     MapView mMapView;
+    @BindView(R.id.tv_city)
+    TextView tv_city;
     List<MapPoint> mapPointList;
     boolean isInit=false;
     public WuliuFragment() {
@@ -84,7 +87,14 @@ public class WuliuFragment extends ImmersionFragment {
         initView();
         return view;
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLocation(PinhuoEvent wuliuEvent){
+        switch (wuliuEvent.getMsg()){
+            case 200:
+                tv_city.setText(MyApp.getInstance().getaMapLocation().getCity());
+                break;
+        }
+    }
     private void initView() {
        mapPointList = new ArrayList<>();
        initMapView();
@@ -172,13 +182,26 @@ public class WuliuFragment extends ImmersionFragment {
                 ARouter.getInstance().build(MyPath.Wuliu.SeeLongtPhoto).navigation();
                 break;
             case R.id.rl_wuliu:
-                ARouter.getInstance().build(MyPath.Wuliu.QueryWuliu).navigation();
+                if(MyApp.isLogin)
+                   ARouter.getInstance().build(MyPath.Wuliu.QueryWuliu).navigation();
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
                 break;
             case R.id.rl_send:
-                ARouter.getInstance().build(MyPath.Wuliu.SendGoods).navigation();
+                if(MyApp.isLogin)
+                    ARouter.getInstance().build(MyPath.Wuliu.SendGoods).navigation();
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
+
                 break;
             case R.id.rl_near:
-                ARouter.getInstance().build(MyPath.Wuliu.Nearshops).navigation();
+                if(MyApp.isLogin)
+                    ARouter.getInstance().build(MyPath.Wuliu.Nearshops).navigation();
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
                 break;
         }
     }

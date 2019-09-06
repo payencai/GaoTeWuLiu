@@ -4,19 +4,22 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.bean.Result;
+import com.gaote.wuliu.bean.ResultPage;
 import com.gaote.wuliu.net.Api;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.net.OnMessageReceived;
 import com.gaote.wuliu.tools.GsonUtil;
+import com.gaote.wuliu.ui.client.mine.bean.ClientPinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoData;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
+import com.google.gson.Gson;
 import com.lzy.okgo.model.HttpParams;
 
 import java.util.List;
 
 public class PinhuoDriverOrderModel {
     public interface RequestResult {
-        void getData(List<PinhuoOrder> pinhuoOrders);
+        void getData(List<ClientPinhuoOrder> pinhuoOrders);
         void onOrderHandle(int type);
     }
     //获取拼货司机订单
@@ -29,11 +32,10 @@ public class PinhuoDriverOrderModel {
             @Override
             public void onSuccess(String response) {
                 LogUtils.e(response);
-                Result<PinhuoData> result = GsonUtil.fromJsonObject(response, PinhuoData.class);
+                ResultPage<ClientPinhuoOrder> result = new Gson().fromJson(response,ResultPage.class);
                 int code = result.getResultCode();
                 if (code == 0) {
-                    PinhuoData data = result.getData();
-                    requestResult.getData(data.getBeanList());
+                    requestResult.getData(result.getData().getBeanList());
                 } else {
                     ToastUtils.showShort(result.getMessage());
                 }

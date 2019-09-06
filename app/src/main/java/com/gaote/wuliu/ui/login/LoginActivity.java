@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         authorization(SHARE_MEDIA.SINA,3);
     }
 
-    //授权
+    //第三方授权登录
     private void authorization(SHARE_MEDIA share_media,int flag) {
         UMShareAPI.get(this).getPlatformInfo(this, share_media, new UMAuthListener() {
             @Override
@@ -237,7 +237,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         }
     }
     private void setDebugData(){
-        et_account.setText("13202908144");
+        et_account.setText("13249183950");
         et_pwd.setText("123456");
     }
     private void initView() {

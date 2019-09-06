@@ -37,7 +37,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/lcl_detail_et_cargo_weight"
+                        android:id="@+id/et_weight"
                         android:layout_width="64dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center_vertical"
@@ -68,7 +68,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/lcl_detail_et_cargo_volume"
+                        android:id="@+id/et_volume"
                         android:layout_width="64dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center_vertical"
@@ -98,7 +98,7 @@
                     android:layout_weight="1">
 
                     <EditText
-                        android:id="@+id/lcl_detail_et_cargo_count"
+                        android:id="@+id/et_num"
                         android:layout_width="64dp"
                         android:layout_height="25dp"
                         android:layout_gravity="center_vertical"
@@ -142,7 +142,7 @@
                 android:src="@drawable/productname" />
 
             <EditText
-                android:id="@+id/lcl_detail_et_cargo_name"
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"

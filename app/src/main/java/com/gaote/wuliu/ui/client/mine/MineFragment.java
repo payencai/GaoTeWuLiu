@@ -134,7 +134,7 @@ public class MineFragment extends ImmersionFragment {
         }
         switch (view.getId()) {
             case R.id.rl_coupon:
-                ARouter.getInstance().build(MyPath.Mine.MyCoupon).navigation();
+                ARouter.getInstance().build(MyPath.Mine.MyCoupon).withInt("iscenter",1).navigation();
                 break;
             case R.id.rl_wuliu:
                 startActivity(new Intent(getContext(), WuliuOrderActivity.class));

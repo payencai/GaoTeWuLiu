@@ -25,6 +25,7 @@ import com.gaote.wuliu.base.even.PinhuoEvent;
 import com.gaote.wuliu.net.Api;
 import com.gaote.wuliu.net.MyPath;
 import com.gaote.wuliu.tools.CheckDoubleClick;
+import com.gaote.wuliu.ui.client.mine.bean.ClientPinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrderModel;
 import com.gaote.wuliu.ui.client.mine.mvp.presenter.PinhuoOrderPresenter;
@@ -60,7 +61,7 @@ public class PinhuoDriverOrderFragment extends Fragment implements PinhuoDriverO
     PinhuoOrderAdapter pinhuoOrderAdapter;
     int type = 0;
     PinhuoDriverOrderPresenter pinhuoOrderPresenter;
-    List<PinhuoOrder> pinhuoOrderList;
+    List<ClientPinhuoOrder> pinhuoOrderList;
     @BindView(R.id.rv_order)
     RecyclerView rv_order;
     @BindView(R.id.refreshLayout)
@@ -230,7 +231,7 @@ public class PinhuoDriverOrderFragment extends Fragment implements PinhuoDriverO
     }
 
     @Override
-    public void setData(List<PinhuoOrder> pinhuoOrders) {
+    public void setData(List<ClientPinhuoOrder> pinhuoOrders) {
         refreshLayout.finishRefresh();
         pinhuoOrderList.addAll(pinhuoOrders);
         pinhuoOrderAdapter.setNewData(pinhuoOrderList);

@@ -42,6 +42,7 @@
                     android:layout_height="45dp" />
             </RelativeLayout>
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/rl_my"
                 android:layout_marginTop="0dp"
                 android:layout_width="match_parent"

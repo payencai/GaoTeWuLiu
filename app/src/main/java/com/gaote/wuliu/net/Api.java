@@ -6,7 +6,8 @@ package com.gaote.wuliu.net;
  */
 public class Api {
     //public static final String BASE_URL="http://192.168.10.39:5555";
-    public static final String BASE_URL = "http://120.79.176.228:5555";
+    public static final String BASE_URL="http://7pzifr.natappfree.cc";
+    //public static final String BASE_URL = "http://120.79.176.228:5555";
     public static final String SERVER_TYPE_CODE = "1";//服务方类型
     public static final String DEMAND_TYPE_CODE = "2";//需求方类型
     public static final String LOGIN_CODE = "1";
@@ -32,13 +33,20 @@ public class Api {
         public static final String URL_FINISH_ORDER_BY_USER = "/pdriverOrder/updatePdriverOrderByUser";
     }
     public static class Pinhuo{
+        public static final String getPdriverOrderByUser =  "/pdriverOrder/getPdriverOrderByUser";
+        public static final String getRefundOrderByUser =  "/pdriverOrder/getRefundOrderByUser";
         public static final String addPdriverOrder ="/pdriverOrder/addPdriverOrder";
         public static final String getCouponByCanGet ="/coupon/getCouponByCanGet";
         public static final String getCouponByUse =  "/coupon/getCouponByUse";
         public static final String getCoupon =  "/coupon/getCoupon";
+        public static final String getPdriverOrderById =  "/pdriverOrder/getPdriverOrderById";
     }
     public static class Pay{
-        public static final String pdriverOrderPay ="/wechatPay/pdriverOrderPay";
+        public static final String PinhuoAlipay ="/alipay/pdriverOrderPay";
+        public static final String PinhuoWechat ="/wechatPay/pdriverOrderPay";
+
+        public static final String WuliuAlipay ="/alipay/networkOrderPay";
+        public static final String WuliuWechat ="/wechatPay/networkOrderPay";
     }
     public static class Manage {
         public static final String URL_GET_VERIFY_CODE = "/manage/getVerificationCode.do";
@@ -83,7 +91,11 @@ public class Api {
         public static final String getUserInfo = "/demander/info/get";
     }
     public static class Wuliu{
-        public static final String getAllWuliu = "/logisticsCompany/getAll";
+        public static final String getFreightByRules = "/freightRules/getFreightByRules";//物流订单-运费（除韵达之外）
+        public static final String getFreightByRulesYunda = "/freightRules/getFreightByRulesYunda";//物流订单-运费（韵达）
+        public static final String addLogisticsOrder = "/network/order/addLogisticsOrder";
+        public static final String getExpressCompany = "/common/getExpressCompany";
+        public static final String getExpressCompanyList = "/common/getExpressCompanyList";
         public static final String getWuliuNetworks = "/wdriver/order/getNetworks";
     }
     public static class Order {

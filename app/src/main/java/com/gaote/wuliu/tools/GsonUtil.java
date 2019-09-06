@@ -7,8 +7,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Type;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -137,6 +143,25 @@ public class GsonUtil {
         // 根据List<T>生成完整的Result<List<T>>
         Type type = new ParameterizedTypeImpl(Result.class, new Type[]{listType});
         return new Gson().fromJson(reader, type);
+    }
+    public static String getCommomJson(String json){
+        String result="";
+        try {
+            JSONObject jsonObject=new JSONObject(json);
+            int code=jsonObject.getInt("resultCode");
+            String message=jsonObject.getString("message");
+            jsonObject=jsonObject.getJSONObject("data");
+            JSONArray data=jsonObject.getJSONArray("beanList");
+            Map<String,Object> params=new HashMap<>();
+            params.put("code",code);
+            params.put("data",data);
+            params.put("message",message);
+            result=new Gson().toJson(params);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

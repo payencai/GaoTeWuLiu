@@ -1,5 +1,6 @@
 package com.gaote.wuliu.ui.pinhuodriver.mvp.presenter;
 
+import com.gaote.wuliu.ui.client.mine.bean.ClientPinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrder;
 import com.gaote.wuliu.ui.client.mine.mvp.model.PinhuoOrderModel;
 import com.gaote.wuliu.ui.client.mine.mvp.view.PinhuoOrderView;
@@ -26,7 +27,7 @@ public class PinhuoDriverOrderPresenter implements PinhuoDriverOrderModel.Reques
         pinhuoOrderModel.onHandleOrder(id,status,this);
     }
     @Override
-    public void getData(List<PinhuoOrder> pinhuoOrders) {
+    public void getData(List<ClientPinhuoOrder> pinhuoOrders) {
         pinhuoOrderView.dissLoading();
         pinhuoOrderView.setData(pinhuoOrders);
     }

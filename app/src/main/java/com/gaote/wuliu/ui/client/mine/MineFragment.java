@@ -134,31 +134,68 @@ public class MineFragment extends ImmersionFragment {
         }
         switch (view.getId()) {
             case R.id.rl_coupon:
-                ARouter.getInstance().build(MyPath.Mine.MyCoupon).withInt("iscenter",1).navigation();
+                if(MyApp.isLogin)
+                    ARouter.getInstance().build(MyPath.Mine.MyCoupon).withInt("iscenter",1).navigation();
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
+
                 break;
             case R.id.rl_wuliu:
-                startActivity(new Intent(getContext(), WuliuOrderActivity.class));
+                if(MyApp.isLogin)
+                    startActivity(new Intent(getContext(), WuliuOrderActivity.class));
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
+
                 break;
             case R.id.rl_address:
-                ARouter.getInstance().build(MyPath.Mine.Address).navigation();
+                if(MyApp.isLogin)
+                    ARouter.getInstance().build(MyPath.Mine.Address).navigation();
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
                 break;
             case R.id.rl_pinhuo:
-                startActivity(new Intent(getContext(), PinhuoOrderActivity.class));
+                if(MyApp.isLogin)
+                   ARouter.getInstance().build(MyPath.Mine.MyPinhuoOrder).navigation();
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
                 break;
             case R.id.rl_driver:
-                startActivity(new Intent(getContext(), BecomeDriverActivity.class));
+                if(MyApp.isLogin)
+                    startActivity(new Intent(getContext(), BecomeDriverActivity.class));
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
+
                 break;
             case R.id.rl_reback:
-                startActivity(new Intent(getContext(), HelpRebackActivity.class));
+                if(MyApp.isLogin)
+                    startActivity(new Intent(getContext(), HelpRebackActivity.class));
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
                 break;
             case R.id.iv_head:
-                startActivity(new Intent(getContext(), UserInfoActivity.class));
+                if(MyApp.isLogin)
+                    startActivity(new Intent(getContext(), UserInfoActivity.class));
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
+
                 break;
             case R.id.ll_settings:
-                startActivity(new Intent(getContext(), SettingsActivity.class));
+                if(MyApp.isLogin)
+                    startActivity(new Intent(getContext(), SettingsActivity.class));
+                else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
+
                 break;
             case R.id.tv_login:
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                ARouter.getInstance().build(MyPath.Mine.Login).navigation();
                 break;
         }
     }

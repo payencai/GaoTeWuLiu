@@ -6,15 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
+import com.gaote.wuliu.net.MyPath;
 import com.gaote.wuliu.ui.client.pinhuo.PinHuoFragment;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+@Route(path = MyPath.Mine.MyPinhuoOrder)
 public class PinhuoOrderActivity extends AppCompatActivity {
     @BindView(R.id.tab_order)
     SlidingTabLayout tab_order;

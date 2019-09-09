@@ -20,7 +20,7 @@ public class GetCouponAdapter extends BaseQuickAdapter<GetCoupon, BaseViewHolder
     protected void convert(BaseViewHolder helper, GetCoupon item) {
 
         TextView tv_use=helper.getView(R.id.tv_use);
-
+        helper.addOnClickListener(R.id.tv_use);
         TextView tv_price=helper.getView(R.id.tv_price);
         tv_price.setText(item.getPrice()+"元优惠券");
 

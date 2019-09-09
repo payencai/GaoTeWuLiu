@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
@@ -124,7 +125,7 @@ public class MyCouponFragment extends Fragment {
         NetUtils.getInstance().get(MyApp.token, Api.BASE_URL + Api.Pinhuo.getCouponByUse,httpParams, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
-
+                LogUtils.e(response);
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     int code=jsonObject.getInt("resultCode");

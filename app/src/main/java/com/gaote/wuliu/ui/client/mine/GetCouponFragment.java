@@ -1,6 +1,7 @@
 package com.gaote.wuliu.ui.client.mine;
 
 
+import android.icu.lang.UScript;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,12 +13,14 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.fingerth.supdialogutils.SYSDiaLogUtils;
 import com.gaote.wuliu.MyApp;
 import com.gaote.wuliu.R;
 import com.gaote.wuliu.bean.ResultPage;
 import com.gaote.wuliu.net.Api;
 import com.gaote.wuliu.net.NetUtils;
 import com.gaote.wuliu.net.OnMessageReceived;
+import com.gaote.wuliu.tools.CheckDoubleClick;
 import com.gaote.wuliu.ui.client.mine.adapter.CouponAdapter;
 import com.gaote.wuliu.ui.client.mine.adapter.GetCouponAdapter;
 import com.gaote.wuliu.ui.client.mine.bean.Coupon;
@@ -82,6 +85,19 @@ public class GetCouponFragment extends Fragment {
                 getData();
             }
         },rv_item);
+        couponAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                GetCoupon getCoupon= (GetCoupon) baseQuickAdapter.getItem(i);
+                if(CheckDoubleClick.isFastDoubleClick()){
+                    return;
+                }
+                if(view.getId()==R.id.tv_use){
+                    String id=getCoupon.getId();
+                    useCoupon(id);
+                }
+            }
+        });
         rv_item.setLayoutManager(new LinearLayoutManager(getContext()));
         rv_item.setAdapter(couponAdapter);
         getData();
@@ -93,7 +109,7 @@ public class GetCouponFragment extends Fragment {
             @Override
             public void onSuccess(String response) {
                 ResultPage<GetCoupon> result= GsonUtils.fromJson(response,ResultPage.class);
-                LogUtils.e(result.getData().getBeanList().size()+"1111");
+                LogUtils.e(result.getData().getPageSize()+"");
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     int code=jsonObject.getInt("resultCode");
@@ -122,6 +138,22 @@ public class GetCouponFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+    private void useCoupon(String id){
+        HttpParams httpParams=new HttpParams();
+        httpParams.put("id",id);
+        NetUtils.getInstance().post(Api.BASE_URL + Api.Pinhuo.getCoupon, MyApp.token, httpParams, new OnMessageReceived() {
+            @Override
+            public void onSuccess(String response) {
+                LogUtils.e(response);
+                SYSDiaLogUtils.showSuccessDialog(getActivity(), "操作成功", "恭喜你，你已领取该优惠券！", "确认", false);
             }
 
             @Override

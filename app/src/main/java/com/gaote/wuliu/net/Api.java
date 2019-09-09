@@ -6,7 +6,7 @@ package com.gaote.wuliu.net;
  */
 public class Api {
     //public static final String BASE_URL="http://192.168.10.39:5555";
-    public static final String BASE_URL="http://7pzifr.natappfree.cc";
+    public static final String BASE_URL="http://gf2ayk.natappfree.cc";
     //public static final String BASE_URL = "http://120.79.176.228:5555";
     public static final String SERVER_TYPE_CODE = "1";//服务方类型
     public static final String DEMAND_TYPE_CODE = "2";//需求方类型
@@ -40,6 +40,9 @@ public class Api {
         public static final String getCouponByUse =  "/coupon/getCouponByUse";
         public static final String getCoupon =  "/coupon/getCoupon";
         public static final String getPdriverOrderById =  "/pdriverOrder/getPdriverOrderById";
+
+        public static final String getCarpoolingFreight =  "/pdriverOrder/getCarpoolingFreight";
+        public static final String getCharteredCarFreight =  "/pdriverOrder/getCharteredCarFreight";
     }
     public static class Pay{
         public static final String PinhuoAlipay ="/alipay/pdriverOrderPay";
@@ -49,6 +52,13 @@ public class Api {
         public static final String WuliuWechat ="/wechatPay/networkOrderPay";
     }
     public static class Manage {
+        public static final String retrieveUserByAccountAndTel="/manage/retrieveUserByAccountAndTel";
+        public static final String verificationUserByInfo="/manage/verificationUserByInfo";
+        public static final String verificationUserByTel="/manage//manage/verificationUserByTel";
+        public static final String updateUserByNewTel="/manage/updateUserByNewTel";
+        public static final String updateUserNewTetelephone="/manage/updateUserNewTetelephone";
+        public static final String forgetPassword="/manage/updatePassword.do";
+        public static final String sendCode="/manage/retrieveUserByCode";
         public static final String URL_GET_VERIFY_CODE = "/manage/getVerificationCode.do";
         public static final String URL_REGISTER = "/manage/register.do";
         public static final String URL_LOGIN = "/manage/login.do";

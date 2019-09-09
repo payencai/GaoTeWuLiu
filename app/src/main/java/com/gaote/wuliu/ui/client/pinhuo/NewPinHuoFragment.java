@@ -188,7 +188,7 @@ public class NewPinHuoFragment extends ImmersionFragment {
 
     @Override
     public void initImmersionBar() {
-        ImmersionBar.with(this).statusBarColor(R.color.home_blue).fitsSystemWindows(true).statusBarDarkFont(false).navigationBarDarkIcon(true).init();
+        ImmersionBar.with(this).init();
     }
 
 }

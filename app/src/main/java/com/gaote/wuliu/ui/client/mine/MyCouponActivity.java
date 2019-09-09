@@ -44,7 +44,7 @@ public class MyCouponActivity extends AppCompatActivity {
         mFragments=new ArrayList<>();
         mFragments.add(MyCouponFragment.newInstance(isCenter,orderType));
         mFragments.add(GetCouponFragment.newInstance(2));
-        vp_order.setOffscreenPageLimit(2);
+
         tab_order.setViewPager(vp_order,mTitles,this,mFragments);
         findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override

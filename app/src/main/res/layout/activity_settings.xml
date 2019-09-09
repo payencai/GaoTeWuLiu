@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
+            android:id="@+id/iv_back"
             android:padding="15dp"
             android:src="@drawable/back"
             android:layout_width="50dp"
@@ -248,7 +249,7 @@
         <RelativeLayout
 
             android:layout_alignParentBottom="true"
-            android:id="@+id/setting_rl_logout"
+            android:id="@+id/rl_exit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"

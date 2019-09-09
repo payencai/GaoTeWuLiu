@@ -39,9 +39,9 @@ public class PinhuoOrderAdapter extends BaseQuickAdapter<ClientPinhuoOrder, Base
         Button btn_right=helper.getView(R.id.item_btn_right);
         helper.addOnClickListener(R.id.item_btn_right).addOnClickListener(R.id.item_btn_mid).addOnClickListener(R.id.item_btn_left);
         tv_time.setText(item.getOrderTime());
-        tv_area1.setText(item.getConsigneeArea());
-        tv_city1.setText(item.getConsigneeProvince() + " " + item.getConsigneeCity());
-        tv_distance.setText(String.format("%.2f", Double.valueOf(item.getDistance())) + "km");
+        tv_area1.setText(item.getAdressFromDistrict());
+        tv_city1.setText(item.getAdressFromProvince() + " " + item.getAdressFromCity());
+        tv_distance.setText(item.getDistanceTotal() + "km");
         tv_area2.setText(item.getConsigneeArea());
         tv_city2.setText(item.getConsigneeProvince() + " " + item.getConsigneeCity());
         tv_name.setText(item.getArticleName() + ":");

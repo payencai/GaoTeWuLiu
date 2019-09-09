@@ -46,8 +46,10 @@ import com.gaote.wuliu.tools.CheckDoubleClick;
 import com.gaote.wuliu.tools.GsonUtil;
 import com.gaote.wuliu.tools.MapUtil;
 import com.gaote.wuliu.tools.MathUtils;
+import com.gaote.wuliu.tools.NumberUtils;
 import com.gaote.wuliu.ui.client.mine.bean.Coupon;
 import com.gaote.wuliu.ui.client.mine.mvp.model.Address;
+import com.gyf.immersionbar.ImmersionBar;
 import com.lzy.okgo.model.HttpParams;
 import com.xgr.easypay.EasyPay;
 import com.xgr.easypay.alipay.AliPay;
@@ -80,8 +82,14 @@ public class PinhuoDetailActivity extends AppCompatActivity {
     TextView tv_get_address;
     @BindView(R.id.tv_money)
     TextView tv_money;
+    @BindView(R.id.tv_price)
+    TextView tv_price;
     @BindView(R.id.tv_need)
     TextView tv_need;
+    @BindView(R.id.tv_item1)
+    TextView tv_item1;
+    @BindView(R.id.tv_item2)
+    TextView tv_item2;
     @BindView(R.id.et_remarks)
     EditText et_remarks;
     @BindView(R.id.et_weight)
@@ -99,13 +107,16 @@ public class PinhuoDetailActivity extends AppCompatActivity {
     Double gratuity;
     int currentMoney = 1;
     int payType = 1;
-
+    int isCarpooling=1;
+    Double total;
+    String price;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pinhuo_detail);
         ButterKnife.bind(this);
         ARouter.getInstance().inject(this);
+        ImmersionBar.with(this).init();
         initView();
     }
     //初始化地址
@@ -120,7 +131,7 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick({R.id.rl_add, R.id.rl_send, R.id.rl_get, R.id.rl_small, R.id.btn_submit,R.id.rl_coupon})
+    @OnClick({R.id.iv_back,R.id.rl_add, R.id.rl_send, R.id.rl_get, R.id.rl_small, R.id.btn_submit,R.id.rl_coupon,R.id.tv_item1,R.id.tv_item2})
     void OnClcik(View view) {
         if (CheckDoubleClick.isFastDoubleClick()) {
             return;
@@ -129,11 +140,32 @@ public class PinhuoDetailActivity extends AppCompatActivity {
                 .build(MyPath.Mine.Address);
         Intent intent;
         switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.tv_item2:
+                tv_item1.setBackgroundResource(R.drawable.shape_white_left);
+                tv_item2.setBackgroundResource(R.drawable.shape_grey_right);
+                isCarpooling=2;
+                break;
+            case R.id.tv_item1:
+                tv_item2.setBackgroundResource(R.drawable.shape_white_right);
+                tv_item1.setBackgroundResource(R.drawable.shape_grey_left);
+                isCarpooling=1;
+                break;
             case R.id.rl_coupon:
-                ARouter.getInstance().build(MyPath.Mine.MyCoupon).withInt("orderType",1).navigation(this,3);
+                if(MyApp.isLogin)
+                   ARouter.getInstance().build(MyPath.Mine.MyCoupon).withInt("orderType",1).navigation(this,3);
+                else
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
                 break;
             case R.id.btn_submit:
-                getOrderId();
+                if(MyApp.isLogin){
+                    if(checkInput())
+                       getOrderId();
+                } else{
+                    ARouter.getInstance().build(MyPath.Mine.Login).navigation();
+                }
                 break;
             case R.id.rl_small:
                 showSmallDialog();
@@ -171,15 +203,18 @@ public class PinhuoDetailActivity extends AppCompatActivity {
                 addrSendBean = (Address) data.getSerializableExtra("data");
                 tv_send.setText(addrSendBean.getName() + " " + addrSendBean.getTelephone());
                 tv_send_address.setText(addrSendBean.getProvince() + addrSendBean.getCity() + addrSendBean.getArea() + addrSendBean.getAddress());
+                calPrice();
             } else if (requestCode == 2) {
                 addrGetBean = (Address) data.getSerializableExtra("data");
                 tv_get.setText(addrGetBean.getName() + " " + addrGetBean.getTelephone());
                 tv_get_address.setText(addrGetBean.getProvince() + addrGetBean.getCity() + addrGetBean.getArea() + addrGetBean.getAddress());
+                calPrice();
             }else if(requestCode==3){
                 coupon= (Coupon) data.getSerializableExtra("data");
                 if(coupon!=null){
                     tv_coupon.setText(coupon.getName());
                 }
+                calPrice();
             }
         }
     }
@@ -376,10 +411,12 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(this, R.style.BottomDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_pay_method, null);
         TextView tv_confirm = view.findViewById(R.id.tv_confirm);
+        TextView tv_total = view.findViewById(R.id.tv_total);
         RelativeLayout rlAliPay = view.findViewById(R.id.rl_alipay);
         RelativeLayout rlWechat = view.findViewById(R.id.rl_wechat);
         ImageView iv_alipay = view.findViewById(R.id.iv_alipay);
         ImageView iv_wechat = view.findViewById(R.id.iv_wechat);
+        tv_total.setText(price);
         rlWechat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -421,7 +458,21 @@ public class PinhuoDetailActivity extends AppCompatActivity {
     private void showPayFinishDialog() {
         final Dialog dialog = new Dialog(this, R.style.CustomDialog);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_pay_finish, null);
+        ImageView iv_del=view.findViewById(R.id.iv_del);
+        iv_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.tv_see).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(MyPath.Mine.MyPinhuoOrder).navigation();
+            }
+        });
         dialog.setContentView(view);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
         Window window = dialog.getWindow();
         WindowManager windowManager = getWindowManager();
@@ -433,18 +484,26 @@ public class PinhuoDetailActivity extends AppCompatActivity {
     }
     //生成订单
     private void getOrderId() {
+        calPrice();
         HttpParams httpParams = new HttpParams();
-        httpParams.put("receiverAddressId", addrGetBean.getId());
         httpParams.put("consignee", addrGetBean.getName());
         httpParams.put("consigneeTelephone", addrGetBean.getTelephone());
         httpParams.put("consigneeArea", addrGetBean.getArea());
         httpParams.put("consigneeProvince", addrGetBean.getProvince());
         httpParams.put("consigneeCity", addrGetBean.getCity());
         httpParams.put("consigneeAddress", addrGetBean.getAddress());
-        httpParams.put("lng1", addrSendBean.getLng1());
-        httpParams.put("lat1", addrSendBean.getLat1());
-        httpParams.put("lng2", addrGetBean.getLng1());
-        httpParams.put("lat2", addrGetBean.getLat1());
+
+        httpParams.put("nameFrom", addrSendBean.getName());
+        httpParams.put("demanderTelnum", addrSendBean.getTelephone());
+        httpParams.put("adressFromDistrict", addrSendBean.getArea());
+        httpParams.put("adressFromProvince", addrSendBean.getProvince());
+        httpParams.put("adressFromCity", addrSendBean.getCity());
+        httpParams.put("adressFrom", addrSendBean.getAddress());
+
+        httpParams.put("consigneeLongitude", addrSendBean.getLng1());
+        httpParams.put("consigneeLatitude", addrSendBean.getLat1());
+        httpParams.put("adressFromLongitude", addrGetBean.getLng1());
+        httpParams.put("adressFromLatitude", addrGetBean.getLat1());
 
         httpParams.put("num", Integer.parseInt(et_num.getEditableText().toString()));
         httpParams.put("weight", Double.parseDouble(et_weight.getEditableText().toString()));
@@ -453,9 +512,10 @@ public class PinhuoDetailActivity extends AppCompatActivity {
 
         httpParams.put("remarks", et_remarks.getEditableText().toString());
         httpParams.put("isAddServer", isAddServer);
+        httpParams.put("isCarpooling", isCarpooling);
         httpParams.put("gratuity", gratuity);
-        httpParams.put("discountPrice", 0.9);
-        httpParams.put("realPrice", 1.0);
+        httpParams.put("discountPrice", coupon.getPrice());
+        httpParams.put("realPrice", total);
         NetUtils.getInstance().post(Api.BASE_URL + Api.Pinhuo.addPdriverOrder, MyApp.token, httpParams, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
@@ -573,7 +633,143 @@ public class PinhuoDetailActivity extends AppCompatActivity {
         if(coupon!=null){
             tv_coupon.setText(coupon.getName());
         }
-    }
 
+        et_weight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String value=s.toString();
+                if(!TextUtils.isEmpty(value)&&MathUtils.isNumber(value)){
+                    if(isCarpooling==1){
+                        calPrice();
+                    }
+                }else{
+                    if(isCarpooling==1)
+                        tv_price.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        et_volume.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String value=s.toString();
+                if(!TextUtils.isEmpty(value)&&MathUtils.isNumber(value)){
+                    if(isCarpooling==1){
+                        calPrice();
+                    }
+                }else{
+                    if(isCarpooling==1)
+                        tv_price.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+    private void calPrice(){
+        if(addrSendBean==null){
+            return;
+        }
+        if(addrGetBean==null){
+            return;
+        }
+        String url;
+        HttpParams httpParams=new HttpParams();
+        httpParams.put("consigneeLongitude",addrSendBean.getLng1());
+        httpParams.put("consigneeLatitude",addrSendBean.getLat1());
+        httpParams.put("adressFromLongitude",addrGetBean.getLng1());
+        httpParams.put("adressFromLatitude",addrGetBean.getLat1());
+        if(isCarpooling==1){
+            String weight=et_weight.getEditableText().toString();
+            String volume=et_volume.getEditableText().toString();
+            if(TextUtils.isEmpty(weight)){
+                return;
+            }
+            if(TextUtils.isEmpty(volume)){
+                return;
+            }
+            url=Api.BASE_URL+Api.Pinhuo.getCarpoolingFreight;
+            httpParams.put("weight",Double.parseDouble(weight));
+            httpParams.put("volume",Double.parseDouble(volume));
+        }else{
+            url=Api.BASE_URL+Api.Pinhuo.getCharteredCarFreight;
+        }
+        NetUtils.getInstance().get( MyApp.token,url, httpParams, new OnMessageReceived() {
+            @Override
+            public void onSuccess(String response) {
+                LogUtils.e(response);
+                Result<String> result=GsonUtil.fromJsonObject(response,String.class);
+                if(result.getResultCode()==0){
+                    total= Double.parseDouble(result.getData());
+
+                    if(coupon!=null){
+                        price= NumberUtils.substract(total+"",coupon.getPrice()+"",2);
+                        tv_price.setText(price+"");
+                    }else{
+                        tv_price.setText(total+"");
+                    }
+
+                }else{
+                    ToastUtils.showShort(result.getMessage());
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+    private boolean checkInput(){
+        boolean isOk=true;
+        if(TextUtils.isEmpty(et_name.getEditableText().toString())){
+            ToastUtils.showShort("请输入货物名称");
+            isOk=false;
+            return isOk;
+        }
+        if(TextUtils.isEmpty(et_weight.getEditableText().toString())){
+            ToastUtils.showShort("请输入重量");
+            isOk=false;
+            return isOk;
+        }
+        if(TextUtils.isEmpty(et_volume.getEditableText().toString())){
+            ToastUtils.showShort("请输入体积");
+            isOk=false;
+            return isOk;
+        }
+        if(TextUtils.isEmpty(et_num.getEditableText().toString())){
+            ToastUtils.showShort("请输入数量");
+            isOk=false;
+            return isOk;
+        }
+        if(addrGetBean==null){
+            ToastUtils.showShort("请选择地址");
+            isOk=false;
+            return isOk;
+        }
+        if(addrSendBean==null){
+            ToastUtils.showShort("请选择地址");
+            isOk=false;
+            return isOk;
+        }
+        return isOk;
+    }
 
 }

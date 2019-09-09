@@ -59,12 +59,12 @@ public class ChooseCompanyActivity extends AppCompatActivity {
          getCompany();
     }
     private void getCompany(){
-        NetUtils.getInstance().get(Api.BASE_URL + Api.Wuliu.getExpressCompanyList, new OnMessageReceived() {
+        NetUtils.getInstance().get(Api.BASE_URL + Api.Wuliu.getExpressCompany, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
                 LogUtils.e(response);
-                ResultPage<WuliuCompany> result= GsonUtils.fromJson(response, ResultPage.class);
-                mDataList.addAll(result.getData().getBeanList());
+                Result<List<WuliuCompany>> result= GsonUtil.fromJsonArray(response, WuliuCompany.class);
+                mDataList.addAll(result.getData());
                 initList();
             }
 

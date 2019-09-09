@@ -38,9 +38,8 @@ public class PinhuoOrderModel {
         NetUtils.getInstance().post(url, MyApp.token, httpParams, new OnMessageReceived() {
             @Override
             public void onSuccess(String response) {
-                String data=GsonUtil.getCommomJson(response);
-                List<ClientPinhuoOrder> result=GsonUtil.jsonToList(data,ClientPinhuoOrder.class);
-                LogUtils.e(result);
+
+                LogUtils.e(response);
                 try {
                     JSONObject jsonObject=new JSONObject(response);
                     int code=jsonObject.getInt("resultCode");

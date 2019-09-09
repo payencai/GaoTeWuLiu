@@ -122,4 +122,7 @@ dependencies {
     //implementation 'io.github.mayubao:pay_library:1.0.1'
     implementation 'com.xgr.easypay:EasyPay:1.0.2'
     implementation 'com.zaaach:citypicker:2.0.3'	//必选
+    implementation 'com.github.lihangleo2:ShadowLayout:2.0.1'//阴影
+    compile 'com.github.fingerth:FingerthAndroidUtils:1.0.3'//弹窗
+    compile 'com.bigkoo:svprogresshud:1.0.6'//ios风格加载动画
 }

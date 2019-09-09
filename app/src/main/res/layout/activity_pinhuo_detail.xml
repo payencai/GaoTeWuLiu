@@ -1,537 +1,629 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-
-    <RelativeLayout
-        android:background="@color/home_blue"
+    <FrameLayout
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:background="@mipmap/gt_home_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp">
 
 
-        <ImageView
-            android:padding="15dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/arrowleft_white"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-        <TextView
-            android:layout_centerInParent="true"
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@drawable/arrowleft_white" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scrollHorizontally="true"
+                android:text="我要拼货"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:background="@drawable/shape_white"
+                android:layout_width="80dp"
+                android:layout_height="28dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/tv_title">
+                <TextView
+                    android:textColor="@color/color_333"
+                    android:id="@+id/tv_item1"
+                    android:text="拼车"
+                    android:background="@drawable/shape_grey_left"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:textColor="@color/color_333"
+                    android:id="@+id/tv_item2"
+                    android:text="整车"
+                    android:background="@drawable/shape_white_right"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <include
+
+            layout="@layout/gt_pinhuo_address2"></include>
+
+    </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f8f8f8">
+
+
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/btn_submit">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f8f8f8"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:orientation="vertical"
+                    android:paddingTop="15dp">
+                    <com.lihang.ShadowLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:hl_cornerRadius="10dp"
+                        app:hl_dx="0dp"
+                        app:hl_dy="2dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        app:hl_shadowColor="#2a000000"
+                        app:hl_shadowBackColor="#fff"
+                        app:hl_shadowLimit="5dp">
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="16dp">
+
+                                <ImageView
+                                    android:id="@+id/icon_weight"
+                                    android:layout_width="17dp"
+                                    android:layout_height="17dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/weight" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_toRightOf="@id/icon_weight"
+                                    android:gravity="center_vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1">
+
+                                        <EditText
+                                            android:id="@+id/et_weight"
+                                            android:layout_width="64dp"
+                                            android:layout_height="25dp"
+                                            android:layout_gravity="center_vertical"
+                                            android:background="@drawable/shape_et_lcl"
+                                            android:gravity="center"
+                                            android:hint="请输入重量"
+                                            android:inputType="numberDecimal"
+                                            android:padding="2dp"
+                                            android:singleLine="true"
+                                            android:textColor="@color/text_black_color"
+                                            android:textColorHint="#999999"
+                                            android:textSize="10sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginLeft="5dp"
+                                            android:text="kg"
+                                            android:textColor="@color/text_black_color"
+                                            android:textSize="14sp" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1">
+
+                                        <EditText
+
+                                            android:id="@+id/et_volume"
+                                            android:layout_width="64dp"
+                                            android:layout_height="25dp"
+                                            android:layout_gravity="center_vertical"
+                                            android:background="@drawable/shape_et_lcl"
+                                            android:gravity="center"
+                                            android:hint="请输入体积"
+                                            android:inputType="numberDecimal"
+                                            android:padding="2dp"
+                                            android:singleLine="true"
+                                            android:textColor="@color/text_black_color"
+                                            android:textColorHint="#999999"
+                                            android:textSize="10sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginLeft="5dp"
+                                            android:text="cm"
+                                            android:textColor="@color/text_black_color"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1">
+
+                                        <EditText
+                                            android:id="@+id/et_num"
+                                            android:layout_width="64dp"
+                                            android:layout_height="25dp"
+                                            android:layout_gravity="center_vertical"
+                                            android:background="@drawable/shape_et_lcl"
+                                            android:gravity="center"
+                                            android:hint="请输入件数"
+                                            android:inputType="numberDecimal"
+                                            android:padding="2dp"
+                                            android:singleLine="true"
+                                            android:textColor="@color/text_black_color"
+                                            android:textColorHint="#999999"
+                                            android:textSize="10sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginLeft="5dp"
+                                            android:text="件"
+                                            android:textColor="@color/text_black_color"
+                                            android:textSize="14sp" />
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="15dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="16dp">
+
+                                <ImageView
+                                    android:id="@+id/icon_productname"
+                                    android:layout_width="17dp"
+                                    android:layout_height="17dp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/productname" />
+
+                                <EditText
+                                    android:id="@+id/et_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginRight="46dp"
+                                    android:layout_toRightOf="@id/icon_productname"
+                                    android:background="@drawable/shape_et_lcl"
+                                    android:hint="请输入货品名称"
+                                    android:paddingLeft="7dp"
+                                    android:textColorHint="#999999"
+                                    android:textSize="10sp" />
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </com.lihang.ShadowLayout>
+
+
+                    <com.lihang.ShadowLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hl_cornerRadius="10dp"
+                        app:hl_dx="0dp"
+                        app:hl_dy="2dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        app:hl_shadowColor="#2a000000"
+                        app:hl_shadowBackColor="#fff"
+                        app:hl_shadowLimit="5dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/rl_add"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="16dp">
+
+                                <ImageView
+                                    android:id="@+id/icon_man"
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:layout_centerVertical="true"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/man" />
+
+                                <TextView
+                                    android:id="@+id/get_product_tv_tag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_toRightOf="@id/icon_man"
+                                    android:text="增值服务"
+                                    android:textColor="@color/text_black_color"
+                                    android:textSize="14sp" />
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="9dp"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv_need"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="10dp"
+                                        android:text=""
+                                        android:textColor="@color/text_black_color"
+                                        android:textSize="14sp" />
+
+                                    <ImageView
+
+                                        android:layout_width="5dp"
+                                        android:layout_height="9dp"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/arrowright" />
+                                </LinearLayout>
+                                "
+
+
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:background="#eee"></View>
+
+                            <RelativeLayout
+                                android:id="@+id/rl_small"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:paddingLeft="16dp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true">
+
+                                    <ImageView
+
+                                        android:layout_width="18dp"
+                                        android:layout_height="18dp"
+                                        android:layout_centerVertical="true"
+                                        android:adjustViewBounds="true"
+                                        android:scaleType="fitXY"
+                                        android:src="@mipmap/gt_small_money" />
+
+                                    <TextView
+
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="16dp"
+                                        android:text="加小费"
+                                        android:textColor="@color/text_black_color"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="9dp"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv_money"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="10dp"
+                                        android:text=""
+                                        android:textColor="@color/text_black_color"
+                                        android:textSize="14sp" />
+
+                                    <ImageView
+
+                                        android:layout_width="5dp"
+                                        android:layout_height="9dp"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/arrowright" />
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+                    </com.lihang.ShadowLayout>
+
+
+                    <com.lihang.ShadowLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hl_cornerRadius="10dp"
+                        app:hl_dx="0dp"
+                        app:hl_dy="2dp"
+
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        app:hl_shadowColor="#2a000000"
+                        app:hl_shadowBackColor="#fff"
+                        app:hl_shadowLimit="5dp">
+                        <EditText
+                            android:id="@+id/et_remarks"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+
+                            android:background="@drawable/shape_white"
+                            android:hint="留言给拼货司机"
+                            android:paddingLeft="16dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="@color/text_black_color"
+                            android:textColorHint="#ccc"
+                            android:textSize="14sp" />
+                    </com.lihang.ShadowLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_white"
+                        android:orientation="vertical">
+                        <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#eee"></View>
+
+                        <com.lihang.ShadowLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hl_dx="0dp"
+                            app:hl_dy="2dp"
+                            app:hl_topShow="false"
+                            app:hl_bottomShow="false"
+                            app:hl_leftShow="false"
+                            app:hl_rightShow="false"
+                            app:hl_shadowColor="#2a000000"
+                            app:hl_shadowBackColor="#fff"
+                            >
+                            <RelativeLayout
+                                android:id="@+id/rl_coupon"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="16dp"
+                                    android:text="优惠券"
+                                    android:textColor="@color/text_black_color"
+                                    android:textSize="14sp" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="15dp"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:id="@+id/tv_coupon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="暂无优惠卷"
+                                        android:textColor="#666"
+                                        android:textSize="14sp" />
+
+                                    <ImageView
+                                        android:layout_width="7dp"
+                                        android:layout_height="13dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:src="@drawable/mine_arrowright" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </com.lihang.ShadowLayout>
+
+
+                        <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#eee"></View>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <LinearLayout
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="16dp"
+                                    android:text="￥"
+                                    android:textColor="@color/text_black_color"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="2dp"
+                                    android:text="0"
+                                    android:textColor="@color/text_black_color"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="50dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/shape_blue_price"
+                                android:gravity="center"
+                                android:text="价格明细"
+                                android:textColor="#00C1DE"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/lcl_detail_cb_agree"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableStart="@drawable/selector_check_box_lcl" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="3dp"
+                            android:gravity="center_vertical"
+                            android:text="我已阅读并同意"
+                            android:textColor="#666666"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="《服务协议》"
+                            android:textColor="#00c1de"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/shape_btn_blue"
+            android:text="我要发布"
             android:textColor="@color/white"
-            android:id="@+id/titlebar_tv_title"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scrollHorizontally="true"
-            android:textSize="16sp"
-            android:text="我要拼货" />
-
-
-
-
-
+            android:textSize="@dimen/text_size_17sp" />
     </RelativeLayout>
-     <RelativeLayout
-         android:background="#f3f3f3"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent">
-         <android.support.v4.widget.NestedScrollView
-             android:layout_above="@id/btn_submit"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-             <LinearLayout
-                 android:background="#f3f3f3"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:orientation="vertical">
-                 <FrameLayout
-
-
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content">
-
-                     <View
-                         android:layout_width="match_parent"
-                         android:layout_height="180dp"
-                         android:background="@color/home_blue" />
-                     <include
-
-                         layout="@layout/gt_pinhuo_address2"></include>
-
-                 </FrameLayout>
-                 <LinearLayout
-                     android:background="#f3f3f3"
-                     android:orientation="vertical"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent">
-
-                     <LinearLayout
-                         android:background="@drawable/shape_white"
-                         android:layout_marginRight="12dp"
-                         android:layout_marginLeft="12dp"
-                         android:orientation="vertical"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content">
-                         <RelativeLayout
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:layout_marginTop="10dp"
-                             android:gravity="center_vertical"
-                             android:paddingLeft="16dp">
-
-                             <ImageView
-                                 android:id="@+id/icon_weight"
-                                 android:layout_width="17dp"
-                                 android:layout_height="17dp"
-                                 android:layout_centerVertical="true"
-                                 android:src="@drawable/weight" />
-
-                             <LinearLayout
-                                 android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"
-                                 android:layout_centerVertical="true"
-                                 android:layout_marginLeft="16dp"
-                                 android:layout_toRightOf="@id/icon_weight"
-                                 android:gravity="center_vertical">
-
-                                 <LinearLayout
-                                     android:layout_width="0dp"
-                                     android:layout_height="match_parent"
-                                     android:layout_weight="1">
-
-                                     <EditText
-                                         android:id="@+id/et_weight"
-                                         android:layout_width="64dp"
-                                         android:layout_height="25dp"
-                                         android:layout_gravity="center_vertical"
-                                         android:background="@drawable/shape_et_lcl"
-                                         android:gravity="center"
-                                         android:hint="请输入重量"
-                                         android:inputType="numberDecimal"
-                                         android:padding="2dp"
-                                         android:singleLine="true"
-                                         android:textColor="@color/text_black_color"
-                                         android:textColorHint="#999999"
-                                         android:textSize="10sp" />
-
-                                     <TextView
-                                         android:layout_width="wrap_content"
-                                         android:layout_height="wrap_content"
-                                         android:layout_gravity="center_vertical"
-                                         android:layout_marginLeft="5dp"
-                                         android:text="kg"
-                                         android:textColor="@color/text_black_color"
-                                         android:textSize="14sp" />
-
-                                 </LinearLayout>
-
-                                 <LinearLayout
-                                     android:layout_width="0dp"
-                                     android:layout_height="match_parent"
-                                     android:layout_weight="1">
-
-                                     <EditText
-
-                                         android:id="@+id/et_volume"
-                                         android:layout_width="64dp"
-                                         android:layout_height="25dp"
-                                         android:layout_gravity="center_vertical"
-                                         android:background="@drawable/shape_et_lcl"
-                                         android:gravity="center"
-                                         android:hint="请输入体积"
-                                         android:inputType="numberDecimal"
-                                         android:padding="2dp"
-                                         android:singleLine="true"
-                                         android:textColor="@color/text_black_color"
-                                         android:textColorHint="#999999"
-                                         android:textSize="10sp" />
-
-                                     <TextView
-                                         android:layout_width="wrap_content"
-                                         android:layout_height="wrap_content"
-                                         android:layout_gravity="center_vertical"
-                                         android:layout_marginLeft="5dp"
-                                         android:text="m³"
-                                         android:textColor="@color/text_black_color"
-                                         android:textSize="14sp" />
-                                 </LinearLayout>
-
-                                 <LinearLayout
-                                     android:layout_width="0dp"
-                                     android:layout_height="match_parent"
-                                     android:layout_weight="1">
-
-                                     <EditText
-                                         android:id="@+id/et_num"
-                                         android:layout_width="64dp"
-                                         android:layout_height="25dp"
-                                         android:layout_gravity="center_vertical"
-                                         android:background="@drawable/shape_et_lcl"
-                                         android:gravity="center"
-                                         android:hint="请输入件数"
-                                         android:inputType="numberDecimal"
-                                         android:padding="2dp"
-                                         android:singleLine="true"
-                                         android:textColor="@color/text_black_color"
-                                         android:textColorHint="#999999"
-                                         android:textSize="10sp" />
-
-                                     <TextView
-                                         android:layout_width="wrap_content"
-                                         android:layout_height="wrap_content"
-                                         android:layout_gravity="center_vertical"
-                                         android:layout_marginLeft="5dp"
-                                         android:text="件"
-                                         android:textColor="@color/text_black_color"
-                                         android:textSize="14sp" />
-                                 </LinearLayout>
-
-                             </LinearLayout>
-
-                         </RelativeLayout>
-
-                         <RelativeLayout
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:layout_marginTop="15dp"
-                             android:layout_marginBottom="15dp"
-                             android:gravity="center_vertical"
-                             android:paddingLeft="16dp">
-
-                             <ImageView
-                                 android:id="@+id/icon_productname"
-                                 android:layout_width="17dp"
-                                 android:layout_height="17dp"
-                                 android:layout_centerVertical="true"
-                                 android:src="@drawable/productname" />
-
-                             <EditText
-                                 android:id="@+id/et_name"
-                                 android:layout_width="match_parent"
-                                 android:layout_height="30dp"
-                                 android:layout_marginLeft="16dp"
-                                 android:layout_marginRight="46dp"
-                                 android:layout_toRightOf="@id/icon_productname"
-                                 android:background="@drawable/shape_et_lcl"
-                                 android:hint="请输入货品名称"
-                                 android:paddingLeft="7dp"
-                                 android:textColorHint="#999999"
-                                 android:textSize="10sp" />
-
-                         </RelativeLayout>
-
-
-
-                     </LinearLayout>
-
-                     <LinearLayout
-                         android:layout_marginTop="@dimen/margin_10dp"
-                         android:background="@drawable/shape_white"
-                         android:layout_marginRight="12dp"
-                         android:layout_marginLeft="12dp"
-                         android:orientation="vertical"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content">
-                         <RelativeLayout
-                             android:id="@+id/rl_add"
-                             android:layout_width="match_parent"
-                             android:layout_height="50dp"
-                             android:gravity="center_vertical"
-                             android:paddingLeft="16dp">
-
-                             <ImageView
-                                 android:id="@+id/icon_man"
-                                 android:layout_width="18dp"
-                                 android:layout_height="18dp"
-                                 android:layout_centerVertical="true"
-                                 android:adjustViewBounds="true"
-                                 android:scaleType="fitXY"
-                                 android:src="@drawable/man" />
-
-                             <TextView
-                                 android:id="@+id/get_product_tv_tag"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content"
-                                 android:layout_centerVertical="true"
-                                 android:layout_marginLeft="16dp"
-                                 android:layout_toRightOf="@id/icon_man"
-                                 android:text="增值服务"
-                                 android:textColor="@color/text_black_color"
-                                 android:textSize="14sp" />
-
-
-                             <LinearLayout
-                                 android:gravity="center_vertical"
-                                 android:layout_marginRight="9dp"
-                                 android:layout_alignParentRight="true"
-                                 android:layout_centerVertical="true"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content">
-                                 <TextView
-                                     android:id="@+id/tv_need"
-                                     android:layout_marginRight="10dp"
-                                     android:layout_width="wrap_content"
-                                     android:layout_height="wrap_content"
-                                     android:layout_centerVertical="true"
-                                     android:text=""
-                                     android:textColor="@color/text_black_color"
-                                     android:textSize="14sp" />
-
-                                 <ImageView
-
-                                     android:layout_width="5dp"
-                                     android:layout_height="9dp"
-                                     android:scaleType="fitXY"
-                                     android:src="@drawable/arrowright" />
-                             </LinearLayout>"
-
-
-                         </RelativeLayout>
-
-                         <View
-                             android:layout_marginRight="15dp"
-                             android:layout_marginLeft="15dp"
-                             android:background="#eee"
-                             android:layout_width="match_parent"
-                             android:layout_height="0.5dp"></View>
-
-                         <RelativeLayout
-                             android:id="@+id/rl_small"
-                             android:layout_width="match_parent"
-                             android:layout_height="50dp"
-                             android:paddingLeft="16dp">
-                             <LinearLayout
-                                 android:layout_centerVertical="true"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content">
-                                 <ImageView
-
-                                     android:layout_width="18dp"
-                                     android:layout_height="18dp"
-                                     android:layout_centerVertical="true"
-                                     android:adjustViewBounds="true"
-                                     android:scaleType="fitXY"
-                                     android:src="@mipmap/gt_small_money" />
-
-                                 <TextView
-
-                                     android:layout_width="wrap_content"
-                                     android:layout_height="wrap_content"
-                                     android:layout_centerVertical="true"
-                                     android:layout_marginLeft="16dp"
-                                     android:text="加小费"
-                                     android:textColor="@color/text_black_color"
-                                     android:textSize="14sp" />
-                             </LinearLayout>
-                             <LinearLayout
-                                 android:gravity="center_vertical"
-                                 android:layout_marginRight="9dp"
-                                 android:layout_alignParentRight="true"
-                                 android:layout_centerVertical="true"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content">
-                                 <TextView
-                                     android:id="@+id/tv_money"
-                                     android:layout_marginRight="10dp"
-                                     android:layout_width="wrap_content"
-                                     android:layout_height="wrap_content"
-                                     android:layout_centerVertical="true"
-                                     android:text=""
-                                     android:textColor="@color/text_black_color"
-                                     android:textSize="14sp" />
-
-                                 <ImageView
-
-                                     android:layout_width="5dp"
-                                     android:layout_height="9dp"
-                                     android:scaleType="fitXY"
-                                     android:src="@drawable/arrowright" />
-                             </LinearLayout>
-
-
-
-                         </RelativeLayout>
-
-
-                     </LinearLayout>
-
-
-                     <EditText
-                         android:layout_marginTop="10dp"
-                         android:layout_marginRight="12dp"
-                         android:layout_marginLeft="12dp"
-                         android:id="@+id/et_remarks"
-                         android:layout_width="match_parent"
-                         android:layout_height="50dp"
-                         android:background="@drawable/shape_white"
-                         android:hint="留言给拼货司机"
-                         android:paddingLeft="16dp"
-                         android:paddingTop="5dp"
-                         android:paddingBottom="10dp"
-                         android:textColor="@color/text_black_color"
-                         android:textColorHint="#ccc"
-                         android:textSize="14sp" />
-
-
-
-                     <LinearLayout
-                         android:layout_marginTop="20dp"
-                         android:layout_marginRight="12dp"
-                         android:background="@drawable/shape_white"
-                         android:layout_marginLeft="12dp"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:orientation="vertical">
-
-                         <RelativeLayout
-                             android:id="@+id/rl_coupon"
-                             android:layout_width="match_parent"
-                             android:layout_height="45dp">
-
-                             <TextView
-
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content"
-                                 android:layout_centerVertical="true"
-                                 android:layout_marginLeft="16dp"
-                                 android:text="优惠券"
-                                 android:textColor="@color/text_black_color"
-                                 android:textSize="14sp" />
-                             <LinearLayout
-                                 android:layout_marginRight="15dp"
-                                 android:gravity="center"
-                                 android:layout_alignParentRight="true"
-                                 android:layout_centerVertical="true"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content">
-                                 <TextView
-                                     android:id="@+id/tv_coupon"
-                                     android:textSize="14sp"
-                                     android:textColor="#666"
-                                     android:text="暂无优惠卷"
-                                     android:layout_width="wrap_content"
-                                     android:layout_height="wrap_content" />
-                                 <ImageView
-                                     android:layout_marginLeft="10dp"
-                                     android:layout_width="7dp"
-                                     android:layout_height="13dp"
-                                     android:src="@drawable/mine_arrowright" />
-                             </LinearLayout>
-                         </RelativeLayout>
-                         <View
-
-                             android:background="#eee"
-                             android:layout_width="match_parent"
-                             android:layout_height="1dp"></View>
-
-                         <RelativeLayout
-                             android:layout_width="match_parent"
-                             android:layout_height="60dp">
-                             <LinearLayout
-
-                                 android:layout_centerInParent="true"
-                                 android:layout_width="wrap_content"
-                                 android:layout_height="wrap_content">
-                                 <TextView
-                                     android:textStyle="bold"
-                                     android:layout_width="wrap_content"
-                                     android:layout_height="wrap_content"
-                                     android:layout_centerVertical="true"
-                                     android:layout_marginLeft="16dp"
-                                     android:text="￥"
-                                     android:textColor="@color/text_black_color"
-                                     android:textSize="14sp" />
-                                 <TextView
-                                     android:textStyle="bold"
-                                     android:layout_width="wrap_content"
-                                     android:layout_height="wrap_content"
-                                     android:layout_centerVertical="true"
-                                     android:layout_marginLeft="2dp"
-                                     android:text="0"
-                                     android:textColor="@color/text_black_color"
-                                     android:textSize="20sp" />
-                             </LinearLayout>
-                             <TextView
-                                 android:background="@drawable/shape_blue_price"
-                                 android:gravity="center"
-                                 android:layout_marginRight="15dp"
-                                 android:layout_alignParentRight="true"
-                                 android:textStyle="bold"
-                                 android:layout_width="50dp"
-                                 android:layout_height="25dp"
-                                 android:layout_centerVertical="true"
-                                 android:text="价格明细"
-                                 android:textColor="#00C1DE"
-                                 android:textSize="10sp" />
-                         </RelativeLayout>
-                     </LinearLayout>
-
-                     <LinearLayout
-                         android:layout_marginTop="20dp"
-                         android:layout_width="match_parent"
-                         android:layout_height="20dp"
-                         android:layout_gravity="center"
-
-                         android:gravity="center"
-                         android:orientation="horizontal">
-
-                         <CheckBox
-                             android:id="@+id/lcl_detail_cb_agree"
-                             android:layout_width="20dp"
-                             android:layout_height="20dp"
-                             android:layout_gravity="center_vertical"
-                             android:button="@null"
-                             android:checked="true"
-                             android:drawableStart="@drawable/selector_check_box_lcl" />
-
-                         <TextView
-                             android:layout_width="wrap_content"
-                             android:layout_height="match_parent"
-                             android:layout_gravity="center_vertical"
-                             android:layout_marginLeft="3dp"
-                             android:gravity="center_vertical"
-                             android:text="我已阅读并同意"
-                             android:textColor="#666666"
-                             android:textSize="12sp" />
-
-                         <TextView
-                             android:layout_width="wrap_content"
-                             android:layout_height="match_parent"
-                             android:layout_gravity="center_vertical"
-                             android:gravity="center_vertical"
-                             android:text="《服务协议》"
-                             android:textColor="#00c1de"
-                             android:textSize="12sp" />
-
-                     </LinearLayout>
-
-
-                 </LinearLayout>
-             </LinearLayout>
-         </android.support.v4.widget.NestedScrollView>
-         <Button
-             android:layout_alignParentBottom="true"
-             android:layout_marginBottom="15dp"
-             android:id="@+id/btn_submit"
-             android:textSize="@dimen/text_size_17sp"
-             android:textColor="@color/white"
-             android:text="我要发布"
-             android:layout_marginRight="15dp"
-             android:layout_marginLeft="15dp"
-             android:layout_marginTop="10dp"
-             android:background="@drawable/shape_btn_blue"
-             android:layout_width="match_parent"
-             android:layout_height="50dp" />
-     </RelativeLayout>
-
-
 
 
 </LinearLayout>
